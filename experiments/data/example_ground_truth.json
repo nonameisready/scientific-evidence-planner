@@ -1,0 +1,12 @@
+[
+  {
+    "evidence_id": "claim_confirmed_low_h2o",
+    "hypothesis_id": "H1",
+    "action_type": "collect_observation",
+    "likelihoods": {"H1": 0.9, "H2": 0.2, "H3": 0.4, "H4": 0.3},
+    "metadata": {
+      "description": "JWST mid-IR follow-up independently confirming low H2O",
+      "timestamp": "2023"
+    }
+  }
+]

@@ -1,0 +1,29 @@
+# Default configuration for the scientific evidence planner.
+# Every parameter here is documented in docs/configuration.md.
+
+utility:
+  # Weights for: utility = w_ig*IG + w_nov*Novelty + w_tract*Tractability - w_cost*Cost
+  # Information gain is measured in bits (typically well below 1 for a
+  # single action), while the other components are scores in [0, 1]; the
+  # higher default weight puts the components on a comparable scale.
+  information_gain_weight: 10.0
+  novelty_weight: 1.0
+  tractability_weight: 1.0
+  cost_weight: 1.0
+
+gap_analysis:
+  # A hypothesis needs at least this many evidence edges (either polarity).
+  min_evidence_count: 2
+  # Minimum summed confidence of supporting edges.
+  min_support_confidence: 0.5
+  # Flag hypotheses whose evidence all descends from one provenance root.
+  require_independent_sources: true
+
+planner:
+  # Number of recommendations to return.
+  top_k: 5
+
+benchmark:
+  # Historical simulation cutoff: the planner only sees nodes with
+  # timestamp strictly before this value (ISO date or year).
+  cutoff: "2020"

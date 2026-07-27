@@ -1,0 +1,32 @@
+{
+  "astro_001": [
+    {
+      "hypothesis_id": "H1",
+      "description": "Low water abundance is real.",
+      "prior": 0.3,
+      "supporting_evidence": ["claim_low_h2o"],
+      "contradicting_evidence": []
+    },
+    {
+      "hypothesis_id": "H2",
+      "description": "Retrieval artifact.",
+      "prior": 0.3,
+      "supporting_evidence": [],
+      "contradicting_evidence": []
+    },
+    {
+      "hypothesis_id": "H3",
+      "description": "Cloud degeneracy.",
+      "prior": 0.2,
+      "supporting_evidence": [],
+      "contradicting_evidence": []
+    },
+    {
+      "hypothesis_id": "H4",
+      "description": "Instrument systematic bias.",
+      "prior": 0.2,
+      "supporting_evidence": [],
+      "contradicting_evidence": []
+    }
+  ]
+}
