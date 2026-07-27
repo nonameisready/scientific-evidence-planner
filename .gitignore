@@ -4,3 +4,7 @@ __pycache__/
 .venv/
 results/*
 !results/.gitkeep
+*.aux
+*.log
+*.out
+*.toc
