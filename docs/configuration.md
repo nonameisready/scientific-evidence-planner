@@ -36,6 +36,14 @@ Loaded with `planner.load_utility_config(path)`.
 | --- | --- | --- |
 | `cutoff` | "2020" | Historical-simulation cutoff; the planner sees only nodes strictly before it (ISO date or year, compared lexicographically) |
 
+## `configs/paper3_informed.yaml`
+
+Alternative utility weights calibrated against Paper 3's historical-outcome
+findings (`information_gain_weight: 10.0`, `novelty_weight: 0.5`,
+`tractability_weight: 1.5`, `cost_weight: 1.0`). The empirical rationale for
+each change is documented inline in the file; use `configs/default.yaml` for
+the neutral, theory-derived weighting.
+
 ## `configs/action_catalog.yaml`
 
 One entry per generic action type; controls the candidate actions the

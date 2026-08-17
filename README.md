@@ -44,8 +44,23 @@ python experiments/run_benchmark.py   # end-to-end demo + historical benchmark
 
 The demo loads an example question ("Is the reported low water abundance real
 or a retrieval artifact?"), plans on the evidence visible before the 2020
-cutoff, and evaluates the plan against post-cutoff ground truth. The domain
-appears only in the *data* — every module is domain-independent.
+cutoff, and evaluates the plan against post-cutoff ground truth — which
+follows the documented historical outcome (the subsolar-abundance premise was
+refuted by independent re-analyses). The domain appears only in the *data* —
+every module is domain-independent.
+
+## Integration with Paper 3
+
+[Paper 3](https://github.com/nonameisready/scientific-question-outcome-prediction-indicators)
+released 980 questions frozen at five historical cutoffs with future-outcome
+labels. Two integration points ship here:
+
+- `python experiments/import_paper3.py [questions.jsonl] [labels.jsonl]` —
+  loads Paper 3 question/label records directly into planner objects
+  (a three-record sample is vendored for offline use).
+- `configs/paper3_informed.yaml` — utility weights calibrated against
+  Paper 3's controlled effects (novelty down-weighted, tractability up;
+  rationale documented in the file).
 
 ## Repository layout
 

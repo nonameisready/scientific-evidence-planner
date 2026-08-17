@@ -1,0 +1,49 @@
+# Alternative utility configuration calibrated against Paper 3's
+# historical-outcome findings (scientific-question-outcome-prediction-
+# indicators; n=980 questions, 5 cutoffs, controlled effects).
+#
+# Rationale, per component:
+#
+# - information_gain_weight stays high. Paper 3's resolution channel is
+#   carried by sharply discriminating evidence: all 3 premise refutations
+#   come from quantified tension clusters, 5/6 resolutions are
+#   explicit-contradiction-typed, and methodological-challenge clusters
+#   resolved nothing (0/61). Actions with high likelihood ratios are the
+#   ones that historically settled questions.
+#
+# - novelty_weight is lowered. Paper 3 finds semantic-novelty features do
+#   not help outcome prediction (dropping the novelty group *improves*
+#   AUC), and instrument diversity of the existing evidence base carries a
+#   negative controlled effect on future attention (beta = -0.21):
+#   community uptake follows dense, recognized evidence, not novelty per
+#   se. The provenance boost (first independent root) is retained in the
+#   estimator; this weight only tempers how much it dominates.
+#
+# - tractability_weight is raised slightly. Paper 3's Cox model shows
+#   feasibility signals move engagement speed (archival-data availability
+#   accelerates; needing a future instrument is the largest negative
+#   effect in the controlled analysis).
+#
+# - cost_weight unchanged.
+#
+# These weights steer the planner toward the empirical resolution channel
+# (discriminative re-analysis and quantified cross-checks) rather than
+# maximal source novelty. Use configs/default.yaml for the neutral,
+# theory-derived weighting.
+
+utility:
+  information_gain_weight: 10.0
+  novelty_weight: 0.5
+  tractability_weight: 1.5
+  cost_weight: 1.0
+
+gap_analysis:
+  min_evidence_count: 2
+  min_support_confidence: 0.5
+  require_independent_sources: true
+
+planner:
+  top_k: 5
+
+benchmark:
+  cutoff: "2020"
