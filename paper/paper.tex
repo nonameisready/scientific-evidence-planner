@@ -52,9 +52,17 @@ resolution; the resolution channel runs through quantified, explicitly
 contradictory, recurrent evidence rather than methodological doubt; and
 semantic novelty does not predict uptake --- findings we convert into an
 empirically calibrated weight configuration that sharpens the planner's
-ranking toward the historically resolving actions. The framework is
-released as a reference implementation with seven evaluation metrics,
-full configurability, and no domain assumptions in code.
+ranking toward the historically resolving actions. Scaling the
+benchmark to all $374$ of Paper 3's tension questions --- each evidence
+cluster batch-converted to a graph by transparent rules and planned at
+its own historical cutoff --- turns the metrics into distributions and
+surfaces a structural result: planner utility is systematically
+\emph{higher} on questions the community subsequently neglected
+(permutation $p \approx 0.004$), quantifying the divergence between
+resolution-driven and attention-driven allocation of scientific effort.
+The framework is released as a reference implementation with seven
+evaluation metrics, full configurability, and no domain assumptions in
+code.
 \end{abstract}
 
 \section{Introduction}
@@ -121,8 +129,13 @@ whether a planner would have resolved a question earlier;
 (5)~an empirical grounding of the utility components in Paper 3's
 historical-outcome dataset, including an import path for its released
 questions and labels and an empirically calibrated weight
-configuration; and
-(6)~an open reference implementation with unit tests and a worked case
+configuration;
+(6)~a scaled benchmark run over all $374$ of Paper 3's tension
+questions, batch-converted to evidence graphs by auditable rules, with
+metric distributions and an outcome-stratified analysis showing that
+planner utility anti-correlates with subsequent community attention;
+and
+(7)~an open reference implementation with unit tests and a worked case
 study whose hidden ground truth follows the documented historical
 outcome.
 
@@ -505,6 +518,93 @@ observation is never recommended; the calibrated default
 scores. We report this deliberately --- the failure mode is exactly the
 kind of miscalibration the benchmark exists to expose.
 
+\section{Scaling Up: 374 Historical Tension Questions}
+\label{sec:scale}
+
+The case study is one fully specified benchmark unit. To turn the
+metrics into distributions, we batch-convert every evidence-tension
+question in Paper 3's released dataset --- 374 questions across eight
+astronomy subfields and five cutoffs, each storing its generating
+evidence cluster verbatim (sentences, arXiv ids, publication dates;
+244 four-paper, 59 three-paper, 71 two-paper clusters) together with a
+blinded future-outcome label and cluster-level structure flags.
+
+\paragraph{Conversion.} Each cluster becomes an evidence graph by
+transparent, auditable rules (implemented in
+\texttt{experiments/paper3\_benchmark.py}). The four template
+hypotheses receive priors seeded from the cluster's structure flags:
+quantified tensions (scaled by their $N$-sigma) shift mass toward
+``real effect'', contradiction and method-challenge language toward
+``analysis artifact'', detection-vs-limit stance opposition toward
+``unmodeled confounder'', and cross-facility clusters toward
+``measurement systematic''. Every cluster sentence becomes a claim node
+derived from its (timestamped) paper node, with support edges assigned
+by the same flags; hypotheses whose explanatory channel has no flag
+remain evidence-free, which is exactly what gap analysis exists to
+surface. Distinct arXiv ids count as distinct provenance roots --- an
+upper bound on independence, since shared underlying datasets are not
+visible at this granularity.
+
+\paragraph{Results.} The planner runs the full pipeline at each
+question's own historical cutoff. Table~\ref{tab:scale} reports the
+distribution of every at-scale-computable metric. Resolution efficiency
+is deliberately absent: Paper 3's labels record \emph{whether and when}
+a question was addressed, not \emph{through which action type}, so the
+matching that metric requires is not derivable at scale --- mining
+action types from the resolving papers is the concrete next step. For
+the premise-refuted cases the label does fix the direction of the
+hidden evidence; all three trace to a single physical case (the FRB
+Galactic-latitude discrepancy, independently re-mined at three
+successive cutoffs), for which the direction-only replay removes
+$0.095$ bits each.
+
+\begin{table}[t]
+\centering
+\caption{Metric distributions over the 374 tension questions
+(top-$K{=}5$, default configuration, each question at its own cutoff).}
+\label{tab:scale}
+\begin{tabular}{lrrrr}
+\toprule
+Metric & Mean & Std & Median & IQR \\
+\midrule
+Top-$K$ utility & 1.904 & 0.146 & 1.923 & [1.902, 1.923] \\
+Average information gain (bits) & 0.056 & 0.007 & 0.056 & [0.054, 0.056] \\
+Action diversity & 0.604 & 0.131 & 0.600 & [0.600, 0.600] \\
+Coverage of competing hypotheses & 0.505 & 0.110 & 0.500 & [0.500, 0.500] \\
+Expected utility & 1.932 & 0.147 & 1.952 & [1.925, 1.952] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Planner utility is a neglect signal.} Stratifying by Paper
+3's outcome label yields the run's most instructive result: questions
+the community subsequently \emph{addressed} score systematically
+\emph{lower} planner utility than questions it did not (top-$K$ utility
+$1.887$ vs.\ $1.919$, seeded permutation test $p = 0.004$; expected
+utility $1.916$ vs.\ $1.946$, $p = 0.004$; hypothesis coverage $0.488$
+vs.\ $0.520$, $p = 0.007$). The mechanism is visible in the conversion:
+later-addressed questions have richer evidence structure (quantified,
+explicitly contradictory clusters --- precisely Paper 3's attention
+predictors), which yields denser graphs, fewer under-evidenced
+hypotheses, and therefore fewer high-utility open actions. The planner
+assigns its highest scores to exactly the evidence-poor configurations
+the community subsequently neglected. This is the planner-side face of
+Paper 3's central finding that attention follows preparation rather
+than open gaps --- and it is the intended behavior, not a defect: a
+tool that allocates evidence-acquisition effort by expected resolution
+will, by construction, point away from where the community is already
+converging and toward where uncertainty is largest. The two allocation
+policies are complementary, and the benchmark now measures their
+divergence quantitatively.
+
+\paragraph{Scope notes.} The distributions are narrower than a mature
+benchmark should produce, because 2--4-sentence clusters support only
+schematic graphs; full-text evidence extraction would widen the spread.
+The conversion rules are heuristics operating on cluster-level flags,
+not per-sentence stance; a stance-aware mapping is the other obvious
+refinement. Both limitations are properties of the imported data's
+granularity, not of the benchmark protocol.
+
 \section{Implementation}
 
 The reference implementation is pure Python (standard library plus
@@ -542,14 +642,14 @@ cluster --- are preserved in question metadata).
   gaps in the current graph; sequential planning over multi-step
   campaigns (with evidence-dependent branching) is the obvious next
   step, and the offline design makes it benchmarkable the same way.
-  \item \textbf{Single worked case study.} The framework ships with one
-  fully worked historical example (now aligned with the outcome Paper 2
-  and Paper 3 document for it). The import path for Paper 3's $980$
-  labeled questions exists and is exercised in the repository; the
-  remaining work is constructing evidence graphs from its verbatim
-  provenance clusters so each labeled question becomes a full benchmark
-  unit, turning the seven metrics into distributions rather than a
-  single run.
+  \item \textbf{Benchmark granularity.} The scaled run
+  (Section~\ref{sec:scale}) covers $374$ questions, but its graphs are
+  schematic --- built from 2--4 abstract sentences via cluster-level
+  flags, without per-sentence stance --- and its labels lack the action
+  types needed for resolution efficiency at scale. The two concrete
+  refinements are stance-aware edge mapping and mining action types
+  from the papers that historically resolved each question; only the
+  fully specified case study currently exercises all seven metrics.
   \item \textbf{Empirical grounding is correlational and one-domain.}
   Paper 3's effects come from astronomy alone, from abstract-level
   retrieval, and from an LLM judge with measured (low) inter-rater
@@ -576,11 +676,18 @@ toward. Paper 3 shows that what the community \emph{will} engage is
 predictable and community-relational, while what \emph{resolves}
 questions is discriminative --- quantified, contradictory, recurrent
 evidence. This framework operationalizes the second finding as a
-planning objective, imports the first as a calibrated configuration, and
-on the series' own canonical case study recommends, first, the exact
-action family that history used to settle the question. Whether that
-agreement survives contact with hundreds of Paper 3's labeled questions
---- and with its pre-registered prospective instance --- is the next
+planning objective, imports the first as a calibrated configuration,
+and on the series' own canonical case study recommends, first, the
+exact action family that history used to settle the question. Run at
+scale over all $374$ of Paper 3's tension questions, the planner's
+utility turns out to anti-correlate with subsequent community
+attention: it prizes precisely the evidence-poor questions the
+community left behind. That is the division of labor made measurable
+--- communities follow preparation, a resolution-driven planner points
+at neglect --- and it suggests the most useful deployment is not
+predicting what science will do, but surfacing what science is
+skipping. Testing that allocation against Paper 3's pre-registered
+prospective instance (frozen 2026, scored 2027--2030) is the next
 experiment, and the infrastructure for it is now in place.
 
 \end{document}

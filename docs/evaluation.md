@@ -60,6 +60,18 @@ Rank-discounted utility over the whole ranking with weights `1/rank`
 (normalized), modeling that earlier recommendations are more likely to be
 executed.
 
+## The scaled benchmark (Paper 3 tension questions)
+
+`experiments/paper3_benchmark.py` runs the protocol over 374 imported
+tension questions (see the script docstring for the transparent
+cluster-to-graph conversion rules). At this scale five of the seven
+metrics are computable per question; `entropy_reduction` only where the
+outcome label fixes the evidence direction (premise refutations), and
+`resolution_efficiency` not at all — the labels record whether/when a
+question was addressed, not through which action type. The script also
+stratifies planner metrics by the `addressed` outcome label (seeded
+permutation test) and rank-correlates them with future paper counts.
+
 ## Extending
 
 - New metrics: add a pure function taking recommendations / hypotheses /

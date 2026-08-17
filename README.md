@@ -61,6 +61,15 @@ labels. Two integration points ship here:
 - `configs/paper3_informed.yaml` — utility weights calibrated against
   Paper 3's controlled effects (novelty down-weighted, tractability up;
   rationale documented in the file).
+- `python experiments/paper3_benchmark.py` — the **scaled benchmark**:
+  batch-converts all 374 of Paper 3's tension questions (evidence clusters
+  vendored verbatim under `experiments/data/paper3_tension/`) into evidence
+  graphs via transparent rules, runs the planner at each question's own
+  historical cutoff, and reports metric distributions plus an
+  outcome-stratified analysis (results in `results/paper3_benchmark.json`).
+  Headline: planner utility is systematically higher on questions the
+  community subsequently neglected (permutation p ≈ 0.004) — the planner
+  measures neglect, the community follows preparation.
 
 ## Repository layout
 
