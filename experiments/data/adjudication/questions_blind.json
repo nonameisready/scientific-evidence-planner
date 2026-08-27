@@ -1,0 +1,1640 @@
+[
+  {
+    "question_id": "protoplanetary_disks-2018-007",
+    "question": "What mechanisms can explain the formation and migration of hot Earth-size to Neptune-size planets within the inner 0.02-0.2 AU from their parent stars, given the unexpected abundance observed by Kepler?",
+    "subfield": "protoplanetary_disks",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1102.4297",
+        "published": "2011-02-21",
+        "sentence": "Recent Kepler observations revealed an unexpected abundance of \"hot\" Earth-size to Neptune-size planets in the inner ~0.02-0.2 AU from their parent stars."
+      },
+      {
+        "arxiv_id": "1103.1846",
+        "published": "2011-03-09",
+        "sentence": "Recent {\\em Kepler} observations revealed an unexpected abundance of \"hot\" Earth-size to Neptune-size planets in the inner $0.02-0.2$ AU from their parent stars."
+      },
+      {
+        "arxiv_id": "1408.3668",
+        "published": "2014-08-15",
+        "sentence": "The origin of hot Jupiters -- gas giant exoplanets orbiting very close to their host stars -- is a long-standing puzzle."
+      },
+      {
+        "arxiv_id": "1711.00594",
+        "published": "2017-11-02",
+        "sentence": "The Kepler observations indicate that many exoplanets are super-Earths, which brings about a puzzle for the core-accretion scenario."
+      }
+    ]
+  },
+  {
+    "question_id": "stellar_activity-2016-009",
+    "question": "What are the underlying causes of the anomalously high activity level of WASP-43 compared to other main sequence stars of similar age, and how does this relate to the discrepancies observed in the properties of CoRoT-5, CoRoT-8, CoRoT-13, Kepler-5, and Kepler-7?",
+    "subfield": "stellar_activity",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1010.1078",
+        "published": "2010-10-06",
+        "sentence": "Context: CoRoT-2b is one of the most anomalously large exoplanet known."
+      },
+      {
+        "arxiv_id": "1107.1235",
+        "published": "2011-07-06",
+        "sentence": "My results are in good agreement with published properties for most of the transiting systems, but discrepancies are identified for CoRoT-5, CoRoT-8, CoRoT-13, Kepler-5 and Kepler-7."
+      },
+      {
+        "arxiv_id": "1612.01739",
+        "published": "2016-12-06",
+        "sentence": "The activity level of WASP-43 is anomalously high relative to its age and falls among the highest values of all known main sequence stars."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2016-005",
+    "question": "What are the mechanisms and timescales involved in the formation of supermassive black holes (SMBHs) and intermediate-mass black holes (IMBHs) in the early Universe, particularly in relation to the rapid assembly of black holes powering luminous quasars at redshifts z ~ 6-7 and the emergence of high-z galaxies within 200 Myr after the transition from Population III to Population II star formation?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1511.05494",
+        "published": "2015-11-17",
+        "sentence": "But this process would have taken ~900 Myr, a timeline that appears to be at odds with the predictions of LCDM without an anomalously high accretion rate, or some exotic creation of ~10^5 solar-mass seeds."
+      },
+      {
+        "arxiv_id": "1512.02651",
+        "published": "2015-12-08",
+        "sentence": "The rapid assembly of the massive black holes that power the luminous quasars observed at $z \\sim 6-7$ remains a puzzle."
+      },
+      {
+        "arxiv_id": "1505.04108",
+        "published": "2015-05-15",
+        "sentence": "These results may imply that better measurements of helium reionization, especially at high redshifts, could be helpful in constraining the growth of intermediate-mass black holes (IMBHs) in the early Universe, which would shed some light on the puzzles concerning the formation of supermassive black holes (SMBHs)."
+      },
+      {
+        "arxiv_id": "1403.0908",
+        "published": "2014-03-03",
+        "sentence": "However, this rapid emergence of high-z galaxies, barely ~ 200 Myr after the transition from Population III star formation to Population II, appears to be in conflict with the standard view of how the early Universe evolved."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2012-002",
+    "question": "What is the cause of the observed discrepancies in star formation rate (SFR) measurements between different methods (such as LIR measurements from 24 micron and Herschel observations, photometric and spectroscopic redshifts, and PAH emission line luminosity) in infrared-selected galaxies, particularly at redshifts around z~2?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1107.2921",
+        "published": "2011-07-14",
+        "sentence": "The Gaussian fits to the distribution of the discrepancies between the LIR measurements from single-band 24 micron and Herschel observations have sigma < 0.1 dex, with ~10% of objects disagreeing by more than 0.2 dex."
+      },
+      {
+        "arxiv_id": "1210.4928",
+        "published": "2012-10-17",
+        "sentence": "We measure more significant disagreement between photometric and spectroscopic redshifts (<delta_z>/(1+z)>=0.29) than is seen in non-infrared selected samples, likely due to enhanced star formation rates and dust obscuration in infrared-selected galaxies."
+      },
+      {
+        "arxiv_id": "1206.4047",
+        "published": "2012-06-18",
+        "sentence": "Individual SFR estimates based on the 6.2 micron PAH emission line luminosity do not show a systematic discrepancy with extinction, although a considerable, ~0.2 dex scatter is observed."
+      },
+      {
+        "arxiv_id": "1005.1074",
+        "published": "2010-05-06",
+        "sentence": "The accuracy of SFR measurements at z~2 has been questioned following a disagreement between observations and theoretical models."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2018-008",
+    "question": "What are the underlying causes of the discrepancies between observed atmospheric opacities at 3.6 and 4.5 microns for exoplanets, specifically in the case of WASP-43b and HD 149026b, when compared to theoretical model predictions?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1112.0574",
+        "published": "2011-12-02",
+        "sentence": "The transit depths in the mid-infrared indicate that the atmospheric opacity is greater at 3.6 than at 4.5 micron, in disagreement with model predictions, irrespective of C/O ratio."
+      },
+      {
+        "arxiv_id": "1608.00056",
+        "published": "2016-07-30",
+        "sentence": "Theoretical models predict a positive correlation between heat redistribution efficiency and temperature for tidally locked planets; however, recent HST WASP-43b spectroscopic phase curve results are inconsistent with current predictions."
+      },
+      {
+        "arxiv_id": "1710.07642",
+        "published": "2017-10-20",
+        "sentence": "We also compare our results to predictions from general circulation models, and find that while neither are a good match to the data, the discrepancies for HD 149026b are especially large."
+      }
+    ]
+  },
+  {
+    "question_id": "gravitational_waves-2020-001",
+    "question": "What is the nature of the unexpected $ ext{2.5} ext{M}_{ ext{odot}}$ component detected in the gravitational wave event GW190814, and how does it relate to the maximum mass limits of neutron stars and the existence of light black holes?",
+    "subfield": "gravitational_waves",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "2012.00917",
+        "published": "2020-12-02",
+        "sentence": "The detection of an unexpected $\\sim 2.5 M_{\\odot}$ component in the gravitational wave event GW190814 has puzzled the community of High-Energy astrophysicists, since in the absence of further information it is not clear whether this is the heaviest \"neutron star\" ever detected or either the lightest black hole known, of a kind absent in the local neighbourhood."
+      },
+      {
+        "arxiv_id": "2007.06481",
+        "published": "2020-07-13",
+        "sentence": "The two recent gravitational-wave events GW190425 and GW190814 from the third observing run of LIGO/Virgo have both a companion which is unexpected if originated from a neutron star or a stellar black hole, with masses $[1.6-2.5]~M_\\odot$ and $[2.5-2.7]~M_\\odot$ and merging rates $ 460^{+1050}_{-360} $ and $ 7^{+16}_{-6}$ events/yr/Gpc$^3$ respectively, at 90\\% c.l.."
+      },
+      {
+        "arxiv_id": "2009.14274",
+        "published": "2020-09-29",
+        "sentence": "However, these models have maximum masses below $2 \\, M_{\\odot}$, in disagreement with observations."
+      },
+      {
+        "arxiv_id": "1702.08275",
+        "published": "2017-02-27",
+        "sentence": "Their mass distribution peaks at a few tens of $M_\\odot$ today, and could be detected also with long-duration microlensing events, as well as by the anomalous motion of stars in GAIA."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2012-005",
+    "question": "What is the relationship between the frequency ratios of high frequency quasi-periodic oscillations (HFQPOs) and the spin frequency of neutron stars in the microquasars GRO J1655-40, GRS 1915+105, and XTE J1550-564, given the inconsistencies reported in the inferred frequency differences and their correlation with the spin frequency?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "astro-ph/0501456",
+        "published": "2005-01-21",
+        "sentence": "We propose a model to explain a puzzling 3:2 frequency ratio of high frequency quasi-periodic oscillations (HFQPOs) in black hole (BH) X-ray binaries, GRO J1655-40, GRS 1915+105 and XTE J1550-564."
+      },
+      {
+        "arxiv_id": "0903.2680",
+        "published": "2009-03-16",
+        "sentence": "Models relating the QPO frequency and color radius are hindered by observations showing contradicting trend correlations between the microquasars GRO 1655-40, XTE J1550-564 and GRS 1915+105."
+      },
+      {
+        "arxiv_id": "0711.4018",
+        "published": "2007-11-26",
+        "sentence": "The inferred ratio of the frequency difference between the twin kHz QPOs, and the spin frequency in this source is strongly inconsistent with either 0.5 or 1, and tends to support the recent suggestions by Yin et al., and Mendez & Belloni, that the kHz QPO frequency difference may not have a strong connection to the neutron star spin frequency."
+      },
+      {
+        "arxiv_id": "1203.3582",
+        "published": "2012-03-15",
+        "sentence": "This trend can shed light in the nature of the harmonic content of the LFQPO and challenges the usual interpretation of these timing features."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2016-000",
+    "question": "What are the definitive orbital elements of the systems discussed in [0902.4015] and [1411.7561], and how do they reconcile the discrepancies in the orbital period discussions?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0902.4015",
+        "published": "2009-02-23",
+        "sentence": "Both systems have somewhat discrepant orbital solutions available in the literature, and our new measurements result in improved orbital elements and resolve the disagreements."
+      },
+      {
+        "arxiv_id": "1106.5550",
+        "published": "2011-06-28",
+        "sentence": "There has been disagreement within the literature over whether these systems are microquasars, with stellar winds accreting onto a compact object to produce high energy emission and relativistic jets, or whether their emission properties might be better explained by a relativistic pulsar wind colliding with the stellar wind."
+      },
+      {
+        "arxiv_id": "1411.7561",
+        "published": "2014-11-27",
+        "sentence": "These new measurements of the radial velocity resolve the disagreements of the orbital period discussions."
+      },
+      {
+        "arxiv_id": "0912.3722",
+        "published": "2009-12-18",
+        "sentence": "New observations of LS I +61 303 by the Fermi Space Telescope revealed an exponential cut-off in the spectrum at a few GeV, inconsistent with gamma-gamma absorption."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2016-005",
+    "question": "What mechanisms can account for the observed low braking indices and abnormal frequency second derivatives in 222 pulsars and 15 magnetars, given that the standard magnetic dipole braking model fails to explain their long-term spin-down evolution?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1512.01679",
+        "published": "2015-12-05",
+        "sentence": "Eight pulsars have low braking indices, which challenge the magnetic dipole braking of pulsars. 222 pulsars and 15 magnetars have abnormal distribution of frequency second derivatives, which also make contradiction with classical understanding."
+      },
+      {
+        "arxiv_id": "1105.5019",
+        "published": "2011-05-25",
+        "sentence": "In this article we revise the problem of anomalous values of pulsars' braking indices n_{obs} and frequency second derivatives F2 arising in observations."
+      },
+      {
+        "arxiv_id": "1304.4825",
+        "published": "2013-04-17",
+        "sentence": "The high-energy sources known as anomalous X-ray pulsars (AXPs) and soft gamma-ray repeaters (SGRs) are well explained as magnetars: isolated neutron stars powered by their own magnetic energy."
+      },
+      {
+        "arxiv_id": "1401.0772",
+        "published": "2014-01-04",
+        "sentence": "The observed long-term spin-down evolution of isolated radio pulsars cannot be explained by the standard magnetic dipole radiation with a constant braking torque."
+      }
+    ]
+  },
+  {
+    "question_id": "stellar_activity-2018-004",
+    "question": "How does the presence of atmospheric dust influence the X-ray and radio emission in cool stellar atmospheres, and what are the specific mechanisms that lead to discrepancies between satellite-induced emission models and observations for dwarf stars like TVLM 513-46546?",
+    "subfield": "stellar_activity",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1105.4409",
+        "published": "2011-05-23",
+        "sentence": "The onset of atmospheric dust may therefore correlate with the anomalous X-ray and radio emission in atmospheres that are cool, but charged more than expected by pure thermal ionisation."
+      },
+      {
+        "arxiv_id": "1111.7019",
+        "published": "2011-11-29",
+        "sentence": "We have found that for the dwarf TVLM 513-46546, the model of the satellite-induced emission is inconsistent with the observations."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2016-000",
+    "question": "What is the relationship between the anomalous HI clouds with masses around 10^7 Msun and the specific star formation rates in galaxies with log M_*/M_sun > 10.5, and how do these factors influence the estimated accretion rate of extragalactic gas?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0904.3494",
+        "published": "2009-04-22",
+        "sentence": "Anomalous velocity HI clouds with masses of order 10^7 Msun, which cannot be explained by galactic fountain models allow us to estimate a lower limit to the accretion of extragalactic gas of 1.2 Msun/yr."
+      },
+      {
+        "arxiv_id": "1312.2399",
+        "published": "2013-12-09",
+        "sentence": "A mass of M_HI=1.5 x 10^9 Msun is estimated for the anomalous HI - 20 per cent of the total HI mass."
+      },
+      {
+        "arxiv_id": "1407.0706",
+        "published": "2014-07-02",
+        "sentence": "By systematically assessing the link between HI and star formation within a sample of galaxies with extremely high HI masses (log M_HI/M_sun > 10), we uncover a population of galaxies with an unexpected combination of high HI masses and low specific star formation rates that exists primarily at stellar masses greater than log M_*/M_sun ~ 10.5."
+      },
+      {
+        "arxiv_id": "0906.0606",
+        "published": "2009-06-02",
+        "sentence": "By comparing our model results with observed M/L ratios for old compact objects in the mass range 10^4.5 -- 10^8 Msun, we find a strong discrepancy for objects more massive than 10^7 Msun (higher M/L)."
+      }
+    ]
+  },
+  {
+    "question_id": "gravitational_waves-2016-001",
+    "question": "What is the relationship between the 23-day and 72-day periods in the context of gravitational wave sources, and how do these periods relate to the observed orbital period decay rates in the two sources mentioned, considering the potential effects of anomalous magnetic braking?",
+    "subfield": "gravitational_waves",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0904.4392",
+        "published": "2009-04-28",
+        "sentence": "This does not contradict a 23-day period which can be derived as a higher harmonic from the 72-day period."
+      },
+      {
+        "arxiv_id": "1511.00534",
+        "published": "2015-11-02",
+        "sentence": "However, our calculation indicates that anomalous magnetic braking cannot significantly contribute to the large orbital period decay rates observed in these two sources even if $B_{\\rm s}\\ga 10^{4}$ G."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2018-006",
+    "question": "How does the magnetic activity level of hot Jupiter hosts, such as WASP-43, WASP-51, WASP-72, and WASP-103, correlate with the magnetic activity of their companion stars, and what implications does this have for the survival of short-period hot Jupiters?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1108.2641",
+        "published": "2011-08-12",
+        "sentence": "This discrepancy could be explained by the tidal and magnetic influence of the planet on the star, in good agreement with the observations that stars hosting hot Jupiters tend to show faster rotation and magnetic activity (Pont 2009; Hartman 2010)."
+      },
+      {
+        "arxiv_id": "1306.2311",
+        "published": "2013-06-10",
+        "sentence": "We show that the magnetic activity level of the companion is at odds with the activity level observed for the planet-hosting primary."
+      },
+      {
+        "arxiv_id": "1612.01739",
+        "published": "2016-12-06",
+        "sentence": "We measured the chromospheric activity of the four hot Jupiter hosts WASP-43, WASP-51/HAT-P-30, WASP-72 & WASP-103 to search for anomalous values caused by the close-in companions."
+      },
+      {
+        "arxiv_id": "1109.4703",
+        "published": "2011-09-22",
+        "sentence": "This explanation, however, is in apparent contradiction with the survival of these short-period hot Jupiters."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2012-001",
+    "question": "What is the relationship between the mass-to-light ratios of compact objects in the mass range 10^4.5 -- 10^8 Msun and the observed HI column densities in damped Lyman-alpha systems (DLAs), particularly for objects more massive than 10^7 Msun?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0904.3494",
+        "published": "2009-04-22",
+        "sentence": "Anomalous velocity HI clouds with masses of order 10^7 Msun, which cannot be explained by galactic fountain models allow us to estimate a lower limit to the accretion of extragalactic gas of 1.2 Msun/yr."
+      },
+      {
+        "arxiv_id": "0906.0606",
+        "published": "2009-06-02",
+        "sentence": "By comparing our model results with observed M/L ratios for old compact objects in the mass range 10^4.5 -- 10^8 Msun, we find a strong discrepancy for objects more massive than 10^7 Msun (higher M/L)."
+      },
+      {
+        "arxiv_id": "1209.2003",
+        "published": "2012-09-10",
+        "sentence": "We show that these models predict relative trends in atomic gas and star formation that are in disagreement with observations."
+      },
+      {
+        "arxiv_id": "astro-ph/0501603",
+        "published": "2005-01-27",
+        "sentence": "However, there is a discrepancy between model prediction and observation in the correlation between metallicity and HI column density for DLAs."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2016-003",
+    "question": "What mechanisms could explain the observed low 8 micron brightness temperature in the dayside emission spectrum of the exoplanet discussed in [0908.1977] and the anomalously low 8 micron contrast in CoRoT-2 as reported in [1011.1019], and how do these relate to the vertical mixing suggested in [1206.6887]?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0908.1977",
+        "published": "2009-08-13",
+        "sentence": "In contrast to earlier claims, our new eclipse depth suggests that this planet's dayside emission spectrum is relatively cool, with an 8 micron brightness temperature that is less than the maximum planet-wide equilibrium temperature."
+      },
+      {
+        "arxiv_id": "1303.5468",
+        "published": "2013-03-21",
+        "sentence": "We noted an anomalously high 3.6-{\\microns} brightness temperature (1552 K); by modeling the eccentricity-caused thermal variation, we found that this temperature is plausible for radiative time scales less than $\\sim 10^{2}$ hours."
+      },
+      {
+        "arxiv_id": "1206.6887",
+        "published": "2012-06-28",
+        "sentence": "We conclude that this discrepancy is best-explained by vertical mixing, which should lead to an excess of CO and correspondingly enhanced 4.5 micron absorption in this region. [abridged]"
+      },
+      {
+        "arxiv_id": "1011.1019",
+        "published": "2010-11-03",
+        "sentence": "The spectrum of CoRoT-2 is unusual because the 8 micron contrast is anomalously low."
+      }
+    ]
+  },
+  {
+    "question_id": "stellar_activity-2014-008",
+    "question": "How do the anomalously high 6-Li and 7-Li abundances in the Galaxy relate to the chemical evolution of stars with high Safronov numbers, such as the planet XO-5b?",
+    "subfield": "stellar_activity",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0801.1777",
+        "published": "2008-01-11",
+        "sentence": "Although this nucleosynthesis is not significant for the chemical evolution of the Galaxy, it can be important for a number of measurements of \"anomalously\" high 6-Li and 7-Li abundances."
+      },
+      {
+        "arxiv_id": "0810.0260",
+        "published": "2008-10-01",
+        "sentence": "The planet XO-5b is notable for its anomalously high Safronov number, and has a high surface gravity when compared to other transiting exoplanets with similar period."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2018-009",
+    "question": "What are the underlying causes for the observed discrepancies in specific star formation rates (sSFR) among galaxies in the redshift range z=2-7, particularly between those residing within groups and intergroup galaxies?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1712.03959",
+        "published": "2017-12-11",
+        "sentence": "We investigate the impact of several sources of observational bias, which however cannot account for this discrepancy."
+      },
+      {
+        "arxiv_id": "1103.3011",
+        "published": "2011-03-15",
+        "sentence": "The observational indications for a constant specific star-formation rate (sSFR) in the redshift range z=2-7 are puzzling in the context of current galaxy-formation models."
+      },
+      {
+        "arxiv_id": "1609.08629",
+        "published": "2016-09-27",
+        "sentence": "The other third, which reside within the groups, differ significantly from the intergroup galaxies in both colour and specific star formation rate."
+      },
+      {
+        "arxiv_id": "1208.3529",
+        "published": "2012-08-17",
+        "sentence": "An important puzzle arising from the measurements so far reported is that the specific star formation rates (sSFR) evolve far less rapidly than expected in most theoretical models."
+      }
+    ]
+  },
+  {
+    "question_id": "gravitational_waves-2020-002",
+    "question": "What are the observed spin-down rates of neutron stars such as IGR J00291+5934 and XTE J1751-305, and how do they compare to the predicted spin-down rates based on r-mode amplitudes and instability conditions?",
+    "subfield": "gravitational_waves",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1302.1204",
+        "published": "2013-02-05",
+        "sentence": "Indeed, the inferred r-mode spin-down rates at these higher amplitudes are inconsistent with the observed spin-down rates for some of the sources, such as IGR J00291+5934 and XTE J1751-305."
+      },
+      {
+        "arxiv_id": "1403.0860",
+        "published": "2014-03-04",
+        "sentence": "However, we argue that the large mode amplitude suggested by the Strohmayer and Mahmoodifar analysis would inevitably lead to a large spin-down of the star, inconsistent with its observed spin evolution, regardless of whether the r-mode itself is in a stable or unstable regime."
+      },
+      {
+        "arxiv_id": "1711.05214",
+        "published": "2017-11-14",
+        "sentence": "The puzzling existence of a number of neutron stars that appear to be in the r-mode instability window supports further investigations of the r-mode frequencies, damping times and saturation amplitudes, especially now in light of the much anticipated and exciting results from LIGO and NICER."
+      },
+      {
+        "arxiv_id": "1712.00784",
+        "published": "2017-12-03",
+        "sentence": "We argue that current LIGO-Virgo observations are not inconsistent with the existence of a spin-down process, as long as it is slow enough."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2020-003",
+    "question": "What are the mechanisms and timescales involved in the formation of supermassive black holes (SMBHs) and intermediate-mass black holes (IMBHs) in the early Universe, particularly in relation to the rapid assembly of black holes powering quasars at redshifts z ~ 6-7 and the emergence of high-z galaxies within 200 Myr after the transition from Population III to Population II star formation?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1511.05494",
+        "published": "2015-11-17",
+        "sentence": "But this process would have taken ~900 Myr, a timeline that appears to be at odds with the predictions of LCDM without an anomalously high accretion rate, or some exotic creation of ~10^5 solar-mass seeds."
+      },
+      {
+        "arxiv_id": "1512.02651",
+        "published": "2015-12-08",
+        "sentence": "The rapid assembly of the massive black holes that power the luminous quasars observed at $z \\sim 6-7$ remains a puzzle."
+      },
+      {
+        "arxiv_id": "1505.04108",
+        "published": "2015-05-15",
+        "sentence": "These results may imply that better measurements of helium reionization, especially at high redshifts, could be helpful in constraining the growth of intermediate-mass black holes (IMBHs) in the early Universe, which would shed some light on the puzzles concerning the formation of supermassive black holes (SMBHs)."
+      },
+      {
+        "arxiv_id": "1403.0908",
+        "published": "2014-03-03",
+        "sentence": "However, this rapid emergence of high-z galaxies, barely ~ 200 Myr after the transition from Population III star formation to Population II, appears to be in conflict with the standard view of how the early Universe evolved."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2014-001",
+    "question": "What mechanisms can account for the observed factor of ~3 drop in count rate and change in spectral shape in the thermal and power-law components of the spectrum of the compact object observed in [1306.1776], and how do these mechanisms relate to the magnetic field decay rates and thermal emissions of isolated neutron stars as discussed in [1311.4343] and [1108.1211]?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1306.1776",
+        "published": "2013-06-07",
+        "sentence": "This new observation shows an unexpected factor of ~3 drop in count rate and change in spectral shape since the last observation, which cannot be explained simply by continued cooling."
+      },
+      {
+        "arxiv_id": "1311.4343",
+        "published": "2013-11-18",
+        "sentence": "Both results are unexpected and have implications for the rate of magnetic field decay and the isolated neutron star population."
+      },
+      {
+        "arxiv_id": "1007.2823",
+        "published": "2010-07-16",
+        "sentence": "As the spectrum during the brightest observation was comprised of approximately 60% from the thermal component and 40% from the power-law component, such a large change cannot be explained by just power-law variability."
+      },
+      {
+        "arxiv_id": "1108.1211",
+        "published": "2011-08-04",
+        "sentence": "This is at odds with other non-pulsating neutron stars that typically show detectable soft thermal emission at such quiescent luminosities."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2018-005",
+    "question": "What are the underlying factors contributing to the discrepancies in age estimates for the host stars of HATS-16 and WASP-12, given their observed chromospheric activity levels and rotational periods?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1108.2641",
+        "published": "2011-08-12",
+        "sentence": "The chromospheric activity (log R'_HK = -4.67) and rotational period (P_rot = 16.3+-0.5 days) of the host star suggest an age of 0.8+-0.4 Gy that is discrepant with a stellar-evolution estimate based on the measured stellar parameters (rho_star = 1.48+-0.10 rho_sun, Teff = 5400+-100 K, [Fe/H]= -0.12+-0.08) which favours an age of 7+-3.5 Gy."
+      },
+      {
+        "arxiv_id": "1511.06305",
+        "published": "2015-11-19",
+        "sentence": "HATS-16 is slightly active and shows a periodic photometric modulation, implying a rotational period of 12 days which is unexpectedly short given its isochronal age."
+      },
+      {
+        "arxiv_id": "1708.00693",
+        "published": "2017-08-02",
+        "sentence": "Another unusual property of the WASP-12 system is that observed chromospheric emission from the star is anomalously low: WASP-12 is an extreme outlier amongst thousands of stars when the log $R^{'}_{HK}$ chromospheric activity indicator is considered."
+      },
+      {
+        "arxiv_id": "1612.01739",
+        "published": "2016-12-06",
+        "sentence": "The activity level of WASP-43 is anomalously high relative to its age and falls among the highest values of all known main sequence stars."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2016-005",
+    "question": "How do the atmospheric compositions and temperature profiles of exoplanets, particularly at pressures between 1 bar and 1 x 10-6 bar, influence the observed spectral features at ~3.25 microns and the discrepancies between near-infrared and mid-infrared observations?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1002.2453",
+        "published": "2010-02-12",
+        "sentence": "A feature at ~3.25 micron is unexpected and difficult to explain with models that assume local thermodynamic equilibrium (LTE) conditions at the 1 bar to 1 x 10-6 bar pressures typically sampled by infrared measurements."
+      },
+      {
+        "arxiv_id": "1210.4163",
+        "published": "2012-10-15",
+        "sentence": "We show that a dust-dominated atmosphere could also explain several puzzling features of the emission spectrum and phase curves, including the large amplitude of the phase curve at 3.6um, the small hot-spot longitude shift and the hot mid-infrared emission spectrum."
+      },
+      {
+        "arxiv_id": "1006.0737",
+        "published": "2010-06-03",
+        "sentence": "We emphasize that our strict H-band limit is in stark disagreement with the best-fit atmospheric model that results from longer wavelength observations only, thus highlighting the importance of near-infrared observations at multiple wavelengths in addition to those returned by Spitzer in the mid-infrared to facilitate a comprehensive understanding of the energy budgets of transiting exoplanets."
+      }
+    ]
+  },
+  {
+    "question_id": "fast_radio_bursts-2020-001",
+    "question": "What is the true rate of neutron star mergers that can reconcile the observed Fast Radio Burst rate of 1/1000 yr$^{-1}$ per galaxy with the gamma-ray burst rate and the VLA rate limit?",
+    "subfield": "fast_radio_bursts",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1312.3143",
+        "published": "2013-12-11",
+        "sentence": "We concentrate on what we consider to be an issue of greatest importance: what is the NS merger rate given that the FRB rate (1/1000 yr$^{-1}$ per galaxy) is inconsistent with gamma-ray burst rate as discussed by Thornton and should be significantly higher."
+      },
+      {
+        "arxiv_id": "1412.7536",
+        "published": "2014-12-23",
+        "sentence": "Assuming a Euclidean flux distribution, the VLA rate limit is inconsistent with the published rate of Thornton et al."
+      },
+      {
+        "arxiv_id": "1611.09517",
+        "published": "2016-11-29",
+        "sentence": "This appears to be inconsistent with the catastrophic event models in which the central engine of Swift J0644.5-5111 is surrounded by an interstellar medium, but together with the properties of the gamma-ray transient, favors the binary neutron star merger origin."
+      },
+      {
+        "arxiv_id": "1807.03722",
+        "published": "2018-07-10",
+        "sentence": "The observed burst detection rate within this observation was inconsistent with a Poisson process with a constant average occurrence rate; three bursts arrived in the final 0.3 hr of a 2 hr observation on 2016 August 20."
+      }
+    ]
+  },
+  {
+    "question_id": "protoplanetary_disks-2012-009",
+    "question": "What are the physical characteristics and evolutionary status of BP Psc that contribute to its classification as a puzzling late-type, emission-line field star with large infrared excess, and how do these characteristics compare to the low mass stars (2.4 to 2.8 solar masses) discussed in the context of Hubrig et al.'s hypothesis?",
+    "subfield": "protoplanetary_disks",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "astro-ph/0509295",
+        "published": "2005-09-12",
+        "sentence": "The low masses inferred for these objects (2.6, 2.8 and 2.4 solar masses) represent additional contradictions to the hypothesis of Hubrig et al."
+      },
+      {
+        "arxiv_id": "1110.5755",
+        "published": "2011-10-26",
+        "sentence": "This discrepancy is solved by allowing for a larger stellar radius (i.e. a bloated star), and thus positioning the star above the main sequence."
+      },
+      {
+        "arxiv_id": "0805.2293",
+        "published": "2008-05-15",
+        "sentence": "BP Psc is a puzzling late-type, emission-line field star with large infrared excess."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2020-000",
+    "question": "What are the underlying mechanisms causing the unexpected factor of ~3 drop in count rate and change in spectral shape in the observed isolated neutron star population, and how do these changes relate to the rate of magnetic field decay and the long-term modulation shape near 111 days?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1306.1776",
+        "published": "2013-06-07",
+        "sentence": "This new observation shows an unexpected factor of ~3 drop in count rate and change in spectral shape since the last observation, which cannot be explained simply by continued cooling."
+      },
+      {
+        "arxiv_id": "1311.4343",
+        "published": "2013-11-18",
+        "sentence": "Both results are unexpected and have implications for the rate of magnetic field decay and the isolated neutron star population."
+      },
+      {
+        "arxiv_id": "1708.04287",
+        "published": "2017-08-14",
+        "sentence": "There appears to be a long-term change in the shape of the modulation near 111 days, which may explain the apparent discrepancy."
+      },
+      {
+        "arxiv_id": "2002.08011",
+        "published": "2020-02-19",
+        "sentence": "The mass discrepancy between the observed population of double neutron star binaries by radio pulsar observations and gravitational-wave observation requires an explanation."
+      }
+    ]
+  },
+  {
+    "question_id": "protoplanetary_disks-2020-002",
+    "question": "What is the cause of the discrepancies in the derived inclinations and cavity radii in protoplanetary disks, specifically between interferometric near-infrared spectroscopy and submillimeter observations, and how does the presence of a 3-4M_Jup planet at 20 au influence these measurements?",
+    "subfield": "protoplanetary_disks",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1804.04971",
+        "published": "2018-04-13",
+        "sentence": "However, our so derived inclinations differ from those derived from interferometric near-infrared spectroscopy, and we discuss possible causes for this puzzling discrepancy."
+      },
+      {
+        "arxiv_id": "2003.12580",
+        "published": "2020-03-27",
+        "sentence": "Our dynamically-derived stellar masses are not consistent with the spectroscopically-derived masses, and we discuss possible reasons for this discrepancy."
+      },
+      {
+        "arxiv_id": "1610.03913",
+        "published": "2016-10-13",
+        "sentence": "This discrepancy in the cavity radii at near-infrared and submillimeter wavelengths may be caused by a 3-4M_Jup planet about 20 au away from the star, near the edge of the cavity."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2014-002",
+    "question": "What are the underlying causes of the discrepancies between the inferred TDE rates and observationally inferred TDE rates, and how can future observations reconcile the differences in black hole mass estimates derived from the CIV 1549 line and Hb line measurements?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1410.7772",
+        "published": "2014-10-28",
+        "sentence": "Even our most conservative rate estimates appear to be in tension with much lower observationally inferred TDE rates, and we discuss several possible resolutions to this discrepancy."
+      },
+      {
+        "arxiv_id": "1207.0633",
+        "published": "2012-07-03",
+        "sentence": "This challenges our understanding of the glitch phenomenon, and we discuss possible resolutions to the problem."
+      },
+      {
+        "arxiv_id": "1306.3521",
+        "published": "2013-06-14",
+        "sentence": "Currently, the ability to produce black hole mass estimates using the CIV 1549 line that are consistent with Hb mass estimates is uncertain, due in large part to disagreement between velocity line width measurements for the two lines."
+      },
+      {
+        "arxiv_id": "1302.1204",
+        "published": "2013-02-05",
+        "sentence": "Indeed, the inferred r-mode spin-down rates at these higher amplitudes are inconsistent with the observed spin-down rates for some of the sources, such as IGR J00291+5934 and XTE J1751-305."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2016-006",
+    "question": "What is the relationship between the surface temperature distribution of the anomalous X-ray pulsar 1E 1048.1-5937 during active and quiescent epochs, and the hard X-ray emission mechanisms that require additional non-thermal processes or relativistic electrons?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0901.1559",
+        "published": "2009-01-12",
+        "sentence": "We present high-speed optical photometry of the anomalous X-ray pulsar 1E 1048.1-5937 obtained with ULTRACAM on the 8.2-m Very Large Telescope in June 2007."
+      },
+      {
+        "arxiv_id": "1501.02836",
+        "published": "2015-01-12",
+        "sentence": "We model the pulse profiles and the phase resolved spectra of the anomalous X-ray pulsar 1E 1048.1-5937 obtained with XMM-Newton to map its surface temperature distribution during an active and a quiescent epoch."
+      },
+      {
+        "arxiv_id": "1401.3085",
+        "published": "2014-01-14",
+        "sentence": "We present a summary of the long-term evolution of various properties of the five non-transient Anomalous X-ray Pulsars (AXPs) 1E 1841-045, RXS J170849.0-400910, 1E 2259+586, 4U 0142+61, and 1E 1048.1-5937, regularly monitored with RXTE from 1996 to 2012."
+      },
+      {
+        "arxiv_id": "1511.06614",
+        "published": "2015-11-20",
+        "sentence": "Based on our broadband spectral investigations, we conclude that resonant scattering of the surface photons in the magnetosphere alone cannot account for the hard X-ray emission in magnetars; therefore, an additional non-thermal process, or a population of relativistic electrons is required."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2012-002",
+    "question": "What are the underlying physical mechanisms that cause the observed discrepancies in radius variations and brightness in the mid-infrared secondary eclipse for pM Class planets, specifically for HD 149026b and HD 209458b?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "astro-ph/0509292",
+        "published": "2005-09-12",
+        "sentence": "This not unexpected result has direct consequences for the method of transmission spectroscopy for characterizing the atmospheres of transiting giant planets."
+      },
+      {
+        "arxiv_id": "1010.2451",
+        "published": "2010-10-12",
+        "sentence": "We find broad disagreement with radius variations predicted by another published model."
+      },
+      {
+        "arxiv_id": "0710.2558",
+        "published": "2007-10-12",
+        "sentence": "We show that pM Class planets have hot stratospheres $\\sim$2000 K and appear ``anomalously'' bright in the mid infrared secondary eclipse, as was recently found for planets HD 149026b and HD 209458b."
+      }
+    ]
+  },
+  {
+    "question_id": "protoplanetary_disks-2016-009",
+    "question": "What are the physical properties and scattering mechanisms of the circumstellar dust grains in protoplanetary disks that lead to unexpected backward-scattering behavior, and how do these properties influence the alignment of planetary orbits with stellar spin in systems like Kepler-25?",
+    "subfield": "protoplanetary_disks",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0904.1688",
+        "published": "2009-04-10",
+        "sentence": "Additionally, our measurements suggest unexpected backward-scattering properties for the circumstellar dust grains."
+      },
+      {
+        "arxiv_id": "1305.7330",
+        "published": "2013-05-31",
+        "sentence": "This spin-orbit misalignment is unexpected, as planets form in a protoplanetary disc supposedly aligned with the stellar spin."
+      },
+      {
+        "arxiv_id": "1601.06052",
+        "published": "2016-01-22",
+        "sentence": "While the latter result is in apparent contradiction with a statement made previously in the literature that the multi-transiting system Kepler-25 is misaligned, we show that the results are consistent, given the large associated uncertainties."
+      },
+      {
+        "arxiv_id": "1210.6745",
+        "published": "2012-10-25",
+        "sentence": "The optical through mid-infrared spectral energy distribution (SED) of Fomalhaut b cannot be explained as due to direct or scattered radiation from a massive planet."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2018-001",
+    "question": "What is the relationship between the tidal interactions of hot Jupiters and the anomalously large radii observed in these planets, particularly for those located within 0.02-0.2 AU from their host stars?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1102.4297",
+        "published": "2011-02-21",
+        "sentence": "Recent Kepler observations revealed an unexpected abundance of \"hot\" Earth-size to Neptune-size planets in the inner ~0.02-0.2 AU from their parent stars."
+      },
+      {
+        "arxiv_id": "1306.2311",
+        "published": "2013-06-10",
+        "sentence": "The discrepancy may be caused by tidal interaction between the Hot Jupiter and its host star."
+      },
+      {
+        "arxiv_id": "1511.03063",
+        "published": "2015-11-10",
+        "sentence": "Observations have revealed that a significant number of hot Jupiters have anomalously large radii."
+      },
+      {
+        "arxiv_id": "1110.6180",
+        "published": "2011-10-27",
+        "sentence": "The most irradiated transiting hot Jupiters are characterized by anomalously inflated radii, sometimes exceeding Jupiter's size by more than 60%."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2016-007",
+    "question": "What is the cause of the greater atmospheric opacity observed at 3.6 microns compared to 4.5 microns in the atmospheres of hot Jupiters, and how does this relate to the C/O ratio and chromospheric activity of their host stars?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1005.3656",
+        "published": "2010-05-20",
+        "sentence": "We also find the statistically expected number of anomalous transit depths at wavelengths not associated with any known resonance line."
+      },
+      {
+        "arxiv_id": "1112.0574",
+        "published": "2011-12-02",
+        "sentence": "The transit depths in the mid-infrared indicate that the atmospheric opacity is greater at 3.6 than at 4.5 micron, in disagreement with model predictions, irrespective of C/O ratio."
+      },
+      {
+        "arxiv_id": "1505.03158",
+        "published": "2015-05-12",
+        "sentence": "We propose that this discrepancy might be explained by an enhanced global C/O ratio."
+      },
+      {
+        "arxiv_id": "1612.01739",
+        "published": "2016-12-06",
+        "sentence": "We measured the chromospheric activity of the four hot Jupiter hosts WASP-43, WASP-51/HAT-P-30, WASP-72 & WASP-103 to search for anomalous values caused by the close-in companions."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2016-009",
+    "question": "How do modifications to supernova and AGN feedback mechanisms, along with a more realistic treatment of strangulation and tidal stripping, affect the formation efficiency of central galaxies in high-redshift haloes with circular velocities of ~100-200 km/s?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0901.1130",
+        "published": "2009-01-08",
+        "sentence": "We demonstrate that these discrepancies are not solely due to a poor treatment of satellite galaxies but are mainly connected to the excessively efficient formation of central galaxies in high-redshift haloes with circular velocities ~100-200 km/s. [abridged]"
+      },
+      {
+        "arxiv_id": "0912.1853",
+        "published": "2009-12-09",
+        "sentence": "We argue that these discrepancies are likely to indicate the need to (i) modify the recipes of both supernova feedback and AGN feedback, (ii) use a more realistic description of strangulation, and (iii) include a proper treatment of the tidal stripping, heating and destruction of satellite galaxies. [Abridged]"
+      },
+      {
+        "arxiv_id": "0908.1377",
+        "published": "2009-08-10",
+        "sentence": "We find that none of these can solve the discrepancy completely."
+      },
+      {
+        "arxiv_id": "1010.1381",
+        "published": "2010-10-07",
+        "sentence": "We find that this is not in contradiction with hierarchical structure formation."
+      }
+    ]
+  },
+  {
+    "question_id": "protoplanetary_disks-2020-008",
+    "question": "How does the molecular gas content in the inner disk (< few AU) relate to the presence and properties of planetesimals and protoplanets in the outer disk (beyond ~20 AU), and what are the implications for the formation of warm, circumplanetary disks around gas giant planets at a de-projected distance of (53\u00b12) AU from their host stars?",
+    "subfield": "protoplanetary_disks",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1303.2692",
+        "published": "2013-03-11",
+        "sentence": "While it may seem puzzling that the molecular emission properties of the inner disk (< few AU) are related to the properties of the outer disk (beyond ~20 AU) probed by the submillimeter continuum, an interesting possible interpretation is that the trend is a result of planetesimal and protoplanet formation."
+      },
+      {
+        "arxiv_id": "1807.03406",
+        "published": "2018-07-09",
+        "sentence": "The discrepancy may indicate that HCN is not abundant beyond a couple of AU or that infrared pumping of HCN does not dominate at these distances."
+      },
+      {
+        "arxiv_id": "1412.5173",
+        "published": "2014-12-16",
+        "sentence": "We quantitatively compare our findings with predictions from evolutionary and atmospheric models for young, gas giant planets, discuss the possible existence of a warm, circumplanetary disk, and note that the de-projected physical separation from the host star of $(53\\pm2)$ au poses a challenge standard planet formation theories."
+      },
+      {
+        "arxiv_id": "1611.06230",
+        "published": "2016-11-18",
+        "sentence": "It also helps clarifying an unsolved discrepancy between water observations and models, by finding that disks around stars of M$_{\\star}>1.5$ M$_\\odot$ generally have inner gaps with depleted molecular gas content."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2014-008",
+    "question": "How do the age and metallicity distributions of spheroidal components in galaxies at 21 kpc relate to the history of merging events and the star formation rates in disk galaxies, particularly in the context of the age/metallicity-mass relation and the metallicity distribution of star-forming galaxies at z=0.7?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "astro-ph/0702448",
+        "published": "2007-02-16",
+        "sentence": "The relatively wide range of metallicity and age is inconsistent with a single, rapid star-formation episode, and instead suggests that the spheroid even at 21 kpc is dominated by the debris of earlier merging events likely occurring more than 8 Gyr ago."
+      },
+      {
+        "arxiv_id": "1011.1252",
+        "published": "2010-11-04",
+        "sentence": "Stellar mass loss can therefore remove the tension between the low gas infall rates that are derived from observations and the relatively rapid star formation occurring in disk galaxies."
+      },
+      {
+        "arxiv_id": "1204.4194",
+        "published": "2012-04-18",
+        "sentence": "The prevalence of these extended, relatively undisturbed disks challenges the merging scenario as the main mode of massive galaxy formation."
+      },
+      {
+        "arxiv_id": "1404.5624",
+        "published": "2014-04-22",
+        "sentence": "However rapid quenching of the entire population of massive star-forming galaxies at z=0.7 would be inconsistent with the age/metallicity--mass relation for the population as a whole and with the metallicity distribution of star-forming galaxies only, which are on average 0.12 dex less metal-rich than their local counterparts."
+      }
+    ]
+  },
+  {
+    "question_id": "fast_radio_bursts-2018-005",
+    "question": "What is the underlying cause of the inconsistency between the fluence ratio limit for ext{sgr} and the observed fluence scaling of FRBs, particularly for the high fluence events 171020, 180110, and 180324?",
+    "subfield": "fast_radio_bursts",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1602.02188",
+        "published": "2016-02-05",
+        "sentence": "The fluence ratio limit for \\sgr\\ is inconsistent with all but one of the fifteen FRBs."
+      },
+      {
+        "arxiv_id": "1810.04355",
+        "published": "2018-10-10",
+        "sentence": "These limits are inconsistent with the mean fluence scaling of $\u03b1=-1.8 \\pm 0.3$ (${\\cal F}_\u03bd\\propto \u03bd^\u03b1$, where $\u03bd$ is the observing frequency) that is reported for ASKAP events, most notably for the three high fluence (${\\cal F}_{1.4\\,{\\rm GHz}} \\gtrsim 100$ Jy ms) FRBs 171020, 180110 and 180324."
+      }
+    ]
+  },
+  {
+    "question_id": "cosmology_tensions-2016-009",
+    "question": "How does the choice of spherical overdensity threshold $\u0394_{c}$ for halo identification affect the observed halo concentrations and their agreement with LCDM predictions across different mass scales, particularly for clusters with mass M < 4.10^{14} solar mass/h?",
+    "subfield": "cosmology_tensions",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0902.2477",
+        "published": "2009-02-14",
+        "sentence": "The halo contraction is also less pronounced than found in earlier simulations, a disagreement that suggests that halo contraction is not solely a function of the initial and final distribution of baryons."
+      },
+      {
+        "arxiv_id": "1201.3568",
+        "published": "2012-01-17",
+        "sentence": "Furthermore, the discrepancy with respect to the predictions of standard fitting functions rescaled with the characteristic value of $\u03c3_{8}$ shows -- for some models -- a strong dependence on the spherical overdensity threshold $\u0394_{c}$ used for the halo identification."
+      },
+      {
+        "arxiv_id": "1112.5479",
+        "published": "2011-12-22",
+        "sentence": "We compare the LCDM predictions with observations of halo concentrations from strong lensing, weak lensing, galaxy kinematics, and X-ray data, finding good agreement for massive clusters (M > 4.10^{14} solar mass/h), but with some disagreements at lower masses."
+      },
+      {
+        "arxiv_id": "1311.1514",
+        "published": "2013-11-06",
+        "sentence": "Such difference, in a cosmology with massive neutrinos, would increase the tension between cluster abundance and Planck CMB measurements."
+      }
+    ]
+  },
+  {
+    "question_id": "fast_radio_bursts-2020-006",
+    "question": "What are the physical conditions and environments required to explain the discrepancies in fluence ratios and scattering properties of Fast Radio Bursts, particularly in relation to the mean fluence scaling of \u03b1=-1.8 \u00b1 0.3 observed in ASKAP events and the characteristics of SGR 1935+2154-like magnetars?",
+    "subfield": "fast_radio_bursts",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1602.02188",
+        "published": "2016-02-05",
+        "sentence": "The fluence ratio limit for \\sgr\\ is inconsistent with all but one of the fifteen FRBs."
+      },
+      {
+        "arxiv_id": "2008.10536",
+        "published": "2020-08-20",
+        "sentence": "We find that intervening galaxies cannot account for all highly scattered Fast Radio Bursts in FRBcat, thus requiring a denser and more turbulent environment than a SGR 1935+2154-like magnetar."
+      },
+      {
+        "arxiv_id": "1810.04355",
+        "published": "2018-10-10",
+        "sentence": "These limits are inconsistent with the mean fluence scaling of $\u03b1=-1.8 \\pm 0.3$ (${\\cal F}_\u03bd\\propto \u03bd^\u03b1$, where $\u03bd$ is the observing frequency) that is reported for ASKAP events, most notably for the three high fluence (${\\cal F}_{1.4\\,{\\rm GHz}} \\gtrsim 100$ Jy ms) FRBs 171020, 180110 and 180324."
+      }
+    ]
+  },
+  {
+    "question_id": "protoplanetary_disks-2018-002",
+    "question": "What is the cause of the discrepancy in the derived inclinations of protoplanetary disks as measured by interferometric near-infrared spectroscopy compared to other methods, and how does the presence of a 3-4M_Jup planet at 20 au from the star influence the cavity radii observed at near-infrared versus submillimeter wavelengths?",
+    "subfield": "protoplanetary_disks",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1804.04971",
+        "published": "2018-04-13",
+        "sentence": "However, our so derived inclinations differ from those derived from interferometric near-infrared spectroscopy, and we discuss possible causes for this puzzling discrepancy."
+      },
+      {
+        "arxiv_id": "1610.03913",
+        "published": "2016-10-13",
+        "sentence": "This discrepancy in the cavity radii at near-infrared and submillimeter wavelengths may be caused by a 3-4M_Jup planet about 20 au away from the star, near the edge of the cavity."
+      }
+    ]
+  },
+  {
+    "question_id": "stellar_activity-2014-009",
+    "question": "What are the effects of varying mixing-length parameters on the magnetic activity and flare characteristics of solar-type stars with masses between 0.6 and 1.0 Msun?",
+    "subfield": "stellar_activity",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0803.1488",
+        "published": "2008-03-10",
+        "sentence": "We find that the model reproduces the observations for solar mass stars, but discrepancies are apparent for stars with 0.6 ~< M ~< 1.0 Msun."
+      },
+      {
+        "arxiv_id": "0905.3077",
+        "published": "2009-05-19",
+        "sentence": "Models adopting significantly lower mixing-length parameters l/H_p remove these discrepancies, seen also for other solar-type binary components."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2014-000",
+    "question": "What are the definitive orbital elements of the Be/X-ray binary LS I +61 303, and how do they reconcile the discrepancies reported in the literature regarding its orbital period and gamma-ray emission characteristics?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0902.4015",
+        "published": "2009-02-23",
+        "sentence": "Both systems have somewhat discrepant orbital solutions available in the literature, and our new measurements result in improved orbital elements and resolve the disagreements."
+      },
+      {
+        "arxiv_id": "1106.5550",
+        "published": "2011-06-28",
+        "sentence": "There has been disagreement within the literature over whether these systems are microquasars, with stellar winds accreting onto a compact object to produce high energy emission and relativistic jets, or whether their emission properties might be better explained by a relativistic pulsar wind colliding with the stellar wind."
+      },
+      {
+        "arxiv_id": "0706.1320",
+        "published": "2007-06-09",
+        "sentence": "LS I +61 303 is a puzzling Be/X-ray binary with variable gamma-ray emission at up TeV energies."
+      },
+      {
+        "arxiv_id": "1411.7561",
+        "published": "2014-11-27",
+        "sentence": "These new measurements of the radial velocity resolve the disagreements of the orbital period discussions."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2012-009",
+    "question": "What are the specific atmospheric conditions, including the presence of an inversion layer and potential stratospheric absorbers, that lead to the observed discrepancies in the emission spectra of exoplanets, particularly regarding the 4.5 and 5.8 micron bandpasses and the 8 micron brightness temperature?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0709.3984",
+        "published": "2007-09-25",
+        "sentence": "These eclipse depths reveal that the shape of the inferred emission spectrum for the planet differs significantly from the predictions of standard atmosphere models; instead the most plausible explanation would require the presence of an inversion layer high in the atmosphere leading to significant water emission in the 4.5 and 5.8 micron bandpasses."
+      },
+      {
+        "arxiv_id": "0805.2418",
+        "published": "2008-05-16",
+        "sentence": "The fluxes are inconsistent with a canonical cloudless model for the thermal emission from a planet and suggest an atmosphere with a thermal inversion layer and a possible stratospheric absorber."
+      },
+      {
+        "arxiv_id": "0908.1977",
+        "published": "2009-08-13",
+        "sentence": "In contrast to earlier claims, our new eclipse depth suggests that this planet's dayside emission spectrum is relatively cool, with an 8 micron brightness temperature that is less than the maximum planet-wide equilibrium temperature."
+      },
+      {
+        "arxiv_id": "0802.0845",
+        "published": "2008-02-06",
+        "sentence": "Our data are strongly inconsistent with a Planck spectrum, and we clearly detect emission near 4 microns as predicted by published theoretical models in which this feature arises from a corresponding opacity window."
+      }
+    ]
+  },
+  {
+    "question_id": "protoplanetary_disks-2014-007",
+    "question": "How does the mass of protoplanetary disks in different stellar age environments compare to theoretical predictions, and what factors contribute to the observed systematic underestimation of disk mass by a factor of 3 - 5?",
+    "subfield": "protoplanetary_disks",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0705.1323",
+        "published": "2007-05-09",
+        "sentence": "The stellar age and spatial distributions are inconsistent with a simple radiation driven implosion (RDI) model, and suggest either that CG12 is an atypically large shocked globule, or it has been subject to several distinct episodes of triggering and ablation."
+      },
+      {
+        "arxiv_id": "1109.0276",
+        "published": "2011-09-01",
+        "sentence": "We show that for the observed systems only disc mass shows a systematic dependence on the value of 'Disc Age / Stellar Age' and we note that a systematic underestimate of the value of disc mass by a factor of around 3 - 5, would account for the discrepancy between theory and observations."
+      }
+    ]
+  },
+  {
+    "question_id": "gravitational_waves-2016-006",
+    "question": "How do the phase discrepancies of 6-27 rad observed in the effective one-body (EOB) approach with post-Newtonian self-force terms compare to the phase predictions from simulations of extreme mass ratio inspirals with effective spins, and what implications do these differences have for the accuracy of gravitational wave models?",
+    "subfield": "gravitational_waves",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0909.4263",
+        "published": "2009-09-23",
+        "sentence": "The inclusion of post-Newtonian self-force terms in the EOB approach leads to a phase disagreement of roughly 6-27 rad after a 2-year evolution."
+      },
+      {
+        "arxiv_id": "1606.01262",
+        "published": "2016-06-03",
+        "sentence": "Simulations with extreme mass ratios and effective spins are highly inconsistent with the data, at any mass."
+      }
+    ]
+  },
+  {
+    "question_id": "stellar_activity-2012-005",
+    "question": "What are the underlying causes of the discrepancy in the X-ray Luminosity Functions between the Cep OB3b and the Orion Nebula Cluster, and how does the unexpected brightening of X-ray emission in March/April 2007 relate to these differences?",
+    "subfield": "stellar_activity",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "astro-ph/0601405",
+        "published": "2006-01-18",
+        "sentence": "Second, we find a discrepancy between the X-ray Luminosity Functions of the Cep OB3b and the Orion Nebula Cluster."
+      },
+      {
+        "arxiv_id": "1011.4062",
+        "published": "2010-11-17",
+        "sentence": "Unexpectedly, we find that the X-ray emission associated with the cluster experienced a marked brightening in March/April 2007."
+      },
+      {
+        "arxiv_id": "1012.0314",
+        "published": "2010-12-01",
+        "sentence": "We are confronting these discrepancies with a new model of the expected stellar X-ray luminosity distribution, combining a Galactic population synthesis model with current theories for rotational spin- down and the rotation - activity relation for the stellar magnetic dynamo."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2020-004",
+    "question": "What are the underlying mechanisms that account for the low braking indices observed in eight pulsars and the abnormal distribution of frequency second derivatives in 222 pulsars and 15 magnetars, given that these observations contradict the classical understanding of magnetic dipole braking?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1512.01679",
+        "published": "2015-12-05",
+        "sentence": "Eight pulsars have low braking indices, which challenge the magnetic dipole braking of pulsars. 222 pulsars and 15 magnetars have abnormal distribution of frequency second derivatives, which also make contradiction with classical understanding."
+      },
+      {
+        "arxiv_id": "1707.02100",
+        "published": "2017-07-07",
+        "sentence": "We have investigated the long-term evolutions of the high-magnetic field radio pulsars (HBRPs) with measured braking indices in the same model that was applied earlier to individual anomalous X-ray pulsars (AXPs), soft gamma repeaters (SGRs) and dim isolated neutron stars (XDINs)."
+      },
+      {
+        "arxiv_id": "2008.11737",
+        "published": "2020-08-26",
+        "sentence": "Remaining braking indices cannot be explained neither by pulsar obliquity angle evolution, nor by complex high-order multipole structure of the poloidal magnetic field."
+      },
+      {
+        "arxiv_id": "1401.0772",
+        "published": "2014-01-04",
+        "sentence": "The observed long-term spin-down evolution of isolated radio pulsars cannot be explained by the standard magnetic dipole radiation with a constant braking torque."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2014-005",
+    "question": "What is the cause of the low methane abundance observed in the atmosphere of HD 209458b, which contradicts the high CH4 content inferred from previous observations of its dayside?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0710.2558",
+        "published": "2007-10-12",
+        "sentence": "We show that pM Class planets have hot stratospheres $\\sim$2000 K and appear ``anomalously'' bright in the mid infrared secondary eclipse, as was recently found for planets HD 149026b and HD 209458b."
+      },
+      {
+        "arxiv_id": "1403.0121",
+        "published": "2014-03-01",
+        "sentence": "As a consequence, the abundance of methane remains low, even below the predictions of previous one-dimensional models, which is likely to be in conflict with the high CH4 content inferred from observations of the dayside of HD 209458b."
+      },
+      {
+        "arxiv_id": "1110.4392",
+        "published": "2011-10-19",
+        "sentence": "In a broad perspective, our work therefore hints on an unexpected link between the hot Jupiters and recently discovered free floating planets."
+      },
+      {
+        "arxiv_id": "1112.0359",
+        "published": "2011-12-01",
+        "sentence": "In light of our determination of the frequency of hot Jupiters in Galactic field stars, previous null results for transiting planets in open cluster and globular cluster surveys no longer appear anomalously low."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2018-004",
+    "question": "What are the mechanisms and timelines involved in the formation of supermassive black holes (SMBHs) and intermediate-mass black holes (IMBHs) in the early Universe, particularly in relation to the rapid assembly of black holes powering quasars at redshifts z ~ 6-7 and the emergence of high-z galaxies within 200 Myr after the transition from Population III to Population II star formation?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1511.05494",
+        "published": "2015-11-17",
+        "sentence": "But this process would have taken ~900 Myr, a timeline that appears to be at odds with the predictions of LCDM without an anomalously high accretion rate, or some exotic creation of ~10^5 solar-mass seeds."
+      },
+      {
+        "arxiv_id": "1512.02651",
+        "published": "2015-12-08",
+        "sentence": "The rapid assembly of the massive black holes that power the luminous quasars observed at $z \\sim 6-7$ remains a puzzle."
+      },
+      {
+        "arxiv_id": "1505.04108",
+        "published": "2015-05-15",
+        "sentence": "These results may imply that better measurements of helium reionization, especially at high redshifts, could be helpful in constraining the growth of intermediate-mass black holes (IMBHs) in the early Universe, which would shed some light on the puzzles concerning the formation of supermassive black holes (SMBHs)."
+      },
+      {
+        "arxiv_id": "1403.0908",
+        "published": "2014-03-03",
+        "sentence": "However, this rapid emergence of high-z galaxies, barely ~ 200 Myr after the transition from Population III star formation to Population II, appears to be in conflict with the standard view of how the early Universe evolved."
+      }
+    ]
+  },
+  {
+    "question_id": "stellar_activity-2020-006",
+    "question": "How do the magnetic field orientations on either side of Voyager 1 relate to the characteristics of interstellar flux transfer events and the discrepancies in open magnetic flux observed during the solar-activity cycle?",
+    "subfield": "stellar_activity",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1309.6546",
+        "published": "2013-09-25",
+        "sentence": "These apparently contradictory observations may be reconciled if Voyager 1 is inside an interstellar flux transfer event - similar to flux transfer events routinely seen at the Earth's magnetopause."
+      },
+      {
+        "arxiv_id": "1903.12613",
+        "published": "2019-03-29",
+        "sentence": "Over the solar-activity cycle, there are extended periods where significant discrepancies occur between the spacecraft-observed total (unsigned) open magnetic flux and that determined from coronal models."
+      },
+      {
+        "arxiv_id": "1406.4369",
+        "published": "2014-06-17",
+        "sentence": "Unexpectedly, the magnetic fields on both its sides, although theoretically independent of each other, were found to be similar in direction."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2020-002",
+    "question": "What are the distinct atmospheric layers present in the exoplanet's atmosphere that contribute to the observed discrepancies in night-side temperature, and how do these layers affect the overall thermal structure, including the anomalously high brightness temperature of 1552 K at 3.6 microns?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1303.5468",
+        "published": "2013-03-21",
+        "sentence": "We noted an anomalously high 3.6-{\\microns} brightness temperature (1552 K); by modeling the eccentricity-caused thermal variation, we found that this temperature is plausible for radiative time scales less than $\\sim 10^{2}$ hours."
+      },
+      {
+        "arxiv_id": "1805.04067",
+        "published": "2018-05-10",
+        "sentence": "However, disagreements in night-side temperature suggest distinct atmospheric layers, each with their own characteristic minimum temperature."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2012-008",
+    "question": "What are the underlying physical mechanisms that account for the similarity in the flux spectra of the anomalous X-ray pulsar 1E 1048.1-5937 and 4U 0142+61, and how do these mechanisms challenge the dust disk model proposed for 1E 1048.1-5937?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "astro-ph/0501563",
+        "published": "2005-01-26",
+        "sentence": "We present 21-cm HI observations from the Southern Galactic Plane Survey of the field around the anomalous X-ray pulsar 1E 1048.1-5937, a source whose X-ray properties imply that it is a highly magnetized neutron star (a \"magnetar\")."
+      },
+      {
+        "arxiv_id": "0712.2856",
+        "published": "2007-12-18",
+        "sentence": "We present the results of X-ray and near-IR observations of the anomalous X-ray pulsar 1E 1048.1-5937, believed to be a magnetar."
+      },
+      {
+        "arxiv_id": "0901.1559",
+        "published": "2009-01-12",
+        "sentence": "We present high-speed optical photometry of the anomalous X-ray pulsar 1E 1048.1-5937 obtained with ULTRACAM on the 8.2-m Very Large Telescope in June 2007."
+      },
+      {
+        "arxiv_id": "0711.2290",
+        "published": "2007-11-14",
+        "sentence": "The similarity in the flux spectra of 4U 0142+61 and 1E 1048.1-5937 challenges the dust disk model proposed for the latter."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2018-009",
+    "question": "What is the cause of the low methane abundance observed in the atmosphere of HD 209458b, given the conflicting predictions from one-dimensional models and the high CH4 content inferred from dayside observations?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1202.1562",
+        "published": "2012-02-07",
+        "sentence": "The phase curve observations (including one of the transits) exhibit an anomalous trend similar to the detector ramp seen in previous Spitzer/IRAC observations; by modeling this ramp we recover the system parameters."
+      },
+      {
+        "arxiv_id": "1210.4163",
+        "published": "2012-10-15",
+        "sentence": "We show that a dust-dominated atmosphere could also explain several puzzling features of the emission spectrum and phase curves, including the large amplitude of the phase curve at 3.6um, the small hot-spot longitude shift and the hot mid-infrared emission spectrum."
+      },
+      {
+        "arxiv_id": "1808.09575",
+        "published": "2018-08-28",
+        "sentence": "Both the day-night temperature contrasts and the hotspot offsets we measure are in line with the trends seen in hot Jupiters (e.g., Crossfield 2015), though we disagree with the recent suggestion of an offset trend by Zhang et al."
+      },
+      {
+        "arxiv_id": "1403.0121",
+        "published": "2014-03-01",
+        "sentence": "As a consequence, the abundance of methane remains low, even below the predictions of previous one-dimensional models, which is likely to be in conflict with the high CH4 content inferred from observations of the dayside of HD 209458b."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2020-000",
+    "question": "What are the underlying causes of the discrepancies between the observed star formation rate (SFR) and stellar mass density at redshifts $z = 1-4$, and how do these discrepancies affect the relationship between SFR and stellar mass (${ m M}_{\bullet}$) across the redshift range $0<z<8$?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2020-12-31",
+    "search_window": "2021-01-01 to 2025-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1409.5792",
+        "published": "2014-09-19",
+        "sentence": "The discrepancies between the true and estimated SFR may explain at least part of the tension between the integral of the star formation rate density and the stellar mass density at a given redshift."
+      },
+      {
+        "arxiv_id": "1602.01985",
+        "published": "2016-02-05",
+        "sentence": "In this paper, we test the discrepancy between the stellar mass density and instantaneous star formation rate in redshift range $0<z<8$ using a large observational data sample."
+      },
+      {
+        "arxiv_id": "2001.06025",
+        "published": "2020-01-16",
+        "sentence": "There is a severe tension between the observed star formation rate (SFR) - stellar mass (${\\rm M}_{\\star}$) relations reported by different authors at $z = 1-4$."
+      },
+      {
+        "arxiv_id": "1312.4964",
+        "published": "2013-12-17",
+        "sentence": "By combining the simulated SFR(M*) relationship with the observed star formation rate function at a given redshift, we argue that this disagreement may be the result of the uncertainty in the SFR-M* (Luv-M*) conversion."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2014-001",
+    "question": "What is the origin of the anomalous velocity HI clouds with masses around 10^7 Msun, and how do they contribute to the estimated lower limit of 1.2 Msun/yr for extragalactic gas accretion, particularly in relation to the population of galaxies with high HI masses and low specific star formation rates?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0904.3494",
+        "published": "2009-04-22",
+        "sentence": "Anomalous velocity HI clouds with masses of order 10^7 Msun, which cannot be explained by galactic fountain models allow us to estimate a lower limit to the accretion of extragalactic gas of 1.2 Msun/yr."
+      },
+      {
+        "arxiv_id": "1312.2399",
+        "published": "2013-12-09",
+        "sentence": "A mass of M_HI=1.5 x 10^9 Msun is estimated for the anomalous HI - 20 per cent of the total HI mass."
+      },
+      {
+        "arxiv_id": "1407.0706",
+        "published": "2014-07-02",
+        "sentence": "By systematically assessing the link between HI and star formation within a sample of galaxies with extremely high HI masses (log M_HI/M_sun > 10), we uncover a population of galaxies with an unexpected combination of high HI masses and low specific star formation rates that exists primarily at stellar masses greater than log M_*/M_sun ~ 10.5."
+      },
+      {
+        "arxiv_id": "1407.3648",
+        "published": "2014-07-14",
+        "sentence": "The cloud is associated with an 8-kpc anomalous-velocity HI filament in the inner disk, previously observed in deep VLA observations by Fraternali et al."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2012-004",
+    "question": "What are the underlying mechanisms that cause the different spectral behaviors observed in the two classes of magnetars (SGRs and anomalous X-ray pulsars) as indicated by the broad band spectra (1-100 keV) compared in the study, and how do these mechanisms relate to the re-brightening bumps observed in GRB 021004, GRB 030329, and SGR 1900+14?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2012-12-31",
+    "search_window": "2013-01-01 to 2017-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "astro-ph/0501403",
+        "published": "2005-01-19",
+        "sentence": "Indeed a multi-precessing Jet at peak activity in all bands may explain the puzzling X or optical re-brightening bumps found in the GRB 021004, GRB030329 and the SGR 1900+ 14 on 27 August 1998 and once again on the 18 April 2001."
+      },
+      {
+        "arxiv_id": "astro-ph/0602359",
+        "published": "2006-02-16",
+        "sentence": "By comparing the broad band spectra (1-100 keV) of all the magnetars detected by INTEGRAL (the two SGRs and three anomalous X-ray pulsars) we find evidence for a different spectral behaviour of these two classes of sources."
+      }
+    ]
+  },
+  {
+    "question_id": "fast_radio_bursts-2014-000",
+    "question": "What is the actual rate of neutron star mergers that can reconcile the Fast Radio Burst rate of 1/1000 yr$^{-1}$ per galaxy with the gamma-ray burst rate, considering the discrepancies highlighted by Thornton et al. and the VLA rate limit?",
+    "subfield": "fast_radio_bursts",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1312.3143",
+        "published": "2013-12-11",
+        "sentence": "We concentrate on what we consider to be an issue of greatest importance: what is the NS merger rate given that the FRB rate (1/1000 yr$^{-1}$ per galaxy) is inconsistent with gamma-ray burst rate as discussed by Thornton and should be significantly higher."
+      },
+      {
+        "arxiv_id": "1412.7536",
+        "published": "2014-12-23",
+        "sentence": "Assuming a Euclidean flux distribution, the VLA rate limit is inconsistent with the published rate of Thornton et al."
+      }
+    ]
+  },
+  {
+    "question_id": "exoplanet_atmospheres-2014-002",
+    "question": "What are the underlying causes of the discrepancies in spectral data for HD 189733b, particularly regarding the inconsistency between the 8 um-photometry from Spitzer's IRAC and the K-band data, and how can future observations resolve the temperature discrepancies noted in model spectra fitting?",
+    "subfield": "exoplanet_atmospheres",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "0705.2457",
+        "published": "2007-05-16",
+        "sentence": "Here we suggest that, in the absence of flux variability, the spectral data for HD 189733b are inconsistent with 8 um-photometry obtained with Spitzer's InfraRed Array Camera (IRAC), perhaps an indication of problems with the challenging reduction of the IRS spectra."
+      },
+      {
+        "arxiv_id": "1303.5468",
+        "published": "2013-03-21",
+        "sentence": "However, as no model spectra fit all three data points well, the temperature discrepancy remains as an open question."
+      },
+      {
+        "arxiv_id": "1109.0582",
+        "published": "2011-09-03",
+        "sentence": "Our K-band data are inconsistent with the detection of spectral features at these wavelengths reported by Croll and collaborators at the level of 4.1 sigma."
+      },
+      {
+        "arxiv_id": "1304.5561",
+        "published": "2013-04-19",
+        "sentence": "In general we find that the three approaches agree for high quality spectra expected to come from potential future spaceborne missions, but disagree for low quality spectra representative of current observations."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2018-001",
+    "question": "What are the underlying causes of the discrepancies between the estimated star formation rate (SFR) and the stellar mass density at various redshifts, particularly in the range of 0<z<8, and how do these discrepancies affect the relationship between SFR and stellar mass (M*)?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1409.5792",
+        "published": "2014-09-19",
+        "sentence": "The discrepancies between the true and estimated SFR may explain at least part of the tension between the integral of the star formation rate density and the stellar mass density at a given redshift."
+      },
+      {
+        "arxiv_id": "1602.01985",
+        "published": "2016-02-05",
+        "sentence": "In this paper, we test the discrepancy between the stellar mass density and instantaneous star formation rate in redshift range $0<z<8$ using a large observational data sample."
+      },
+      {
+        "arxiv_id": "1312.4964",
+        "published": "2013-12-17",
+        "sentence": "By combining the simulated SFR(M*) relationship with the observed star formation rate function at a given redshift, we argue that this disagreement may be the result of the uncertainty in the SFR-M* (Luv-M*) conversion."
+      },
+      {
+        "arxiv_id": "1203.0310",
+        "published": "2012-03-01",
+        "sentence": "The limits for a redshift of z~1 are in tension with SFRD measurements derived from instantaneous star formation tracers."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2016-002",
+    "question": "What are the underlying causes of the discrepancies between the estimated star formation rate (SFR) and the stellar mass density at various redshifts, particularly in the range of 0<z<8, and how do these discrepancies affect the relationship between SFR and stellar mass (M*)?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2016-12-31",
+    "search_window": "2017-01-01 to 2021-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1409.5792",
+        "published": "2014-09-19",
+        "sentence": "The discrepancies between the true and estimated SFR may explain at least part of the tension between the integral of the star formation rate density and the stellar mass density at a given redshift."
+      },
+      {
+        "arxiv_id": "1602.01985",
+        "published": "2016-02-05",
+        "sentence": "In this paper, we test the discrepancy between the stellar mass density and instantaneous star formation rate in redshift range $0<z<8$ using a large observational data sample."
+      },
+      {
+        "arxiv_id": "1312.4964",
+        "published": "2013-12-17",
+        "sentence": "By combining the simulated SFR(M*) relationship with the observed star formation rate function at a given redshift, we argue that this disagreement may be the result of the uncertainty in the SFR-M* (Luv-M*) conversion."
+      },
+      {
+        "arxiv_id": "1203.0310",
+        "published": "2012-03-01",
+        "sentence": "The limits for a redshift of z~1 are in tension with SFRD measurements derived from instantaneous star formation tracers."
+      }
+    ]
+  },
+  {
+    "question_id": "compact_objects-2018-004",
+    "question": "What are the underlying mechanisms that lead to the observed low braking indices and abnormal frequency second derivatives in the populations of 222 pulsars and 15 magnetars, and how do these mechanisms reconcile with the classical understanding of magnetic dipole braking?",
+    "subfield": "compact_objects",
+    "cutoff_date": "2018-12-31",
+    "search_window": "2019-01-01 to 2023-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1512.01679",
+        "published": "2015-12-05",
+        "sentence": "Eight pulsars have low braking indices, which challenge the magnetic dipole braking of pulsars. 222 pulsars and 15 magnetars have abnormal distribution of frequency second derivatives, which also make contradiction with classical understanding."
+      },
+      {
+        "arxiv_id": "1105.5019",
+        "published": "2011-05-25",
+        "sentence": "In this article we revise the problem of anomalous values of pulsars' braking indices n_{obs} and frequency second derivatives F2 arising in observations."
+      },
+      {
+        "arxiv_id": "1707.02100",
+        "published": "2017-07-07",
+        "sentence": "We have investigated the long-term evolutions of the high-magnetic field radio pulsars (HBRPs) with measured braking indices in the same model that was applied earlier to individual anomalous X-ray pulsars (AXPs), soft gamma repeaters (SGRs) and dim isolated neutron stars (XDINs)."
+      },
+      {
+        "arxiv_id": "1304.4825",
+        "published": "2013-04-17",
+        "sentence": "The high-energy sources known as anomalous X-ray pulsars (AXPs) and soft gamma-ray repeaters (SGRs) are well explained as magnetars: isolated neutron stars powered by their own magnetic energy."
+      }
+    ]
+  },
+  {
+    "question_id": "protoplanetary_disks-2014-005",
+    "question": "What are the underlying mechanisms causing the high dust luminosity in the anomalous systems HD3003, HD38678, HD115892, and HD172555, and how do these mechanisms relate to the observed gas accretion rates and dust masses in protoplanetary disks?",
+    "subfield": "protoplanetary_disks",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "astro-ph/0703608",
+        "published": "2007-03-23",
+        "sentence": "Potentially anomalous systems are identified by a high dust luminosity compared with the maximum permissible in the model (HD3003, HD38678, HD115892, HD172555)."
+      },
+      {
+        "arxiv_id": "1102.4341",
+        "published": "2011-02-21",
+        "sentence": "We also suggest that discrepancies between the evolutionary timescales of 24 micron statistics predicted by our model and that observed in previous surveys could be explained by the presence of two-component disks in the samples of those surveys, or by transient events being responsible for the 24 micron emission of cold disks beyond a few Myr."
+      },
+      {
+        "arxiv_id": "1108.5258",
+        "published": "2011-08-26",
+        "sentence": "The inferred low dust masses are in a strong contrast with the relatively high gas accretion rates, suggesting global grain growth and/or an anomalous gas to dust ratio."
+      }
+    ]
+  },
+  {
+    "question_id": "galaxy_evolution-2014-002",
+    "question": "What is the cause of the observed discrepancies in star formation rate (SFR) measurements between different methods (such as LIR measurements from 24 micron and Herschel observations, photometric and spectroscopic redshifts, and PAH emission line luminosity) in infrared-selected galaxies at redshifts around z~2?",
+    "subfield": "galaxy_evolution",
+    "cutoff_date": "2014-12-31",
+    "search_window": "2015-01-01 to 2019-12-31",
+    "evidence": [
+      {
+        "arxiv_id": "1107.2921",
+        "published": "2011-07-14",
+        "sentence": "The Gaussian fits to the distribution of the discrepancies between the LIR measurements from single-band 24 micron and Herschel observations have sigma < 0.1 dex, with ~10% of objects disagreeing by more than 0.2 dex."
+      },
+      {
+        "arxiv_id": "1210.4928",
+        "published": "2012-10-17",
+        "sentence": "We measure more significant disagreement between photometric and spectroscopic redshifts (<delta_z>/(1+z)>=0.29) than is seen in non-infrared selected samples, likely due to enhanced star formation rates and dust obscuration in infrared-selected galaxies."
+      },
+      {
+        "arxiv_id": "1206.4047",
+        "published": "2012-06-18",
+        "sentence": "Individual SFR estimates based on the 6.2 micron PAH emission line luminosity do not show a systematic discrepancy with extinction, although a considerable, ~0.2 dex scatter is observed."
+      },
+      {
+        "arxiv_id": "1005.1074",
+        "published": "2010-05-06",
+        "sentence": "The accuracy of SFR measurements at z~2 has been questioned following a disagreement between observations and theoretical models."
+      }
+    ]
+  }
+]

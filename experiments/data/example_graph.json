@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {"node_id": "H1", "node_type": "hypothesis", "label": "Low water abundance is real."},
+    {"node_id": "H2", "node_type": "hypothesis", "label": "Retrieval artifact."},
+    {"node_id": "H3", "node_type": "hypothesis", "label": "Cloud degeneracy."},
+    {"node_id": "H4", "node_type": "hypothesis", "label": "Instrument systematic bias."},
+    {"node_id": "dataset_hst", "node_type": "dataset", "label": "HST transmission spectrum", "timestamp": "2018"},
+    {"node_id": "obs_transit_1", "node_type": "observation", "label": "Transit observation, visit 1", "timestamp": "2018"},
+    {"node_id": "paper_discovery", "node_type": "paper", "label": "Discovery paper reporting strongly subsolar H2O", "timestamp": "2019"},
+    {"node_id": "claim_low_h2o", "node_type": "claim", "label": "Water abundance is strongly subsolar", "timestamp": "2019"},
+    {"node_id": "paper_reanalysis", "node_type": "paper", "label": "Early re-analysis of the same data", "timestamp": "2019"},
+    {"node_id": "claim_retrieval_sensitivity", "node_type": "claim", "label": "Result sensitive to retrieval priors", "timestamp": "2019"},
+    {"node_id": "paper_refute_1", "node_type": "paper", "label": "Independent retrieval re-analysis 1 (alternative priors and opacities)", "timestamp": "2020"},
+    {"node_id": "claim_refute_1", "node_type": "claim", "label": "Re-analysis 1: subsolar abundance not required by the data", "timestamp": "2020"},
+    {"node_id": "paper_refute_2", "node_type": "paper", "label": "Independent retrieval re-analysis 2 (different framework)", "timestamp": "2021"},
+    {"node_id": "claim_refute_2", "node_type": "claim", "label": "Re-analysis 2: abundance consistent with solar under relaxed assumptions", "timestamp": "2021"},
+    {"node_id": "paper_refute_3", "node_type": "paper", "label": "Cross-dataset comparison against independent reductions", "timestamp": "2021"},
+    {"node_id": "claim_refute_3", "node_type": "claim", "label": "Cross-comparison: reported depletion is analysis-dependent", "timestamp": "2021"}
+  ],
+  "edges": [
+    {"source": "obs_transit_1", "target": "dataset_hst", "edge_type": "observes", "confidence": 1.0},
+    {"source": "claim_low_h2o", "target": "paper_discovery", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "paper_discovery", "target": "dataset_hst", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "claim_low_h2o", "target": "H1", "edge_type": "supports", "confidence": 0.6},
+    {"source": "claim_retrieval_sensitivity", "target": "paper_reanalysis", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "paper_reanalysis", "target": "dataset_hst", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "claim_retrieval_sensitivity", "target": "H2", "edge_type": "supports", "confidence": 0.5},
+    {"source": "claim_retrieval_sensitivity", "target": "H1", "edge_type": "contradicts", "confidence": 0.4},
+    {"source": "claim_refute_1", "target": "paper_refute_1", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "paper_refute_1", "target": "dataset_hst", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "claim_refute_1", "target": "H2", "edge_type": "supports", "confidence": 0.8},
+    {"source": "claim_refute_1", "target": "H1", "edge_type": "contradicts", "confidence": 0.7},
+    {"source": "claim_refute_2", "target": "paper_refute_2", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "paper_refute_2", "target": "dataset_hst", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "claim_refute_2", "target": "H2", "edge_type": "supports", "confidence": 0.8},
+    {"source": "claim_refute_2", "target": "H1", "edge_type": "contradicts", "confidence": 0.7},
+    {"source": "claim_refute_3", "target": "paper_refute_3", "edge_type": "derived_from", "confidence": 1.0},
+    {"source": "claim_refute_3", "target": "H2", "edge_type": "supports", "confidence": 0.7},
+    {"source": "claim_refute_3", "target": "H1", "edge_type": "contradicts", "confidence": 0.6}
+  ]
+}

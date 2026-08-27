@@ -1,0 +1,376 @@
+{
+ "annotations": [
+  {
+   "question_id": "protoplanetary_disks-2018-007",
+   "engaged": "yes",
+   "evidence_ids": "2110.00939, 2306.05913, 1909.00759",
+   "notes": "In-situ formation of super-Earth/sub-Neptune driven by planetary rotation explicitly addresses Kepler super-Earth abundance; multiple in-window formation-mechanism papers"
+  },
+  {
+   "question_id": "stellar_activity-2016-009",
+   "engaged": "partial",
+   "evidence_ids": "1812.01536, 1702.03136",
+   "notes": "CoRoT-5/CoRoT-8 property discrepancies directly re-analyzed; no paper found on the cause of WASP-43 anomalous activity itself"
+  },
+  {
+   "question_id": "galaxy_evolution-2016-005",
+   "engaged": "yes",
+   "evidence_ids": "1703.03805, 1810.12310, 1804.06477",
+   "notes": "Direct-collapse and PopIII-remnant seed papers investigate SMBH/IMBH formation mechanisms and timescales for z~6-7 quasars"
+  },
+  {
+   "question_id": "galaxy_evolution-2012-002",
+   "engaged": "yes",
+   "evidence_ids": "1508.01679, 1601.01698, 1401.5472",
+   "notes": "SFR-estimator comparison at 1<z<3 and PAH SFR calibration directly address the named method discrepancies"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2018-008",
+   "engaged": "yes",
+   "evidence_ids": "2007.06618, 2212.03240",
+   "notes": "Reanalysis of the 4.5um WASP-43b phase curve targeting instrument systematics; repeat-phase-curve variability test"
+  },
+  {
+   "question_id": "gravitational_waves-2020-001",
+   "engaged": "yes",
+   "evidence_ids": "2403.03399, 2111.00111, 2203.10109",
+   "notes": "Multiple papers directly on the nature of the GW190814 secondary and NS maximum-mass implications"
+  },
+  {
+   "question_id": "compact_objects-2012-005",
+   "engaged": "yes",
+   "evidence_ids": "1303.4934, 1710.09128, 1701.02067",
+   "notes": "34 Hz QPO discovery in GRS 1915+105 gives the 2:1 ratio directly; kHz QPO vs NS spin correlation studied head-on"
+  },
+  {
+   "question_id": "compact_objects-2016-000",
+   "engaged": "yes",
+   "evidence_ids": "2010.00999, 1705.09343",
+   "notes": "New constraints on LS I +61 303 orbital parameters from polarimetry; orbital/superorbital variability re-studied"
+  },
+  {
+   "question_id": "compact_objects-2016-005",
+   "engaged": "yes",
+   "evidence_ids": "10.1093/MNRAS/STX619, 1810.04398, 2003.08538",
+   "notes": "Paper directly on second derivatives and braking indices in radio pulsars; fallback-disc mechanism proposed"
+  },
+  {
+   "question_id": "stellar_activity-2018-004",
+   "engaged": "partial",
+   "evidence_ids": "10.3847/1538-4357/ab5800, 2010.09431, 1903.04565",
+   "notes": "Dust/plasma mechanisms for radio-X-ray emission in substellar atmospheres directly studied; the satellite-induced model discrepancy for TVLM 513 itself not found"
+  },
+  {
+   "question_id": "galaxy_evolution-2016-000",
+   "engaged": "partial",
+   "evidence_ids": "1801.06880, 2104.05736",
+   "notes": "HI-excess vs inefficient SF in massive galaxies and extraplanar-gas kinematics engage the components; the anomalous-cloud-to-accretion-rate relation as posed not found"
+  },
+  {
+   "question_id": "gravitational_waves-2016-001",
+   "engaged": "yes",
+   "evidence_ids": "1708.04831, 1702.03100, 1702.06311",
+   "notes": "Anomalous magnetic braking mechanism and negative orbital-period derivatives directly investigated"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2018-006",
+   "engaged": "yes",
+   "evidence_ids": "2107.05759, 1908.06998, 2311.00305",
+   "notes": "Tidal spin-up of hot Jupiter hosts (activity) and tidal destruction/survival both directly studied"
+  },
+  {
+   "question_id": "galaxy_evolution-2012-001",
+   "engaged": "partial",
+   "evidence_ids": "1304.1178, 1409.3235",
+   "notes": "Compact-object M/L in the named mass range directly measured; zero in-window citing papers touch DLAs, so the claimed relationship is unengaged"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2016-003",
+   "engaged": "yes",
+   "evidence_ids": "1801.06548, 1904.09676, 2103.07185",
+   "notes": "CoRoT-2b hotspot-offset study on the named object; vertical mixing / disequilibrium chemistry directly investigated as the mechanism"
+  },
+  {
+   "question_id": "stellar_activity-2014-008",
+   "engaged": "no",
+   "evidence_ids": "",
+   "notes": "Only 2 in-window citing papers, neither touching Li abundances or the Safronov-number relation"
+  },
+  {
+   "question_id": "galaxy_evolution-2018-009",
+   "engaged": "partial",
+   "evidence_ids": "2006.13937, 2208.01053, 2307.04120",
+   "notes": "sSFR evolution to z~5 measured and high-z protocluster environments simulated; the group-vs-intergroup sSFR discrepancy as posed not directly targeted"
+  },
+  {
+   "question_id": "gravitational_waves-2020-002",
+   "engaged": "yes",
+   "evidence_ids": "2109.07657, 10.1088/1402-4896/abdb53, 2212.04837",
+   "notes": "Observed spin-up/spin-down rates of accreting millisecond X-ray pulsars modelled; r-mode spin-down predictions studied"
+  },
+  {
+   "question_id": "galaxy_evolution-2020-003",
+   "engaged": "yes",
+   "evidence_ids": "2504.18144, 2304.02066, 10.1017/S1743921322002551",
+   "notes": "Direct-collapse and PopIII seed formation mechanisms and timescales for early SMBH growth directly investigated"
+  },
+  {
+   "question_id": "compact_objects-2014-001",
+   "engaged": "yes",
+   "evidence_ids": "1507.03994, 1907.08299",
+   "notes": "Thermal variability and quiescent-emission mechanisms in neutron stars directly investigated"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2018-005",
+   "engaged": "yes",
+   "evidence_ids": "1912.01360, 1912.10874",
+   "notes": "WASP-12 host-star tides studied directly; anomalously low chromospheric emission in irradiated planet hosts investigated as the activity-age confounder"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2016-005",
+   "engaged": "yes",
+   "evidence_ids": "2002.02945, 1912.04389, 1808.04824",
+   "notes": "Retrieval-model and stellar-contamination causes of NIR spectral discrepancies directly investigated"
+  },
+  {
+   "question_id": "fast_radio_bursts-2020-001",
+   "engaged": "no",
+   "evidence_ids": "",
+   "notes": "0/20 in-window citing papers address merger rates or the FRB-GRB-VLA rate reconciliation"
+  },
+  {
+   "question_id": "protoplanetary_disks-2012-009",
+   "engaged": "no",
+   "evidence_ids": "",
+   "notes": "0/41 in-window citing papers mention BP Psc; the question's primary object is untouched"
+  },
+  {
+   "question_id": "compact_objects-2020-000",
+   "engaged": "no",
+   "evidence_ids": "",
+   "notes": "0/37 in-window citing papers address isolated-NS count-rate decline, field-decay rate, or the 111-day modulation"
+  },
+  {
+   "question_id": "protoplanetary_disks-2020-002",
+   "engaged": "partial",
+   "evidence_ids": "2101.11307",
+   "notes": "Gas-vs-dust emission radius discrepancy between tracers studied directly; the NIR-vs-submm cavity/inclination discrepancy and the 3-4 MJup planet at 20 au not addressed"
+  },
+  {
+   "question_id": "compact_objects-2014-002",
+   "engaged": "yes",
+   "evidence_ids": "1606.02726, 1805.00942, 1912.10502",
+   "notes": "CIV-vs-Hbeta black hole mass discrepancy directly and repeatedly investigated"
+  },
+  {
+   "question_id": "compact_objects-2016-006",
+   "engaged": "yes",
+   "evidence_ids": "2001.06450, 1903.01091, 2101.05302",
+   "notes": "Named object 1E 1048.1-5937: new outbursts plus transient hard X-rays; quiescent thermal profiles and hard X-ray mechanisms studied"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2012-002",
+   "engaged": "yes",
+   "evidence_ids": "1605.08810, 1309.6663",
+   "notes": "HD 209458b thermal-inversion question resolved directly (the pM-class criterion); uniform re-analysis of secondary-eclipse spectra"
+  },
+  {
+   "question_id": "protoplanetary_disks-2016-009",
+   "engaged": "yes",
+   "evidence_ids": "1701.00750, 1707.04158, 10.1007/978-981-10-8453-9_4",
+   "notes": "Measured dust scattering phase function incl. backward angles; Kepler-25 3D obliquity measured directly"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2018-001",
+   "engaged": "yes",
+   "evidence_ids": "2003.04877, 2308.04966, 2201.04140",
+   "notes": "Anomalous hot Jupiter radii and tidal response directly investigated (reinflation, tidal shape)"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2016-007",
+   "engaged": "yes",
+   "evidence_ids": "1805.00038, 1809.07342",
+   "notes": "H- opacity and thermal dissociation directly investigated as the opacity mechanism; host-star activity levels surveyed"
+  },
+  {
+   "question_id": "galaxy_evolution-2016-009",
+   "engaged": "yes",
+   "evidence_ids": "1901.01095, 1809.02143, 10.1093/MNRAS/STZ2944",
+   "notes": "Feedback-prescription effects on galaxy formation efficiency directly tested across simulations"
+  },
+  {
+   "question_id": "protoplanetary_disks-2020-008",
+   "engaged": "yes",
+   "evidence_ids": "2505.07562, 2402.00860, 2304.05954",
+   "notes": "JDISC survey explicitly links inner and outer disk zones; inner-disk molecular content in gapped disks measured"
+  },
+  {
+   "question_id": "galaxy_evolution-2014-008",
+   "engaged": "yes",
+   "evidence_ids": "1901.01595, 1507.08281, 1507.05688",
+   "notes": "Spheroid age/metallicity/SFH measured directly; mass-metallicity relation origin and disk inflow/outflow histories investigated"
+  },
+  {
+   "question_id": "fast_radio_bursts-2018-005",
+   "engaged": "yes",
+   "evidence_ids": "2005.11071, 2005.06335, 2101.04082",
+   "notes": "SGR 1935+2154 radio burst detections directly settle the SGR-to-FRB fluence ratio; FRB fluence scaling constrained jointly across telescopes"
+  },
+  {
+   "question_id": "cosmology_tensions-2016-009",
+   "engaged": "yes",
+   "evidence_ids": "1804.10199, 1901.00008, 1901.05439",
+   "notes": "Concentration-mass relation and halo-definition dependence vs LCDM directly investigated at cluster scales"
+  },
+  {
+   "question_id": "fast_radio_bursts-2020-006",
+   "engaged": "yes",
+   "evidence_ids": "2101.04082, 2107.10858, 2101.07923",
+   "notes": "ASKAP-inclusive fluence scaling and FRB scattering properties directly modelled; magnetar-FRB connection studied"
+  },
+  {
+   "question_id": "protoplanetary_disks-2018-002",
+   "engaged": "partial",
+   "evidence_ids": "1912.11301, 2001.11040",
+   "notes": "Same-object NIR polarimetry + submm imaging and ALMA cavity substructure studied; the inclination-method discrepancy and the 3-4 MJup planet at 20 au not targeted"
+  },
+  {
+   "question_id": "stellar_activity-2014-009",
+   "engaged": "partial",
+   "evidence_ids": "1905.00217, 1902.02272, 1809.08065",
+   "notes": "Mixing-length calibration directly studied for stars in the named mass range; the mixing-length-to-activity/flare link itself not investigated"
+  },
+  {
+   "question_id": "compact_objects-2014-000",
+   "engaged": "yes",
+   "evidence_ids": "1603.09109, 1705.09343, 1512.03016",
+   "notes": "Named object LS I +61 303: orbital/superorbital variability and multiwavelength gamma-ray characteristics directly re-measured"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2012-009",
+   "engaged": "yes",
+   "evidence_ids": "1507.05963, 1612.06409, 1607.04062",
+   "notes": "Temperature inversion and stratospheric-absorber cold-trapping directly investigated as causes of emission-spectrum discrepancies"
+  },
+  {
+   "question_id": "protoplanetary_disks-2014-007",
+   "engaged": "partial",
+   "evidence_ids": "1911.06005, 1605.03050",
+   "notes": "Disk-mass demographics in a star-forming region and the accretion-rate/disk-mass correlation studied; the factor 3-5 underestimation mechanism not targeted"
+  },
+  {
+   "question_id": "gravitational_waves-2016-006",
+   "engaged": "yes",
+   "evidence_ids": "1707.09309, 2001.06763, 1912.10055",
+   "notes": "PN accuracy for EMRIs and EOB-EMRI formalism directly assessed; waveform accuracy requirements quantified"
+  },
+  {
+   "question_id": "stellar_activity-2012-005",
+   "engaged": "no",
+   "evidence_ids": "",
+   "notes": "Only 5 in-window citing papers, all on Arches/Galactic-Centre X-rays; nothing on Cep OB3b or ONC X-ray luminosity functions"
+  },
+  {
+   "question_id": "compact_objects-2020-004",
+   "engaged": "yes",
+   "evidence_ids": "2508.01721, 2408.14786, 2308.06439",
+   "notes": "Braking-index statistics and magnetorotational/field-decay spin-down mechanisms directly investigated"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2014-005",
+   "engaged": "yes",
+   "evidence_ids": "1802.09222, 1605.08810, 1810.09724",
+   "notes": "Wind-driven/disequilibrium chemistry modelled for HD 209458b itself as the cause of abundance discrepancies; abundances re-derived from WFC3"
+  },
+  {
+   "question_id": "galaxy_evolution-2018-004",
+   "engaged": "yes",
+   "evidence_ids": "2304.02066, 2102.05051, 2305.12492",
+   "notes": "Massive seed formation and direct collapse for z~6-7 quasar progenitors directly simulated"
+  },
+  {
+   "question_id": "stellar_activity-2020-006",
+   "engaged": "yes",
+   "evidence_ids": "2304.07649, 2304.13347",
+   "notes": "Solar open magnetic flux discrepancy directly addressed, including a proposed resolution"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2020-002",
+   "engaged": "yes",
+   "evidence_ids": "2107.03349, 2103.15833, 2103.07185",
+   "notes": "Nightside temperatures and thermal structure from phase curves plus vertical-mixing layer structure directly investigated"
+  },
+  {
+   "question_id": "compact_objects-2012-008",
+   "engaged": "partial",
+   "evidence_ids": "1402.4891, 1507.02924",
+   "notes": "Debris-disk model around isolated neutron stars directly tested; the 1E 1048.1-5937 vs 4U 0142+61 spectral-similarity mechanism not addressed"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2018-009",
+   "engaged": "yes",
+   "evidence_ids": "2010.00146, 2211.13761",
+   "notes": "Onset of methane vs 1D-model predictions in warm giants directly investigated; methane-depleted atmosphere characterised"
+  },
+  {
+   "question_id": "galaxy_evolution-2020-000",
+   "engaged": "yes",
+   "evidence_ids": "2107.02733, 2307.04120, 2412.02622",
+   "notes": "Cosmic SFRD inconsistency debated directly; stellar-recipe impact on SFR/mass and high-z mass recovery quantified"
+  },
+  {
+   "question_id": "galaxy_evolution-2014-001",
+   "engaged": "yes",
+   "evidence_ids": "1801.06880, 1607.01446, 1610.03859",
+   "notes": "High-HI-mass low-sSFR population directly and repeatedly characterised; accretion constraints derived"
+  },
+  {
+   "question_id": "compact_objects-2012-004",
+   "engaged": "yes",
+   "evidence_ids": "1704.07018, 1710.09017, 1510.00940",
+   "notes": "Broadband SGR-vs-AXP spectra compared head-on against magnetic field; resonant Compton mechanism modelled; SGR 1900+14 hard X-rays monitored"
+  },
+  {
+   "question_id": "fast_radio_bursts-2014-000",
+   "engaged": "yes",
+   "evidence_ids": "1909.11682, 1611.00458, 1804.06149",
+   "notes": "Targeted FRB search at short-GRB (NS merger) sites directly tests the rate reconciliation; FRB rate modelling and NS-origin review in window"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2014-002",
+   "engaged": "yes",
+   "evidence_ids": "1507.08070, 1607.03230, 1705.05468",
+   "notes": "HD 189733b broadband spectrum probed by an independent technique; non-uniform thermal structure and spectral coverage identified as causes of fitting discrepancies"
+  },
+  {
+   "question_id": "galaxy_evolution-2018-001",
+   "engaged": "yes",
+   "evidence_ids": "2001.06025, 2107.02733, 2010.16296",
+   "notes": "SFR-M* tension attributed directly to the choice of SFR and stellar-mass indicators; cosmic SFRD inconsistency debated"
+  },
+  {
+   "question_id": "galaxy_evolution-2016-002",
+   "engaged": "yes",
+   "evidence_ids": "2001.06025, 2107.02733, 1809.04603",
+   "notes": "Same direct hit on indicator-driven SFR-M* tension, within this cutoff's window"
+  },
+  {
+   "question_id": "compact_objects-2018-004",
+   "engaged": "yes",
+   "evidence_ids": "2202.13136, 10.1134/S1063772920120112, 2003.08538",
+   "notes": "Frequency second derivatives linked to glitch activity; dipole braking plus field decay modelled directly"
+  },
+  {
+   "question_id": "protoplanetary_disks-2014-005",
+   "engaged": "yes",
+   "evidence_ids": "1808.04373, 1703.02540, 1806.01289",
+   "notes": "Hot dust in HD 172555 (a named system) imaged directly; exozodi dust-production mechanisms and exocomet delivery modelled"
+  },
+  {
+   "question_id": "galaxy_evolution-2014-002",
+   "engaged": "yes",
+   "evidence_ids": "1609.04814, 1601.01698, 1508.01679",
+   "notes": "MOSDEF directly measures PAH/24um-inferred SFR discrepancy at z~2; PAH SFR calibration and multi-estimator comparison in window"
+  }
+ ]
+}

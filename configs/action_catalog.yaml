@@ -1,0 +1,46 @@
+# Generic action catalog. Costs and times are unit-free relative scores
+# in [0, 1]. Edit or extend this file to adapt the planner to a domain
+# without touching code.
+
+actions:
+  - action_type: read_paper
+    description: Read a relevant paper in depth
+    estimated_cost: 0.1
+    estimated_time: 0.1
+    required_resources: [literature access]
+
+  - action_type: search_archive
+    description: Search an archive for existing data or literature
+    estimated_cost: 0.15
+    estimated_time: 0.15
+    required_resources: [archive access]
+
+  - action_type: rerun_analysis
+    description: Re-run an existing analysis with alternative settings
+    estimated_cost: 0.4
+    estimated_time: 0.35
+    required_resources: [compute, original data]
+
+  - action_type: collect_observation
+    description: Collect an additional independent observation
+    estimated_cost: 0.85
+    estimated_time: 0.9
+    required_resources: [instrument time]
+
+  - action_type: run_simulation
+    description: Run a simulation to test the hypothesis mechanism
+    estimated_cost: 0.5
+    estimated_time: 0.5
+    required_resources: [compute, simulation code]
+
+  - action_type: compare_datasets
+    description: Compare independent datasets for consistency
+    estimated_cost: 0.3
+    estimated_time: 0.3
+    required_resources: [multiple datasets]
+
+  - action_type: search_review
+    description: Search review papers for consolidated evidence
+    estimated_cost: 0.1
+    estimated_time: 0.1
+    required_resources: [literature access]

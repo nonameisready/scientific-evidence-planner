@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+results/*
+!results/.gitkeep
+*.aux
+*.log
+*.out
+*.toc
+experiments/data/adjudication/citations.json

@@ -1,0 +1,32 @@
+[
+  {
+    "evidence_id": "claim_refute_1",
+    "hypothesis_id": "H2",
+    "action_type": "rerun_analysis",
+    "likelihoods": {"H1": 0.2, "H2": 0.85, "H3": 0.45, "H4": 0.4},
+    "metadata": {
+      "description": "Independent retrieval re-analysis 1: subsolar abundance not required by the data",
+      "timestamp": "2020"
+    }
+  },
+  {
+    "evidence_id": "claim_refute_2",
+    "hypothesis_id": "H2",
+    "action_type": "rerun_analysis",
+    "likelihoods": {"H1": 0.2, "H2": 0.85, "H3": 0.45, "H4": 0.4},
+    "metadata": {
+      "description": "Independent retrieval re-analysis 2: abundance consistent with solar under relaxed assumptions",
+      "timestamp": "2021"
+    }
+  },
+  {
+    "evidence_id": "claim_refute_3",
+    "hypothesis_id": "H2",
+    "action_type": "compare_datasets",
+    "likelihoods": {"H1": 0.25, "H2": 0.8, "H3": 0.5, "H4": 0.45},
+    "metadata": {
+      "description": "Cross-dataset comparison: reported depletion is analysis-dependent",
+      "timestamp": "2021"
+    }
+  }
+]

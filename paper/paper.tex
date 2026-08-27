@@ -1,0 +1,1006 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newcommand{\IG}{\mathrm{IG}}
+\newcommand{\Ent}{H}
+
+\title{Planning the Next Evidence Acquisition Step:\\
+An Offline Framework for Active Scientific Discovery}
+
+\author{Hui Mao \\
+\normalsize Independent Researcher \\
+\normalsize \texttt{hui.mao@alumni.upenn.edu}}
+\date{August 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[1]{Fourth in a series on temporally grounded evaluation of
+scientific question discovery; see~\cite{paper1},~\cite{paper2},
+and~\cite{paper3}. Code, configurations, and the scaled benchmark are
+public (Reproducibility).}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\begin{abstract}
+Most work on machine-assisted science focuses on generating scientific
+questions or executing experiments autonomously. We address the step in
+between: given an existing scientific question, a set of competing
+hypotheses, and the evidence currently available, \emph{what should we
+investigate next to maximize expected scientific progress?} We present an
+offline, domain-independent planning framework that represents evidence as
+a typed, confidence-weighted graph; identifies hypotheses with missing,
+weak, or non-independent evidence; generates generic candidate
+evidence-acquisition actions; and ranks them by a configurable utility
+combining expected information gain, novelty, tractability, and cost.
+Beliefs over hypotheses are revised with a modular Bayesian updater,
+closing the plan--observe--update loop without ever executing actions.
+Because the planner is offline, it can be evaluated honestly against
+history: a benchmark truncates the evidence graph at a time cutoff, hides
+later evidence as ground truth, and asks whether the recommended actions
+would have resolved the question earlier. On a worked case study from
+exoplanet atmospheric characterization --- a reported strongly subsolar
+water abundance whose premise was later refuted by three independent
+re-analyses --- the planner's top recommendation is exactly the
+discriminating re-analysis that historically resolved the question
+(resolution efficiency $1.0$; replaying the refuting evidence removes
+$1.06$ bits of hypothesis entropy). We further ground the utility
+components in the historical-outcome findings of the companion
+predictor-discovery study (Paper 3, $n{=}980$ questions at five
+cutoffs): explicitly articulated competing hypotheses predict
+resolution, and the resolution channel runs through quantified,
+explicitly contradictory, recurrent evidence rather than methodological
+doubt --- findings we convert into an empirically calibrated weight
+configuration that sharpens the planner's ranking toward the
+historically resolving actions. Scaling the benchmark to all $374$ of
+Paper 3's tension questions --- each evidence cluster batch-converted
+to a graph by transparent rules and planned at its own historical
+cutoff --- turns the metrics into distributions and surfaces a
+structural result: planner utility runs opposite to measured community
+attention (pooled permutation $p = 0.004$), because both are driven,
+with opposite sign, by the breadth of the existing evidence base. We
+then dismantle the appealing reading of that result. The effect does
+not survive stratification by breadth, and its residual concentrates in
+the high-specificity stratum where Paper 3's retrieval-bounded label is
+documented to under-count engagement. Re-adjudicating all $62$
+high-specificity questions blind, against citation-graph retrieval
+rather than abstract keyword matching, recovers $94\%$ of the questions
+the label calls unaddressed ($69\%$ under the strictest bar) and the
+utility effect vanishes ($p = 0.70$ and $0.61$, against $0.004$). The
+divergence between resolution-driven and attention-driven allocation is
+therefore real as a mechanism but is not evidence of detected neglect;
+the durable empirical result is a measured bound on the outcome label
+itself. The framework is released as a reference implementation with
+seven evaluation metrics, full configurability, and no domain
+assumptions in code.
+\end{abstract}
+
+\section{Introduction}
+
+Scientific progress is rarely limited by the ability to ask questions; it
+is limited by the cost of acquiring the evidence that discriminates
+between competing answers. A researcher facing an open question --- is a
+reported effect real, an artifact of the analysis, a confounder, or an
+instrument systematic? --- must decide where to spend the next unit of
+effort: re-read the literature, re-run an analysis with different
+assumptions, compare independent datasets, run a simulation, or invest in
+a costly new observation. This decision is made under uncertainty, under
+resource constraints, and usually informally.
+
+This paper treats that decision as a planning problem. We assume the
+scientific question already exists (produced by a human or by an upstream
+question-generation system) and ask only: \emph{given the current
+evidence, which evidence-acquisition step maximizes expected scientific
+progress?}
+
+This is Paper 4 of a series. Paper 1 built an evidence-graph system that
+generates questions from cross-paper observational tensions; Paper 2
+introduced historical backtesting of question generators (freeze
+questions on pre-cutoff literature, observe what the community actually
+did afterwards); Paper 3\footnote{\url{https://github.com/nonameisready/scientific-question-outcome-prediction-indicators}}
+scaled that protocol into a supervised predictor-discovery study over
+$980$ astronomy questions frozen at five cutoffs (2012--2020) on the
+complete arXiv astro-ph record, with strict blinded outcome labels.
+Those papers ask which \emph{questions} the future rewards; this paper
+takes the question as given and plans the \emph{evidence acquisition}
+that follows. Paper 3's outcome dataset feeds back into this work in two
+concrete ways developed in Section~\ref{sec:grounding}: its controlled
+effects empirically ground (and partly correct) our utility components,
+and its released questions and outcome labels are directly importable as
+benchmark units for our evaluation protocol.
+
+Our design commitments differ from much recent work on autonomous
+science:
+
+\begin{itemize}
+  \item \textbf{Offline.} The system is a planner, not an agent. It does
+  not browse, does not call instrument APIs, and does not execute
+  experiments. Everything works from static datasets, which makes the
+  system auditable and makes rigorous historical evaluation possible.
+  \item \textbf{Domain-independent.} No scientific field is hardcoded.
+  Domain knowledge enters only through data (questions, hypotheses,
+  evidence graphs) and configuration (action catalogs, weights).
+  \item \textbf{Modular.} Every component --- hypothesis generation, gap
+  analysis, action generation, each utility term, belief updating,
+  evaluation --- sits behind a small interface and can be replaced
+  independently.
+\end{itemize}
+
+\paragraph{Contributions.}
+(1)~A formalization of next-step evidence planning over typed,
+confidence-weighted evidence graphs with provenance;
+(2)~a gap analysis that flags hypotheses with missing, sparse, weak, or
+non-independent evidence;
+(3)~a configurable utility decomposition --- expected information gain via
+preposterior analysis, provenance-based novelty, resource-aware
+tractability, and cost;
+(4)~a historical-simulation benchmark with seven metrics that evaluates
+whether a planner would have resolved a question earlier;
+(5)~an empirical grounding of the utility components in Paper 3's
+historical-outcome dataset, including an import path for its released
+questions and labels and an empirically calibrated weight
+configuration;
+(6)~a scaled benchmark run over all $374$ of Paper 3's tension
+questions, batch-converted to evidence graphs by auditable rules, with
+metric distributions and an outcome-stratified analysis;
+(7)~a blind re-adjudication of the $62$ questions carrying that
+analysis' residual effect, which measures the outcome label's
+under-counting at $69$--$94\%$, withdraws our own neglect
+interpretation, and bounds what specificity-related findings computed
+on that label can mean; and
+(8)~an open reference implementation with unit tests and a worked case
+study whose hidden ground truth follows the documented historical
+outcome.
+
+\section{Related work}
+
+\paragraph{Choosing experiments.} The problem of allocating the next
+increment of scientific effort has a direct precedent in the science of
+science. Rzhetsky et al.~\cite{rzhetsky2015} model the choice of
+experiments as a search over a knowledge network and show that the
+strategies scientists actually adopt are collectively suboptimal ---
+too concentrated near established results --- and that a planner
+optimizing collective discovery would allocate differently. Foster et
+al.~\cite{foster2015} document the same conservatism at the level of
+research strategy. Our framework sits at the operational end of this
+line: rather than characterizing aggregate strategy, it plans one
+concrete next action for one question against an explicit hypothesis
+set, and the divergence we measure in Section~\ref{sec:scale} between
+planner utility and realized community attention is a question-level
+instance of exactly the gap those papers describe at population level.
+
+\paragraph{Autonomous science.} A parallel line builds systems that
+execute research end to end, from the Nobel Turing
+Challenge~\cite{kitano2021} onward. We deliberately stop short of
+execution. The planner is an offline decision layer that can precede
+any executor, human or automated, which is what makes its
+recommendations auditable and its evaluation possible against history
+rather than against a simulator.
+
+\paragraph{Evaluating generated ideas.} Novelty-based evaluation of
+machine-generated research ideas has repeatedly failed to predict value.
+Si et al.~\cite{si2024novel} measured expert opinion at generation
+time; their follow-up~\cite{si2025execution} had researchers execute
+both LLM and human ideas and found the ideas rated highest before
+execution scored lowest after. HindSight~\cite{hindsight} matches
+generated ideas against subsequent literature and finds LLM-judged
+novelty \emph{negatively} correlated with realized impact. Papers 1--3
+of this series~\cite{paper1,paper2,paper3} replace opinion with
+history at the level of questions; this paper carries the same
+substitution into the planning step, scoring plans by whether the
+evidence they would acquire resolves anything.
+
+\section{Problem Statement}
+
+Let $q$ be a scientific question and
+$\mathcal{H} = \{h_1, \dots, h_n\}$ a set of mutually exclusive,
+exhaustive competing hypotheses with probabilities
+$p = (p_1, \dots, p_n)$, $\sum_i p_i = 1$. Let $G = (V, E)$ be the
+current \emph{evidence graph} (Section~\ref{sec:graph}). Let
+$\mathcal{A}$ be a set of candidate evidence-acquisition actions, each
+with a type, relative cost, relative time, required resources, and a
+target hypothesis.
+
+The planner must return a ranking of $\mathcal{A}$ (top-$K$
+recommendations) maximizing a utility
+\begin{equation}
+U(a) \;=\; w_{\mathrm{ig}}\,\IG(a) \;+\; w_{\mathrm{nov}}\,\mathrm{Nov}(a)
+\;+\; w_{\mathrm{tr}}\,\mathrm{Tr}(a) \;-\; w_{c}\,C(a),
+\label{eq:utility}
+\end{equation}
+where $\IG$ is the expected reduction in hypothesis uncertainty,
+$\mathrm{Nov}$ measures independence from existing evidence,
+$\mathrm{Tr}$ measures feasibility, $C$ is cost, and the weights $w$ are
+configurable. After an action is (externally) executed and its outcome
+observed, hypothesis probabilities are revised and the cycle repeats. The
+framework plans and updates; it never executes.
+
+\section{Framework}
+
+\subsection{Evidence Graphs and Provenance}
+\label{sec:graph}
+
+Evidence is a directed multigraph with five node types ---
+\emph{paper}, \emph{observation}, \emph{dataset}, \emph{claim},
+\emph{hypothesis} --- and four edge types --- \emph{supports},
+\emph{contradicts}, \emph{derived\_from}, \emph{observes} --- each edge
+carrying a confidence in $[0,1]$. Claims point at the hypotheses they
+support or contradict; derived nodes point at their origins
+(claim $\to$ paper $\to$ dataset); observations point at what they
+observe. Nodes optionally carry timestamps, which enables historical
+simulation (Section~\ref{sec:eval}).
+
+Two queries are load-bearing. First,
+$\mathrm{evidence}(h)$ returns the supports/contradicts edges incident to
+a hypothesis. Second, $\mathrm{roots}(v)$ follows
+\emph{derived\_from} edges transitively to the root sources of a node.
+Two claims that descend from the same dataset are \emph{not} independent
+evidence, no matter how many papers separate them; this notion of
+provenance drives both gap analysis and novelty.
+
+\subsection{Hypothesis Generation}
+
+Hypotheses are structured objects (identifier, description, prior,
+supporting and contradicting evidence references). The reference
+implementation provides two interchangeable generators behind one
+interface: a \emph{static} generator that loads curated hypothesis sets
+keyed by question (the normal path for imported datasets), and a
+\emph{template} generator producing four generic methodological
+alternatives applicable to any empirical claim: the effect is real; it is
+an artifact of the analysis method; it is confounded by an unmodeled
+factor; it is an instrument or measurement systematic. Priors are
+normalized, defaulting to uniform.
+
+\subsection{Evidence Gap Analysis}
+\label{sec:gaps}
+
+For each hypothesis the analyzer emits the first applicable gap:
+
+\begin{enumerate}
+  \item \textbf{No evidence.} No edge touches the hypothesis
+  (gap confidence $1.0$).
+  \item \textbf{Sparse evidence.} Fewer than $k_{\min}$ evidence edges;
+  confidence $0.5 + 0.5\,(1 - \mathrm{count}/k_{\min})$.
+  \item \textbf{Weak support.} Summed support confidence below a
+  threshold $s_{\min}$; confidence $0.4 + 0.4\,\delta$ where $\delta$ is
+  the relative deficit.
+  \item \textbf{No independent corroboration.} All evidence descends from
+  a single provenance root (confidence $0.78$): formally,
+  $\big|\bigcup_{v \in \mathrm{sources}(h)} \mathrm{roots}(v)\big| \le 1$.
+\end{enumerate}
+
+The output is a gap report: hypothesis, missing-evidence description,
+confidence, and a human-readable reason, sorted most-confident first. All
+thresholds are configurable.
+
+\subsection{Candidate Action Generation}
+
+Actions are instantiated from a generic, YAML-configurable catalog of
+seven types: read paper, search archive, re-run analysis, collect
+observation, run simulation, compare datasets, search review. Each
+template carries a relative cost and time in $[0,1]$ and required
+resource tags. For each gap, the generator instantiates the subset of
+types that plausibly closes that kind of gap --- independence gaps
+receive independent-source actions (collect observation, compare
+datasets, search archive); weak-support gaps receive re-analysis actions;
+evidence-free hypotheses receive broad search actions --- and records the
+gap's reason and confidence in the action's metadata. Nothing in the
+catalog or the mapping references any scientific domain.
+
+\subsection{Utility Estimation}
+\label{sec:utility}
+
+Each term of Eq.~\eqref{eq:utility} is an independent estimator behind a
+common interface, injected into the combiner; any term can be replaced
+without touching the others.
+
+\paragraph{Expected information gain (preposterior analysis).}
+An action $a$ targeting hypothesis $h_t$ is modeled as producing a binary
+outcome $o \in \{\text{favors } h_t,\ \text{disfavors } h_t\}$ with a
+likelihood ratio $r_a$ determined by the action type's
+\emph{discriminative power} (a configurable table; an independent
+observation separates hypotheses more sharply than reading a paper):
+\begin{equation}
+P(o^+ \mid h_t) = \frac{r_a}{r_a + 1}, \qquad
+P(o^+ \mid h_j) = \frac{1}{r_a + 1} \quad (j \ne t).
+\end{equation}
+The estimate is the expected entropy reduction
+\begin{equation}
+\IG(a) \;=\; \Ent(p) \;-\; \mathbb{E}_{o}\!\left[\Ent\!\big(p \mid o\big)\right]
+\;\ge\; 0,
+\end{equation}
+with $\Ent$ the Shannon entropy in bits and the posterior computed by
+Bayes' rule for each outcome. This is exact for the two-outcome model and
+degrades gracefully: actions with likelihood ratio $1$ yield zero gain,
+as do actions with no target among the live hypotheses.
+
+\paragraph{Novelty (provenance independence).}
+Each action type has a base source novelty $\nu_a \in [0,1]$ (new
+observation $=1.0$; re-reading literature $\approx 0.3$). The base is
+boosted by the provenance concentration of the target's existing
+evidence:
+\begin{equation}
+\mathrm{Nov}(a) \;=\; \min\!\Big(\nu_a \big(1 + \tfrac{1}{\max(|R_t|,\,1)}\big),\; 1\Big),
+\end{equation}
+where $R_t$ is the set of provenance roots behind the target hypothesis's
+evidence. If everything known descends from one dataset, independent
+evidence is maximally valuable.
+
+\paragraph{Tractability.}
+$\mathrm{Tr}(a) = (1 - \mathrm{time}_a) \cdot \rho^{m}$, where $m$ is the
+number of required resources not declared available and $\rho$ (default
+$0.5$) is the missing-resource penalty. With no declared resource set,
+all resources are assumed available.
+
+\paragraph{Cost.}
+The action's configured relative cost, passed through.
+
+\paragraph{Calibration.}
+Information gain is measured in bits and is typically well below $1$ for
+a single action, while the other terms are $[0,1]$ scores; the default
+configuration therefore sets $w_{\mathrm{ig}} = 10$ to place the terms on
+a comparable scale, with all weights exposed in YAML.
+
+\subsection{Planning}
+
+The planner is deliberately thin: it scores every candidate with the
+injected utility estimator, sorts by total utility, truncates to
+top-$K$, and attaches to each recommendation its utility breakdown, its
+target hypothesis, and a reasoning string naming the dominant term. All
+ranking policy lives in the (replaceable) utility estimator.
+
+\subsection{Belief Updating}
+
+New evidence arrives as a likelihood vector
+$L = \big(P(e \mid h_1), \dots, P(e \mid h_n)\big)$; hypotheses absent
+from the vector receive a neutral likelihood of $1$. The default updater
+is exact discrete Bayes,
+\begin{equation}
+p_i' \;=\; \frac{p_i\, P(e \mid h_i)}{\sum_j p_j\, P(e \mid h_j)},
+\end{equation}
+with two safeguards: evidence impossible under every hypothesis leaves
+the distribution unchanged (it is uninformative for this hypothesis
+set), and the update is non-destructive, recording the evidence
+identifier on each hypothesis's supporting or contradicting list
+according to the direction of the probability change. The updater is a
+protocol; richer models (soft evidence, correlated hypotheses,
+hierarchical priors) can be substituted without touching callers.
+
+\section{Empirical Grounding from Historical Outcomes (Paper 3)}
+\label{sec:grounding}
+
+The utility decomposition of Section~\ref{sec:utility} was derived from
+first principles. Paper 3's predictor-discovery study now lets us check
+those principles against a thousand historical outcomes: $980$ questions
+frozen at five cutoffs, each labeled by a strict blinded judge with what
+the following five years of literature actually did (52.7\% substantively
+addressed; interpretable models predict 2020 outcomes at AUC $0.71$
+out-of-time and out-of-domain). Four of its findings bear directly on
+this framework.
+
+\paragraph{Explicit competing hypotheses are the one falsifiability
+property with predictive teeth.} Across controlled analyses, explicitly
+articulated competing hypotheses raise the probability of future
+attention ($\beta = +0.17$, $p = 0.02$) and, directionally, of being
+\emph{answered} given attention ($\beta = 0.56$, $p = 0.08$) --- the only
+falsifiability feature that survives Paper 3's four-way robustness
+screen. This is direct empirical support for the hypothesis-decomposition
+step this framework makes mandatory: a question is planned \emph{as} a
+set of competing hypotheses, never as free text.
+
+\paragraph{The resolution channel is discriminative, not diffuse.}
+Within Paper 3's tension-mined subset (374 questions with verbatim
+evidence-graph provenance), every premise refutation comes from a
+\emph{quantified} tension cluster ($3/63$ quantified vs.\ $0/311$
+unquantified), five of six resolutions are explicit-contradiction-typed,
+all six resolutions come from tensions \emph{recurrent} across cutoffs
+--- and clusters built on methodological-challenge language engaged the
+community at the average rate yet resolved \emph{nothing} ($0/61$).
+Translated into this framework's terms: evidence with a high likelihood
+ratio against a specific, contestable claim is what closes questions;
+diffuse methodological worry produces attention without resolution. This
+is precisely the behavior encoded in the information-gain estimator's
+discriminative-power table, and the reason our utility centers expected
+entropy reduction rather than engagement.
+
+\paragraph{Attention is community-relational; novelty is weak and
+redundant.} Paper 3's robust predictors of future attention are prior
+community recognition (overlap with pre-cutoff reviews,
+$\beta = +0.34$), the density of directly related prior evidence
+($\beta = +0.26$), and cluster breadth within the tension subset
+($\beta = +0.45$/SD). Its verdicts on novelty and tension are more
+specific than the slogan they are often reduced to, and worth stating
+exactly: semantic novelty carries a \emph{small positive} controlled
+effect ($\beta = +0.17$, $p = 0.03$) that is only half sign-stable
+across generation sources, and the novelty feature group is redundant
+given the rest (dropping it \emph{improves} held-out AUC, $0.688 \to
+0.708$); what is null is evidence \emph{tension density} itself
+($\beta = 0.06$, $p = 0.52$). Five of six pre-stated mechanism
+hypotheses failed, including ``evidence tension beats novelty'' ---
+which failed because tension was null, not because novelty was.
+Independently, HindSight~\cite{hindsight} finds LLM-judged novelty
+\emph{negatively} correlated with realised impact, and the
+ideation--execution study of Si et al.~\cite{si2025execution} finds
+LLM ideas rated highest before execution scoring lowest after: three
+different designs converge on novelty being a poor optimization target
+even where it is not a null one.
+
+For this framework the lesson is a separation of objectives. Our
+planner optimizes expected \emph{resolution} (entropy reduction), not
+expected attention, and its novelty term is not semantic distance at
+all but \emph{provenance independence} --- the step from one evidence
+root to a second. The closest analogue to that construct in Paper 3's
+feature set is instrument diversity of the existing evidence base,
+whose controlled effect on attention is \emph{negative}
+($\beta = -0.21$): multi-instrument questions read as synthesis-level
+problems no single group owns. That is the honest empirical basis for
+down-weighting our novelty term --- not a claim that novelty predicts
+nothing --- while its role in the refutation channel (quantified
+cross-checks of a single-source claim) is what keeps the term in the
+utility at all. We accordingly ship an empirically calibrated
+configuration
+(\texttt{configs/paper3\_informed.yaml}) that keeps the
+information-gain weight, halves the novelty weight, and raises
+tractability (Paper 3's Cox model: archival-data availability
+accelerates engagement; requiring a not-yet-operational instrument is
+the largest negative effect). Section~\ref{sec:case} shows its effect
+on the case-study ranking.
+
+\paragraph{A shared benchmark substrate.} Paper 3 releases its
+questions, provenance clusters, and tiered outcome labels. Its records
+load directly through our question loader (an importer ships in
+\texttt{experiments/}), and each labeled question is a candidate
+benchmark unit for Section~\ref{sec:eval}: the cutoff supplies the
+historical-simulation boundary and the label supplies hidden ground
+truth. Its learned structure prior
+(\texttt{results/structure\_prior.json}, structure-only AUC $0.586$
+vs.\ $0.502$ for the full question-level record within a single source)
+is likewise importable as an empirical prior over which evidence
+configurations the community will engage --- a community-uptake signal
+complementary to our resolution-centric utility.
+
+\section{Offline Evaluation by Historical Simulation}
+\label{sec:eval}
+
+An offline planner can be evaluated the only way that avoids
+self-grading: against history. The benchmark takes a \emph{full}
+timestamped evidence graph and a cutoff $\tau$:
+
+\begin{enumerate}
+  \item Filter the graph to nodes with timestamp $< \tau$
+  (untimestamped structural nodes are kept; edges touching hidden nodes
+  are dropped). The planner sees only this sub-graph.
+  \item Run any planner pipeline (a two-method protocol) on the visible
+  sub-graph, producing recommendations and the hypothesis set used.
+  \item Express post-cutoff evidence as ground-truth records: which
+  hypothesis it bore on, which action type historically produced it, and
+  its per-hypothesis likelihoods.
+  \item A ground-truth item is \emph{reached} if some recommendation
+  matches its action type and target hypothesis; reached items are
+  replayed through the belief updater to measure the uncertainty the plan
+  could have removed.
+\end{enumerate}
+
+The central question is: \emph{did the planner recommend the actions that
+would have resolved the question earlier?}
+
+\subsection{Metrics}
+
+\begin{description}
+  \item[Top-$K$ utility.] Mean total utility of the top-$K$
+  recommendations.
+  \item[Hypothesis entropy reduction.] $\Ent(p_{\text{before}}) -
+  \Ent(p_{\text{after}})$ after replaying reached ground truth ---
+  what history says the plan was worth.
+  \item[Average information gain.] Mean \emph{expected} gain across
+  recommendations --- what the planner believed; comparing it with
+  realized entropy reduction exposes over- or under-confidence.
+  \item[Action diversity.] Distinct action types over number of
+  recommendations, penalizing degenerate plans.
+  \item[Coverage of competing hypotheses.] Fraction of hypotheses
+  targeted by at least one recommendation; a good plan probes the space
+  of explanations, not just the front-runner.
+  \item[Resolution efficiency.] Fraction of ground-truth evidence
+  reached by the plan; $1.0$ means every piece of evidence that
+  historically resolved the question was on the recommended path.
+  \item[Expected utility.] Rank-discounted utility with weights
+  $1/\mathrm{rank}$ (normalized), modeling that earlier recommendations
+  are likelier to be executed.
+\end{description}
+
+\section{Case Study}
+\label{sec:case}
+
+We instantiate the framework on a question from exoplanet atmospheric
+characterization --- \emph{``Is the reported low water abundance real or
+a retrieval artifact?''} --- stressing that the domain lives entirely in
+the data files; the code is untouched. The question is not arbitrary: it
+is the question family of Paper 2's pilot benchmark, whose documented
+history (carried forward into Paper 3's dataset) records that the
+reported strongly subsolar water abundance was a premise \emph{later
+refuted by three independent re-analyses} --- exactly the convergence the
+question called for. Our hidden ground truth follows that history: three
+post-cutoff evidence items (two independent retrieval re-analyses and
+one cross-dataset comparison, 2020--2021) that support the
+retrieval-artifact hypothesis and contradict the ``real'' one.
+
+Four hypotheses compete: the low abundance is real ($p=0.3$); it is a
+retrieval artifact ($p=0.3$); it is a cloud--composition degeneracy
+($p=0.2$); it is an instrument systematic ($p=0.2$). The pre-cutoff
+graph (cutoff $\tau = 2020$; the planner sees 10 of 16 nodes) contains
+the discovery paper and an early re-analysis, both derived from the
+\emph{same} transmission spectrum dataset --- textbook provenance
+concentration.
+
+Gap analysis flags the ``real'' hypothesis for lacking independent
+corroboration (all evidence descends from one dataset), the ``artifact''
+hypothesis for sparse evidence, and the remaining two for having no
+evidence. Under the default configuration the planner's top
+recommendation is re-running the retrieval under alternative settings,
+targeting the artifact hypothesis --- the action family that historically
+refuted the premise --- followed by independent observation and
+cross-dataset comparison for the two leading hypotheses.
+
+\begin{table}[t]
+\centering
+\caption{Benchmark results for the case study (top-$K{=}5$, cutoff 2020,
+default configuration).}
+\label{tab:results}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Top-$K$ utility & 2.596 \\
+Hypothesis entropy reduction (bits) & 1.062 \\
+Average information gain (bits) & 0.173 \\
+Action diversity & 0.600 \\
+Coverage of competing hypotheses & 0.500 \\
+Resolution efficiency & 1.000 \\
+Expected utility & 2.616 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:results} summarizes the run. Resolution efficiency of
+$1.0$ indicates every piece of historically decisive evidence was on the
+recommended path; replaying the three refuting items shifts the belief
+mass decisively onto the artifact hypothesis, removing $1.06$ of the
+$1.97$ bits of initial hypothesis entropy. Coverage of $0.5$ reflects
+that the two low-prior hypotheses did not make the top-5 under default
+weights --- raising the coverage-relevant weights or $K$ trades focus for
+breadth, and the benchmark makes that trade-off measurable.
+
+Re-ranking the same candidates under the Paper 3--informed configuration
+of Section~\ref{sec:grounding} sharpens the match with history further:
+the discriminating re-analysis stays first, cross-dataset comparison
+rises to second and third, and the expensive new observation --- which
+history shows was \emph{not} the resolving step for this question ---
+drops to the bottom of the top-5. An empirical prior learned from a
+thousand historical outcomes and a utility derived from first principles
+agree on the head of the ranking and disagree exactly where Paper 3's
+evidence says they should: on how much raw source novelty is worth.
+
+The utility weights also behave as designed: with all weights at $1$,
+cheap archive searches dominate the ranking and the decisive (expensive)
+observation is never recommended; the calibrated default
+($w_{\mathrm{ig}}=10$) restores the balance between bits and $[0,1]$
+scores. We report this deliberately --- the failure mode is exactly the
+kind of miscalibration the benchmark exists to expose.
+
+\section{Scaling Up: 374 Historical Tension Questions}
+\label{sec:scale}
+
+The case study is one fully specified benchmark unit. To turn the
+metrics into distributions, we batch-convert every evidence-tension
+question in Paper 3's released dataset --- 374 questions across eight
+astronomy subfields and five cutoffs, each storing its generating
+evidence cluster verbatim (sentences, arXiv ids, publication dates;
+244 four-paper, 59 three-paper, 71 two-paper clusters) together with a
+blinded future-outcome label and cluster-level structure flags.
+
+\paragraph{Conversion.} Each cluster becomes an evidence graph by
+transparent, auditable rules (implemented in
+\texttt{experiments/paper3\_benchmark.py}). The four template
+hypotheses receive priors seeded from the cluster's structure flags:
+quantified tensions (scaled by their $N$-sigma) shift mass toward
+``real effect'', contradiction and method-challenge language toward
+``analysis artifact'', detection-vs-limit stance opposition toward
+``unmodeled confounder'', and cross-facility clusters toward
+``measurement systematic''. Every cluster sentence becomes a claim node
+derived from its (timestamped) paper node, with support edges assigned
+by the same flags; hypotheses whose explanatory channel has no flag
+remain evidence-free, which is exactly what gap analysis exists to
+surface. Distinct arXiv ids count as distinct provenance roots --- an
+upper bound on independence, since shared underlying datasets are not
+visible at this granularity.
+
+\paragraph{Results.} The planner runs the full pipeline at each
+question's own historical cutoff. Table~\ref{tab:scale} reports the
+distribution of every at-scale-computable metric. Resolution efficiency
+is deliberately absent: Paper 3's labels record \emph{whether and when}
+a question was addressed, not \emph{through which action type}, so the
+matching that metric requires is not derivable at scale --- mining
+action types from the resolving papers is the concrete next step. For
+the premise-refuted cases the label does fix the direction of the
+hidden evidence; all three trace to a single physical case (the FRB
+Galactic-latitude discrepancy, independently re-mined at three
+successive cutoffs), for which the direction-only replay removes
+$0.095$ bits each.
+
+\begin{table}[t]
+\centering
+\caption{Metric distributions over the 374 tension questions
+(top-$K{=}5$, default configuration, each question at its own cutoff).}
+\label{tab:scale}
+\begin{tabular}{lrrrr}
+\toprule
+Metric & Mean & Std & Median & IQR \\
+\midrule
+Top-$K$ utility & 1.904 & 0.146 & 1.923 & [1.902, 1.923] \\
+Average information gain (bits) & 0.056 & 0.007 & 0.056 & [0.054, 0.056] \\
+Action diversity & 0.604 & 0.131 & 0.600 & [0.600, 0.600] \\
+Coverage of competing hypotheses & 0.505 & 0.110 & 0.500 & [0.500, 0.500] \\
+Expected utility & 1.932 & 0.147 & 1.952 & [1.925, 1.952] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Planner utility runs opposite to measured attention.}
+Stratifying by Paper 3's outcome label, questions the community
+subsequently \emph{addressed} score systematically \emph{lower} planner
+utility than questions it did not (top-$K$ utility $1.887$ vs.\ $1.919$,
+seeded permutation test $p = 0.004$; expected utility $1.916$ vs.\
+$1.946$, $p = 0.004$; hypothesis coverage $0.488$ vs.\ $0.520$,
+$p = 0.007$). The mechanism is visible in the conversion: broader,
+richer evidence clusters yield denser graphs, fewer under-evidenced
+hypotheses, and therefore fewer high-utility open actions
+(utility vs.\ cluster breadth, Spearman $\rho = -0.24$), while breadth
+is simultaneously Paper 3's strongest structural predictor of
+\emph{attention} ($\beta = +0.45$/SD). The planner and the community
+are, mechanically, reading opposite signs off the same feature.
+
+\paragraph{The effect is breadth-mediated and specificity-confined.}
+The tempting reading --- that the planner detects genuine neglect ---
+does not survive the robustness checks that Paper 3's own limitations
+demand. Two decompositions (Table~\ref{tab:robust}) undercut it. First,
+the pooled effect is largely \emph{breadth-mediated}: comparing
+addressed against unaddressed questions \emph{within} strata of equal
+cluster breadth, the difference is not significant in any stratum
+($p = 0.25$, $0.88$, $0.08$). Second, and more sharply, the residual
+effect is \emph{concentrated exactly where Paper 3 says its label is
+least trustworthy}: within high-specificity questions the gap is large
+and significant ($1.830$ vs.\ $1.925$, $p = 0.004$), while in
+low-specificity questions it is small and null ($p = 0.11$). Paper 3
+documents that its abstract-level retrieval under-counts engagement
+non-uniformly, precisely for narrow, object-level, entity-dense
+questions --- its own Paper 1 import scores $2/10$ addressed under this
+retrieval versus $10/10$ under full-text adjudication, and re-judging
+those ten questions on a $2.4\times$ larger corpus flipped four labels
+in both directions. A planner that scores evidence-poor, specific
+questions highly will therefore anti-correlate with a label that
+under-measures exactly those questions, with or without any real
+neglect. Rather than caveat this, we measured it.
+
+\subsection{Adjudicating the confounded stratum}
+\label{sec:adjudication}
+
+We re-adjudicated all $62$ high-specificity questions against a
+retrieval channel the original label did not have. Paper 3 retrieves
+candidates by TF--IDF over subfield abstracts, keeping the top eight;
+we instead retrieve through the \emph{citation graph}, collecting every
+paper that cites a question's generating evidence within its own
+five-year post-cutoff window (Semantic Scholar; median $51$ candidates
+per question, 4{,}652 in total). Work that engages a question grounded in specific papers
+almost always cites one of them, and that path is invisible to keyword
+matching on abstracts. Verdicts were recorded blind --- the original
+label was withheld to a separate key --- under Paper 3's own criterion:
+a question counts as engaged if some in-window paper investigates its
+own objects, quantities, or claimed relationship, not merely its topic.
+
+The result is unambiguous (Table~\ref{tab:adjudication}). Of the $36$
+questions the label calls \texttt{not\_addressed}, $34$ were in fact
+engaged --- a recovery rate of $94\%$. Under the strictest reading, in
+which only unambiguous direct engagement counts and every partial
+judgment is discarded, $25/36 = 69\%$ are still recovered. Both
+brackets sit around the $80\%$ recovery Paper 3 itself documents for
+its object-level Paper 1 import ($2/10 \to 10/10$), which is
+independent corroboration that this is the same measurement bound
+rather than an artifact of our judge. Re-running the stratum's utility
+comparison under the corrected labels, the effect disappears entirely:
+$p = 0.70$ lenient, $p = 0.61$ strict, against $p = 0.004$ under the
+original labels.
+
+\begin{table}[t]
+\centering
+\caption{Adjudication of the 62 high-specificity questions under
+citation-graph retrieval, blind to the original label. The recovery
+rate is the fraction of \texttt{not\_addressed} questions found to have
+been engaged.}
+\label{tab:adjudication}
+\begin{tabular}{lrrr}
+\toprule
+Engagement bar & Recovery & Utility effect & $p$ \\
+\midrule
+Original label (Paper 3) & --- & 1.830 vs.\ 1.925 & \textbf{0.004} \\
+Lenient (direct or partial) & 34/36 = 94\% & 1.883 vs.\ 1.913 & 0.70 \\
+Strict (direct only) & 25/36 = 69\% & 1.875 vs.\ 1.917 & 0.61 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{What this settles, and what it costs.} The neglect
+interpretation is withdrawn: the one surviving piece of it was an
+artifact of a label that misses most engagement with specific
+questions. What remains from the scaled run is the mechanism ---
+planner utility and community attention are driven with opposite sign
+by cluster breadth --- and that is a statement about how the two
+allocation policies differ structurally, not evidence that the planner
+finds neglected science. Establishing the latter needs an outcome
+measure that does not degrade with question specificity, which is now a
+concrete requirement rather than an open worry.
+
+The measurement itself is the durable result. On this stratum the
+\texttt{addressed} label under-counts engagement by a factor of roughly
+three to fifteen depending on the bar, which bounds what any
+specificity-related finding computed on it can mean --- including Paper
+3's own negative controlled effect of specificity on attention
+($\beta = -0.16$), which it already flags as partly instrumental. Our
+adjudication, its rules, and its per-question verdicts are released so
+the bound can be checked and reused rather than re-derived.
+
+\begin{table}[t]
+\centering
+\caption{Robustness of the utility/attention anti-correlation.
+Within-stratum comparison of top-$K$ utility for addressed vs.\
+unaddressed questions (seeded permutation test). The pooled effect
+($p = 0.004$) does not survive breadth stratification and concentrates
+in the stratum where Paper 3's label is a documented lower bound.}
+\label{tab:robust}
+\begin{tabular}{llrrrr}
+\toprule
+Stratum & Cell & $n$ & Addressed & Unaddressed & $p$ \\
+\midrule
+--- & pooled & 374 & 1.887 & 1.919 & \textbf{0.004} \\
+\midrule
+Cluster breadth & 2-paper & 71 & 1.926 & 1.936 & 0.25 \\
+                & 3-paper & 59 & 1.915 & 1.913 & 0.88 \\
+                & 4+-paper & 244 & 1.877 & 1.914 & 0.08 \\
+\midrule
+Specificity & low (0--1) & 249 & 1.910 & 1.919 & 0.11 \\
+            & mid (2) & 63 & 1.854 & 1.911 & 0.60 \\
+            & high (3+) & 62 & 1.830 & 1.925 & \textbf{0.004} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Scope notes.} The distributions are narrower than a mature
+benchmark should produce, because 2--4-sentence clusters support only
+schematic graphs; full-text evidence extraction would widen the spread.
+The conversion rules are heuristics operating on cluster-level flags,
+not per-sentence stance; a stance-aware mapping is the other obvious
+refinement. Both limitations are properties of the imported data's
+granularity, not of the benchmark protocol. One further caution
+inherited wholesale from Paper 3: outcome rates are functions of the
+(corpus, retriever, judge) triple --- re-judging its ten-question
+anchor on a $2.4\times$ larger corpus flipped four labels in both
+directions --- so every comparison here is made within one instance and
+none of the absolute levels should be read across instances.
+
+\section{Implementation}
+
+The reference implementation is pure Python (standard library plus
+PyYAML), organized as ten modules that communicate only through shared
+dataclasses and the graph interface; estimators and generators are
+injected, never imported across modules. All tunable behavior ---
+utility weights, gap thresholds, the action catalog, discriminative
+powers, source novelties, resource sets --- lives in YAML or documented
+constructor parameters. The test suite (57 unit tests) covers question
+loading, the graph, gap analysis, action generation, every utility
+component, planner ranking, belief updating, each evaluation metric, and
+the end-to-end benchmark, the cluster-to-graph conversion rules, and
+the statistical helpers (permutation test, rank correlation,
+stratification). An experiment script reproduces Section~\ref{sec:case}
+in one command; a second reproduces the full 374-question run of
+Section~\ref{sec:scale} including its robustness stratification; and a
+third loads Paper 3's released question and outcome-label records
+directly into planner objects (their extra fields --- source, cutoff,
+provenance cluster --- are preserved in question metadata). Paper 3's
+tension subset is vendored verbatim so the scaled benchmark runs
+offline and reproduces byte-for-byte.
+
+\section{Limitations and Future Work}
+
+\begin{itemize}
+  \item \textbf{Two-outcome information gain.} The preposterior model
+  collapses an action's result to favors/disfavors with a per-type
+  likelihood ratio. Multi-outcome models, and ratios conditioned on the
+  specific hypothesis pair, are natural extensions behind the same
+  interface.
+  \item \textbf{Type-and-target ground-truth matching.} Resolution
+  efficiency currently matches recommendations to hidden evidence by
+  action type and target hypothesis; semantic matching would credit
+  plans that reach the same evidence by a different route.
+  \item \textbf{Exhaustive, exclusive hypothesis sets.} The Bayesian
+  updater assumes the hypothesis set partitions the possibility space;
+  an explicit ``none of the above'' mass is a small but valuable
+  addition.
+  \item \textbf{Static candidate space.} Actions are instantiated from
+  gaps in the current graph; sequential planning over multi-step
+  campaigns (with evidence-dependent branching) is the obvious next
+  step, and the offline design makes it benchmarkable the same way.
+  \item \textbf{Benchmark granularity.} The scaled run
+  (Section~\ref{sec:scale}) covers $374$ questions, but its graphs are
+  schematic --- built from 2--4 abstract sentences via cluster-level
+  flags, without per-sentence stance --- and its labels lack the action
+  types needed for resolution efficiency at scale. The two concrete
+  refinements are stance-aware edge mapping and mining action types
+  from the papers that historically resolved each question; only the
+  fully specified case study currently exercises all seven metrics.
+  \item \textbf{Empirical grounding is correlational and one-domain.}
+  Paper 3's effects come from astronomy alone, from abstract-level
+  retrieval, and from an LLM judge with measured (low) inter-rater
+  ceilings ($\kappa = 0.21$ against a second judge, against a
+  human--human ceiling of $\kappa = 0.17$ on an analogous taxonomy);
+  the calibrated configuration inherits those caveats. Its own
+  prospective instance (frozen 2026-08, scored 2027--2030) will test
+  the imported prior on a future no model has seen.
+  \item \textbf{The outcome label bounds what can be concluded at
+  scale.} Our at-scale comparisons run against a retrieval-bounded
+  label that under-counts engagement severely and non-uniformly:
+  Section~\ref{sec:adjudication} measures $69$--$94\%$ under-counting
+  on the high-specificity stratum. Any result computed on this label
+  that correlates with question specificity is suspect by default,
+  which is why the neglect interpretation is withdrawn rather than
+  hedged. Adjudicating the remaining $312$ tension questions would
+  extend the bound beyond the one stratum where we measured it.
+  \item \textbf{The adjudication is model-judged, on one retrieval
+  channel.} Our verdicts come from a language model applying Paper 3's
+  criterion, not from human adjudication, so they inherit the judge
+  limitation Paper 3 documents ($\kappa = 0.21$ model--model, against a
+  $\kappa = 0.17$ human--human ceiling). What makes the comparison
+  informative is that the \emph{retrieval} differs while the criterion
+  is held fixed, and that the recovery brackets Paper 3's own $80\%$
+  human-adjudicated recovery on an independent set. Citation-graph
+  retrieval also has its own blind spot, symmetric to the one it fixes:
+  it cannot see engagement that never cites the generating papers, so
+  our recovery rates are themselves lower bounds.
+\end{itemize}
+
+\section{Conclusion}
+
+We presented an offline, domain-independent framework that turns ``what
+should we investigate next?'' into a concrete, configurable, and ---
+crucially --- historically evaluable planning problem. By separating
+evidence representation, gap analysis, action generation, utility
+estimation, and belief updating behind small interfaces, the framework
+serves as a reference implementation that individual research programs
+can adapt by swapping components and editing configuration, not code.
+The historical benchmark reframes evaluation from plausibility to
+counterfactual usefulness: a good evidence planner is one that would
+have gotten science to the answer sooner.
+
+The connection to Paper 3 closes a loop the series has been building
+toward. Paper 3 shows that what the community \emph{will} engage is
+predictable and community-relational, while what \emph{resolves}
+questions is discriminative --- quantified, contradictory, recurrent
+evidence. This framework operationalizes the second finding as a
+planning objective, imports the first as a calibrated configuration,
+and on the series' own canonical case study recommends, first, the
+exact action family that history used to settle the question. Run at
+scale over all $374$ of Paper 3's tension questions, the planner's
+utility turns out to anti-correlate with subsequent community
+attention: it prizes precisely the evidence-poor questions the
+community left behind. We tested that reading and it failed. Blind
+re-adjudication of the stratum carrying it, against a retrieval channel
+the original label lacked, recovered $94\%$ of the questions the label
+called unaddressed and dissolved the effect entirely. What survives is
+narrower and still worth having: planner utility and community
+attention are driven with opposite sign by the same structural feature
+--- a statement about how two allocation policies differ, not evidence
+that either finds better science.
+
+The more useful result is the one we did not set out to produce. A
+planner benchmark turns out to be a sensitive instrument for auditing
+the outcome labels it is scored against, because it concentrates
+disagreement exactly where a label is weakest. The bound we measured
+--- a factor of three to fifteen in missed engagement for specific
+questions --- constrains any specificity-related claim built on that
+label, ours and the source dataset's alike. Whether a
+resolution-driven planner genuinely points at neglected science remains
+open, and answering it now has a precondition this work made concrete:
+an outcome measure that does not degrade with question specificity.
+Paper 3's pre-registered prospective instance (frozen 2026, scored
+2027--2030) offers the time-graded half of that test; the retrieval
+half is a solved problem we have implemented and released.
+
+\section*{Reproducibility}
+
+The framework, configurations, vendored benchmark inputs, and the
+scaled-run outputs are released. Every module is a single file with
+unit tests; the case study and the 374-question benchmark each
+reproduce in one command
+(\texttt{experiments/run\_benchmark.py},
+\texttt{experiments/paper3\_benchmark.py}). The graph-conversion rules,
+the permutation tests, and the stratification cells are implemented in
+the released scripts rather than described only in prose. Paper 3's
+dataset is used verbatim as published, and is additionally available on
+the Hugging Face Hub at
+\texttt{huiluckylucky/scientific-question-outcomes}.
+
+\section*{Declaration of generative AI and AI-assisted technologies in
+the writing process}
+
+During the preparation of this work the author used Claude (Anthropic)
+to draft and edit manuscript prose, to typeset the manuscript in
+\LaTeX{}, and to assist in writing the framework and benchmark code in
+the released repository. After using this tool, the author reviewed and
+edited the content as needed and takes full responsibility for the
+content of the publication.
+
+\begin{thebibliography}{9}
+
+\bibitem{paper1}
+Hui Mao.
+\emph{Evidence-Based Scientific Question Discovery: A Framework with
+Historical Backtesting.}
+arXiv:2608.09968, 2026. Referred to as ``Paper 1''.
+
+\bibitem{paper2}
+Hui Mao.
+\emph{Historical Backtesting for Scientific Question Discovery: A
+Protocol and Astronomy Pilot.}
+arXiv:2608.16795 (v1.1, sealed), 2026. Referred to as ``Paper 2''.
+
+\bibitem{paper3}
+Hui Mao.
+\emph{What Makes a Scientific Question Succeed? Predicting Future
+Attention, Resolution, and Premise Revision from Question Structure and
+Evidence Context.}
+2026. Referred to as ``Paper 3''.
+
+\bibitem{hindsight}
+Bo Jiang.
+\emph{HindSight: Evaluating LLM-Generated Research Ideas via Future
+Impact.}
+arXiv:2603.15164, 2026.
+
+\bibitem{si2025execution}
+Chenglei Si, Tatsunori Hashimoto, and Diyi Yang.
+\emph{The Ideation--Execution Gap: Execution Outcomes of LLM-Generated
+versus Human Research Ideas.}
+arXiv:2506.20803, 2025.
+
+\bibitem{si2024novel}
+Chenglei Si, Diyi Yang, and Tatsunori Hashimoto.
+\emph{Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study
+with 100+ NLP Researchers.}
+arXiv:2409.04109, 2024.
+
+\bibitem{rzhetsky2015}
+Andrey Rzhetsky, Jacob G. Foster, Ian T. Foster, and James A. Evans.
+\emph{Choosing experiments to accelerate collective discovery.}
+Proceedings of the National Academy of Sciences, 112(47):14569--14574,
+2015.
+
+\bibitem{foster2015}
+Jacob G. Foster, Andrey Rzhetsky, and James A. Evans.
+\emph{Tradition and Innovation in Scientists' Research Strategies.}
+American Sociological Review, 80(5):875--908, 2015.
+
+\bibitem{kitano2021}
+Hiroaki Kitano.
+\emph{Nobel Turing Challenge: creating the engine for scientific
+discovery.}
+npj Systems Biology and Applications, 7:29, 2021.
+
+\end{thebibliography}
+
+\end{document}
