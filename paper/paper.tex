@@ -14,13 +14,21 @@
 \title{Planning the Next Evidence Acquisition Step:\\
 An Offline Framework for Active Scientific Discovery}
 
-\author{Scientific Evidence Planner Project \\
-\normalsize Paper 4 --- offline evidence planning for active scientific discovery}
+\author{Hui Mao \\
+\normalsize Independent Researcher \\
+\normalsize \texttt{hui.mao@alumni.upenn.edu}}
 \date{August 2026}
 
 \begin{document}
 
 \maketitle
+\thispagestyle{empty}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\footnotetext[1]{Fourth in a series on temporally grounded evaluation of
+scientific question discovery; see~\cite{paper1},~\cite{paper2},
+and~\cite{paper3}. Code, configurations, and the scaled benchmark are
+public (Reproducibility).}
+\renewcommand{\thefootnote}{\arabic{footnote}}
 
 \begin{abstract}
 Most work on machine-assisted science focuses on generating scientific
@@ -56,13 +64,17 @@ ranking toward the historically resolving actions. Scaling the
 benchmark to all $374$ of Paper 3's tension questions --- each evidence
 cluster batch-converted to a graph by transparent rules and planned at
 its own historical cutoff --- turns the metrics into distributions and
-surfaces a structural result: planner utility is systematically
-\emph{higher} on questions the community subsequently neglected
-(permutation $p \approx 0.004$), quantifying the divergence between
-resolution-driven and attention-driven allocation of scientific effort.
-The framework is released as a reference implementation with seven
-evaluation metrics, full configurability, and no domain assumptions in
-code.
+surfaces a structural result: planner utility runs opposite to measured
+community attention (pooled permutation $p = 0.004$), because both are
+driven, with opposite sign, by the breadth of the existing evidence
+base. We then report the robustness check that qualifies it: the effect
+does not survive stratification by breadth and concentrates in exactly
+the high-specificity stratum where Paper 3 documents its
+retrieval-bounded label to under-count engagement, so the divergence
+between resolution-driven and attention-driven allocation is real as a
+mechanism but cannot yet be claimed as detected neglect. The framework
+is released as a reference implementation with seven evaluation
+metrics, full configurability, and no domain assumptions in code.
 \end{abstract}
 
 \section{Introduction}
@@ -138,6 +150,44 @@ and
 (7)~an open reference implementation with unit tests and a worked case
 study whose hidden ground truth follows the documented historical
 outcome.
+
+\section{Related work}
+
+\paragraph{Choosing experiments.} The problem of allocating the next
+increment of scientific effort has a direct precedent in the science of
+science. Rzhetsky et al.~\cite{rzhetsky2015} model the choice of
+experiments as a search over a knowledge network and show that the
+strategies scientists actually adopt are collectively suboptimal ---
+too concentrated near established results --- and that a planner
+optimizing collective discovery would allocate differently. Foster et
+al.~\cite{foster2015} document the same conservatism at the level of
+research strategy. Our framework sits at the operational end of this
+line: rather than characterizing aggregate strategy, it plans one
+concrete next action for one question against an explicit hypothesis
+set, and the divergence we measure in Section~\ref{sec:scale} between
+planner utility and realized community attention is a question-level
+instance of exactly the gap those papers describe at population level.
+
+\paragraph{Autonomous science.} A parallel line builds systems that
+execute research end to end, from the Nobel Turing
+Challenge~\cite{kitano2021} onward. We deliberately stop short of
+execution. The planner is an offline decision layer that can precede
+any executor, human or automated, which is what makes its
+recommendations auditable and its evaluation possible against history
+rather than against a simulator.
+
+\paragraph{Evaluating generated ideas.} Novelty-based evaluation of
+machine-generated research ideas has repeatedly failed to predict value.
+Si et al.~\cite{si2024novel} measured expert opinion at generation
+time; their follow-up~\cite{si2025execution} had researchers execute
+both LLM and human ideas and found the ideas rated highest before
+execution scored lowest after. HindSight~\cite{hindsight} matches
+generated ideas against subsequent literature and finds LLM-judged
+novelty \emph{negatively} correlated with realized impact. Papers 1--3
+of this series~\cite{paper1,paper2,paper3} replace opinion with
+history at the level of questions; this paper carries the same
+substitution into the planning step, scoring plans by whether the
+evidence they would acquire resolves anything.
 
 \section{Problem Statement}
 
@@ -352,24 +402,42 @@ is precisely the behavior encoded in the information-gain estimator's
 discriminative-power table, and the reason our utility centers expected
 entropy reduction rather than engagement.
 
-\paragraph{Attention is community-relational; novelty is not the
-signal.} Paper 3's robust predictors of future attention are prior
+\paragraph{Attention is community-relational; novelty is weak and
+redundant.} Paper 3's robust predictors of future attention are prior
 community recognition (overlap with pre-cutoff reviews,
 $\beta = +0.34$), the density of directly related prior evidence
 ($\beta = +0.26$), and cluster breadth within the tension subset
-($\beta = +0.45$/SD) --- while dropping the semantic-novelty feature
-group \emph{improves} prediction, and instrument diversity of the
-existing evidence base carries a negative controlled effect
+($\beta = +0.45$/SD). Its verdicts on novelty and tension are more
+specific than the slogan they are often reduced to, and worth stating
+exactly: semantic novelty carries a \emph{small positive} controlled
+effect ($\beta = +0.17$, $p = 0.03$) that is only half sign-stable
+across generation sources, and the novelty feature group is redundant
+given the rest (dropping it \emph{improves} held-out AUC, $0.688 \to
+0.708$); what is null is evidence \emph{tension density} itself
+($\beta = 0.06$, $p = 0.52$). Five of six pre-stated mechanism
+hypotheses failed, including ``evidence tension beats novelty'' ---
+which failed because tension was null, not because novelty was.
+Independently, HindSight~\cite{hindsight} finds LLM-judged novelty
+\emph{negatively} correlated with realised impact, and the
+ideation--execution study of Si et al.~\cite{si2025execution} finds
+LLM ideas rated highest before execution scoring lowest after: three
+different designs converge on novelty being a poor optimization target
+even where it is not a null one.
+
+For this framework the lesson is a separation of objectives. Our
+planner optimizes expected \emph{resolution} (entropy reduction), not
+expected attention, and its novelty term is not semantic distance at
+all but \emph{provenance independence} --- the step from one evidence
+root to a second. The closest analogue to that construct in Paper 3's
+feature set is instrument diversity of the existing evidence base,
+whose controlled effect on attention is \emph{negative}
 ($\beta = -0.21$): multi-instrument questions read as synthesis-level
-problems no single group owns. Five of six pre-stated mechanism
-hypotheses, including ``evidence tension beats novelty'', failed. For
-this framework the lesson is a separation of objectives: our planner
-optimizes expected \emph{resolution} (entropy reduction), not expected
-attention, and its novelty term is provenance independence --- the step
-from one evidence root to a second, which Paper 3's refutation cases
-(quantified cross-checks of a single-source claim) support --- not
-semantic distance from the literature, which Paper 3 shows predicts
-nothing. We accordingly ship an empirically calibrated configuration
+problems no single group owns. That is the honest empirical basis for
+down-weighting our novelty term --- not a claim that novelty predicts
+nothing --- while its role in the refutation channel (quantified
+cross-checks of a single-source claim) is what keeps the term in the
+utility at all. We accordingly ship an empirically calibrated
+configuration
 (\texttt{configs/paper3\_informed.yaml}) that keeps the
 information-gain weight, halves the novelty weight, and raises
 tractability (Paper 3's Cox model: archival-data availability
@@ -576,26 +644,75 @@ Expected utility & 1.932 & 0.147 & 1.952 & [1.925, 1.952] \\
 \end{tabular}
 \end{table}
 
-\paragraph{Planner utility is a neglect signal.} Stratifying by Paper
-3's outcome label yields the run's most instructive result: questions
-the community subsequently \emph{addressed} score systematically
-\emph{lower} planner utility than questions it did not (top-$K$ utility
-$1.887$ vs.\ $1.919$, seeded permutation test $p = 0.004$; expected
-utility $1.916$ vs.\ $1.946$, $p = 0.004$; hypothesis coverage $0.488$
-vs.\ $0.520$, $p = 0.007$). The mechanism is visible in the conversion:
-later-addressed questions have richer evidence structure (quantified,
-explicitly contradictory clusters --- precisely Paper 3's attention
-predictors), which yields denser graphs, fewer under-evidenced
-hypotheses, and therefore fewer high-utility open actions. The planner
-assigns its highest scores to exactly the evidence-poor configurations
-the community subsequently neglected. This is the planner-side face of
-Paper 3's central finding that attention follows preparation rather
-than open gaps --- and it is the intended behavior, not a defect: a
-tool that allocates evidence-acquisition effort by expected resolution
-will, by construction, point away from where the community is already
-converging and toward where uncertainty is largest. The two allocation
-policies are complementary, and the benchmark now measures their
-divergence quantitatively.
+\paragraph{Planner utility runs opposite to measured attention.}
+Stratifying by Paper 3's outcome label, questions the community
+subsequently \emph{addressed} score systematically \emph{lower} planner
+utility than questions it did not (top-$K$ utility $1.887$ vs.\ $1.919$,
+seeded permutation test $p = 0.004$; expected utility $1.916$ vs.\
+$1.946$, $p = 0.004$; hypothesis coverage $0.488$ vs.\ $0.520$,
+$p = 0.007$). The mechanism is visible in the conversion: broader,
+richer evidence clusters yield denser graphs, fewer under-evidenced
+hypotheses, and therefore fewer high-utility open actions
+(utility vs.\ cluster breadth, Spearman $\rho = -0.24$), while breadth
+is simultaneously Paper 3's strongest structural predictor of
+\emph{attention} ($\beta = +0.45$/SD). The planner and the community
+are, mechanically, reading opposite signs off the same feature.
+
+\paragraph{Whether that is neglect or measurement, this run cannot
+say.} The tempting reading --- that the planner detects genuine
+neglect --- does not survive the robustness checks that Paper 3's own
+limitations demand, and we report the negative result rather than the
+headline. Two decompositions (Table~\ref{tab:robust}) undercut it.
+First, the pooled effect is largely \emph{breadth-mediated}: comparing
+addressed against unaddressed questions \emph{within} strata of equal
+cluster breadth, the difference is not significant in any stratum
+($p = 0.25$, $0.88$, $0.08$). Second, and more sharply, the residual
+effect is \emph{concentrated exactly where Paper 3 says its label is
+least trustworthy}: within high-specificity questions the gap is large
+and significant ($1.830$ vs.\ $1.925$, $p = 0.004$), while in
+low-specificity questions it is small and null ($p = 0.11$). Paper 3
+documents that its abstract-level retrieval under-counts engagement
+non-uniformly, precisely for narrow, object-level, entity-dense
+questions --- its own Paper 1 import scores $2/10$ addressed under this
+retrieval versus $10/10$ under full-text adjudication, and re-judging
+those ten questions on a $2.4\times$ larger corpus flipped four labels
+in both directions. A planner that scores evidence-poor, specific
+questions highly will therefore anti-correlate with a label that
+under-measures exactly those questions, with or without any real
+neglect.
+
+We therefore make only the weaker claim the data supports: planner
+utility and measured community attention are driven with opposite sign
+by the same evidence-structure feature, and the residual
+anti-correlation is confounded with a documented measurement bound.
+Separating genuine neglect from retrieval artifact requires
+full-text-adjudicated outcomes on the high-specificity stratum --- a
+concrete, bounded experiment ($n = 62$ here) rather than a caveat.
+
+\begin{table}[t]
+\centering
+\caption{Robustness of the utility/attention anti-correlation.
+Within-stratum comparison of top-$K$ utility for addressed vs.\
+unaddressed questions (seeded permutation test). The pooled effect
+($p = 0.004$) does not survive breadth stratification and concentrates
+in the stratum where Paper 3's label is a documented lower bound.}
+\label{tab:robust}
+\begin{tabular}{llrrrr}
+\toprule
+Stratum & Cell & $n$ & Addressed & Unaddressed & $p$ \\
+\midrule
+--- & pooled & 374 & 1.887 & 1.919 & \textbf{0.004} \\
+\midrule
+Cluster breadth & 2-paper & 71 & 1.926 & 1.936 & 0.25 \\
+                & 3-paper & 59 & 1.915 & 1.913 & 0.88 \\
+                & 4+-paper & 244 & 1.877 & 1.914 & 0.08 \\
+\midrule
+Specificity & low (0--1) & 249 & 1.910 & 1.919 & 0.11 \\
+            & mid (2) & 63 & 1.854 & 1.911 & 0.60 \\
+            & high (3+) & 62 & 1.830 & 1.925 & \textbf{0.004} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \paragraph{Scope notes.} The distributions are narrower than a mature
 benchmark should produce, because 2--4-sentence clusters support only
@@ -603,7 +720,12 @@ schematic graphs; full-text evidence extraction would widen the spread.
 The conversion rules are heuristics operating on cluster-level flags,
 not per-sentence stance; a stance-aware mapping is the other obvious
 refinement. Both limitations are properties of the imported data's
-granularity, not of the benchmark protocol.
+granularity, not of the benchmark protocol. One further caution
+inherited wholesale from Paper 3: outcome rates are functions of the
+(corpus, retriever, judge) triple --- re-judging its ten-question
+anchor on a $2.4\times$ larger corpus flipped four labels in both
+directions --- so every comparison here is made within one instance and
+none of the absolute levels should be read across instances.
 
 \section{Implementation}
 
@@ -613,14 +735,19 @@ dataclasses and the graph interface; estimators and generators are
 injected, never imported across modules. All tunable behavior ---
 utility weights, gap thresholds, the action catalog, discriminative
 powers, source novelties, resource sets --- lives in YAML or documented
-constructor parameters. The test suite (48 unit tests) covers question
+constructor parameters. The test suite (57 unit tests) covers question
 loading, the graph, gap analysis, action generation, every utility
 component, planner ranking, belief updating, each evaluation metric, and
-the end-to-end benchmark. An experiment script reproduces
-Section~\ref{sec:case} in one command, and a second importer script
-loads Paper 3's released question and outcome-label records directly
-into planner objects (their extra fields --- source, cutoff, provenance
-cluster --- are preserved in question metadata).
+the end-to-end benchmark, the cluster-to-graph conversion rules, and
+the statistical helpers (permutation test, rank correlation,
+stratification). An experiment script reproduces Section~\ref{sec:case}
+in one command; a second reproduces the full 374-question run of
+Section~\ref{sec:scale} including its robustness stratification; and a
+third loads Paper 3's released question and outcome-label records
+directly into planner objects (their extra fields --- source, cutoff,
+provenance cluster --- are preserved in question metadata). Paper 3's
+tension subset is vendored verbatim so the scaled benchmark runs
+offline and reproduces byte-for-byte.
 
 \section{Limitations and Future Work}
 
@@ -653,9 +780,19 @@ cluster --- are preserved in question metadata).
   \item \textbf{Empirical grounding is correlational and one-domain.}
   Paper 3's effects come from astronomy alone, from abstract-level
   retrieval, and from an LLM judge with measured (low) inter-rater
-  ceilings; the calibrated configuration inherits those caveats. Its
-  own prospective instance (frozen 2026-08, scored 2027--2030) will test
+  ceilings ($\kappa = 0.21$ against a second judge, against a
+  human--human ceiling of $\kappa = 0.17$ on an analogous taxonomy);
+  the calibrated configuration inherits those caveats. Its own
+  prospective instance (frozen 2026-08, scored 2027--2030) will test
   the imported prior on a future no model has seen.
+  \item \textbf{The outcome label bounds what we can conclude.} Our
+  central at-scale comparison is against a retrieval-bounded label that
+  Paper 3 shows under-counts engagement non-uniformly across
+  specificity. This is not a generic caveat but the specific reason the
+  neglect interpretation is withheld in Section~\ref{sec:scale}. The
+  decisive experiment is small and well-defined: full-text adjudication
+  of the $62$ high-specificity tension questions, which would separate
+  genuine neglect from measurement artifact directly.
 \end{itemize}
 
 \section{Conclusion}
@@ -682,12 +819,99 @@ exact action family that history used to settle the question. Run at
 scale over all $374$ of Paper 3's tension questions, the planner's
 utility turns out to anti-correlate with subsequent community
 attention: it prizes precisely the evidence-poor questions the
-community left behind. That is the division of labor made measurable
---- communities follow preparation, a resolution-driven planner points
-at neglect --- and it suggests the most useful deployment is not
-predicting what science will do, but surfacing what science is
-skipping. Testing that allocation against Paper 3's pre-registered
-prospective instance (frozen 2026, scored 2027--2030) is the next
-experiment, and the infrastructure for it is now in place.
+community left behind --- but the robustness analysis says we have not
+earned that reading. What the run establishes is narrower and still
+worth having: planner utility and community attention are driven with
+opposite sign by the same structural feature, and the part of that
+divergence which might be genuine neglect is currently inseparable
+from a documented measurement bound. Naming which of the two it is
+requires full-text adjudication on 62 questions, not a larger corpus
+--- and Paper 3's pre-registered prospective instance (frozen 2026,
+scored 2027--2030) offers the second, time-graded test. The
+infrastructure for both is now in place, and the more useful posture
+is the one this paper ends in: a planner whose divergence from
+community behaviour is measured rather than assumed.
+
+\section*{Reproducibility}
+
+The framework, configurations, vendored benchmark inputs, and the
+scaled-run outputs are released. Every module is a single file with
+unit tests; the case study and the 374-question benchmark each
+reproduce in one command
+(\texttt{experiments/run\_benchmark.py},
+\texttt{experiments/paper3\_benchmark.py}). The graph-conversion rules,
+the permutation tests, and the stratification cells are implemented in
+the released scripts rather than described only in prose. Paper 3's
+dataset is used verbatim as published, and is additionally available on
+the Hugging Face Hub at
+\texttt{huiluckylucky/scientific-question-outcomes}.
+
+\section*{Declaration of generative AI and AI-assisted technologies in
+the writing process}
+
+During the preparation of this work the author used Claude (Anthropic)
+to draft and edit manuscript prose, to typeset the manuscript in
+\LaTeX{}, and to assist in writing the framework and benchmark code in
+the released repository. After using this tool, the author reviewed and
+edited the content as needed and takes full responsibility for the
+content of the publication.
+
+\begin{thebibliography}{9}
+
+\bibitem{paper1}
+Hui Mao.
+\emph{Evidence-Based Scientific Question Discovery: A Framework with
+Historical Backtesting.}
+arXiv:2608.09968, 2026. Referred to as ``Paper 1''.
+
+\bibitem{paper2}
+Hui Mao.
+\emph{Historical Backtesting for Scientific Question Discovery: A
+Protocol and Astronomy Pilot.}
+arXiv:2608.16795 (v1.1, sealed), 2026. Referred to as ``Paper 2''.
+
+\bibitem{paper3}
+Hui Mao.
+\emph{What Makes a Scientific Question Succeed? Predicting Future
+Attention, Resolution, and Premise Revision from Question Structure and
+Evidence Context.}
+2026. Referred to as ``Paper 3''.
+
+\bibitem{hindsight}
+Bo Jiang.
+\emph{HindSight: Evaluating LLM-Generated Research Ideas via Future
+Impact.}
+arXiv:2603.15164, 2026.
+
+\bibitem{si2025execution}
+Chenglei Si, Tatsunori Hashimoto, and Diyi Yang.
+\emph{The Ideation--Execution Gap: Execution Outcomes of LLM-Generated
+versus Human Research Ideas.}
+arXiv:2506.20803, 2025.
+
+\bibitem{si2024novel}
+Chenglei Si, Diyi Yang, and Tatsunori Hashimoto.
+\emph{Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study
+with 100+ NLP Researchers.}
+arXiv:2409.04109, 2024.
+
+\bibitem{rzhetsky2015}
+Andrey Rzhetsky, Jacob G. Foster, Ian T. Foster, and James A. Evans.
+\emph{Choosing experiments to accelerate collective discovery.}
+Proceedings of the National Academy of Sciences, 112(47):14569--14574,
+2015.
+
+\bibitem{foster2015}
+Jacob G. Foster, Andrey Rzhetsky, and James A. Evans.
+\emph{Tradition and Innovation in Scientists' Research Strategies.}
+American Sociological Review, 80(5):875--908, 2015.
+
+\bibitem{kitano2021}
+Hiroaki Kitano.
+\emph{Nobel Turing Challenge: creating the engine for scientific
+discovery.}
+npj Systems Biology and Applications, 7:29, 2021.
+
+\end{thebibliography}
 
 \end{document}

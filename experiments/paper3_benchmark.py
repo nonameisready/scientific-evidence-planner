@@ -314,10 +314,48 @@ def spearman(xs: list[float], ys: list[float]) -> float:
     return cov / (vx * vy) if vx and vy else 0.0
 
 
+def stratified_test(
+    records: list[dict], metric: str, key: str, strata: list
+) -> list[dict]:
+    """Within-stratum addressed-vs-unaddressed comparison.
+
+    Paper 3 documents that its ``addressed`` label is retrieval-bounded
+    and under-counts engagement *non-uniformly*: narrow, object-level
+    questions are systematically under-measured (its Paper 1 import
+    scores 2/10 measured vs 10/10 under full-text adjudication). A
+    pooled anti-correlation between planner utility and the label could
+    therefore be an artifact of the planner favouring exactly the
+    question types the label under-counts. Re-testing inside strata of
+    the confounder separates the two readings.
+    """
+    out = []
+    for lo, hi, name in strata:
+        cell = [r for r in records if lo <= (r.get(key) or 0) <= hi]
+        a = [r["metrics"][metric] for r in cell if r["addressed"]]
+        b = [r["metrics"][metric] for r in cell if not r["addressed"]]
+        if len(a) < 5 or len(b) < 5:
+            out.append({"stratum": name, "n": len(cell), "note": "too few to test"})
+            continue
+        out.append(
+            {
+                "stratum": name,
+                "n": len(cell),
+                "n_addressed": len(a),
+                "n_unaddressed": len(b),
+                "addressed_mean": round(sum(a) / len(a), 4),
+                "unaddressed_mean": round(sum(b) / len(b), 4),
+                "difference": round(sum(a) / len(a) - sum(b) / len(b), 4),
+                "permutation_p": round(permutation_pvalue(a, b), 4),
+            }
+        )
+    return out
+
+
 def main() -> None:
     questions = load_rows("questions.jsonl")
     labels = load_rows("labels.jsonl")
     structures = load_rows("structure_features.jsonl")
+    specificity = load_rows("specificity_features.jsonl")
 
     config = load_utility_config(REPO_ROOT / "configs" / "default.yaml")
     planner = Planner(UtilityEstimator(config=config))
@@ -325,9 +363,11 @@ def main() -> None:
     records = []
     for qid, row in sorted(questions.items()):
         question = load_question_dict(row)
-        records.append(
-            run_question(question, structures.get(qid, {}), labels[qid], planner)
-        )
+        record = run_question(question, structures.get(qid, {}), labels[qid], planner)
+        spec = specificity.get(qid, {})
+        record["txt_specificity"] = spec.get("txt_specificity")
+        record["ev_n_similar"] = spec.get("ev_n_similar")
+        records.append(record)
 
     metric_names = [
         "top_k_utility",
@@ -366,6 +406,40 @@ def main() -> None:
 
     refuted = [r for r in records if "entropy_reduction" in r["metrics"]]
 
+    # Robustness: is the pooled anti-correlation a real neglect signal or
+    # an artifact of Paper 3's non-uniform retrieval bound? Re-test inside
+    # strata of cluster breadth (the strongest attention predictor) and of
+    # question specificity (the axis along which the label under-counts).
+    robustness = {
+        "cluster_breadth": stratified_test(
+            records,
+            "top_k_utility",
+            "n_cluster_papers",
+            [(2, 2, "2-paper"), (3, 3, "3-paper"), (4, 99, "4+-paper")],
+        ),
+        "question_specificity": stratified_test(
+            records,
+            "top_k_utility",
+            "txt_specificity",
+            [(0, 1, "low (0-1)"), (2, 2, "mid (2)"), (3, 99, "high (3+)")],
+        ),
+    }
+    spec_values = [r["txt_specificity"] for r in records if r["txt_specificity"] is not None]
+    robustness["utility_vs_specificity_spearman"] = round(
+        spearman(
+            [r["metrics"]["top_k_utility"] for r in records if r["txt_specificity"] is not None],
+            spec_values,
+        ),
+        4,
+    )
+    robustness["utility_vs_breadth_spearman"] = round(
+        spearman(
+            [r["metrics"]["top_k_utility"] for r in records],
+            [float(r["n_cluster_papers"] or 0) for r in records],
+        ),
+        4,
+    )
+
     summary = {
         "n_questions": len(records),
         "top_k": TOP_K,
@@ -375,6 +449,7 @@ def main() -> None:
             "n_unaddressed": len(unaddressed),
             "metrics": stratified,
         },
+        "robustness_vs_label_bound": robustness,
         "spearman_vs_future_paper_count": correlations,
         "refuted_premises": {
             "n": len(refuted),
@@ -408,6 +483,21 @@ def main() -> None:
             f"  {name:<26} addressed {s['addressed_mean']:.3f} vs "
             f"{s['unaddressed_mean']:.3f}  (perm. p={s['permutation_p']})"
         )
+    print("\nRobustness of the utility/attention anti-correlation:")
+    print(f"  utility vs cluster breadth   rho={robustness['utility_vs_breadth_spearman']:+.3f}")
+    print(f"  utility vs specificity       rho={robustness['utility_vs_specificity_spearman']:+.3f}")
+    for key in ("cluster_breadth", "question_specificity"):
+        print(f"  within {key}:")
+        for cell in robustness[key]:
+            if "note" in cell:
+                print(f"    {cell['stratum']:<12} n={cell['n']:<4} {cell['note']}")
+            else:
+                print(
+                    f"    {cell['stratum']:<12} n={cell['n']:<4} "
+                    f"addressed {cell['addressed_mean']:.3f} vs "
+                    f"{cell['unaddressed_mean']:.3f}  "
+                    f"diff={cell['difference']:+.3f}  p={cell['permutation_p']}"
+                )
     print("\nSpearman vs future paper count:")
     for name, rho in correlations.items():
         print(f"  {name:<26} rho={rho:+.3f}")

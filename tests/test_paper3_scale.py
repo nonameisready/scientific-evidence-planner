@@ -15,6 +15,7 @@ from paper3_benchmark import (
     permutation_pvalue,
     run_question,
     spearman,
+    stratified_test,
 )
 from planner import EdgeType, Planner, Question
 
@@ -129,3 +130,31 @@ def test_permutation_pvalue_detects_separation():
 def test_spearman():
     assert spearman([1, 2, 3, 4], [10, 20, 30, 40]) == pytest.approx(1.0)
     assert spearman([1, 2, 3, 4], [40, 30, 20, 10]) == pytest.approx(-1.0)
+
+
+def _rec(value, addressed, stratum):
+    return {"metrics": {"top_k_utility": value}, "addressed": addressed,
+            "strat": stratum}
+
+
+def test_stratified_test_separates_a_confounded_effect():
+    """A pooled difference driven entirely by the stratum variable must
+    vanish inside strata -- the check the retrieval-bound analysis relies on."""
+    records = (
+        [_rec(1.0, True, 1) for _ in range(10)]
+        + [_rec(1.0, False, 1) for _ in range(10)]
+        + [_rec(2.0, True, 2) for _ in range(10)]
+        + [_rec(2.0, False, 2) for _ in range(10)]
+    )
+    cells = stratified_test(records, "top_k_utility", "strat",
+                            [(1, 1, "low"), (2, 2, "high")])
+    assert [c["stratum"] for c in cells] == ["low", "high"]
+    for cell in cells:
+        assert cell["difference"] == pytest.approx(0.0)
+        assert cell["permutation_p"] > 0.5
+
+
+def test_stratified_test_reports_thin_cells():
+    records = [_rec(1.0, True, 1), _rec(2.0, False, 1)]
+    cells = stratified_test(records, "top_k_utility", "strat", [(1, 1, "thin")])
+    assert cells[0]["note"] == "too few to test"

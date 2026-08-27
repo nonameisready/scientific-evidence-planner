@@ -72,6 +72,16 @@ question was addressed, not through which action type. The script also
 stratifies planner metrics by the `addressed` outcome label (seeded
 permutation test) and rank-correlates them with future paper counts.
 
+**Interpreting the outcome-stratified comparison.** Paper 3's `addressed`
+label is retrieval-bounded and under-counts engagement *non-uniformly* —
+narrow, object-level questions most severely (its Paper 1 import scores
+2/10 addressed under abstract retrieval vs 10/10 under full-text
+adjudication). Any pooled correlation between a planner metric and this
+label is therefore confounded. `stratified_test` re-runs the comparison
+inside strata of cluster breadth and question specificity for exactly this
+reason; read the within-stratum cells, not the pooled number, before
+drawing a conclusion.
+
 ## Extending
 
 - New metrics: add a pure function taking recommendations / hypotheses /

@@ -67,9 +67,13 @@ labels. Two integration points ship here:
   graphs via transparent rules, runs the planner at each question's own
   historical cutoff, and reports metric distributions plus an
   outcome-stratified analysis (results in `results/paper3_benchmark.json`).
-  Headline: planner utility is systematically higher on questions the
-  community subsequently neglected (permutation p ≈ 0.004) — the planner
-  measures neglect, the community follows preparation.
+  Finding: planner utility runs opposite to measured community attention
+  (pooled permutation p = 0.004), because both are driven with opposite sign
+  by evidence-cluster breadth. The script also runs the robustness check that
+  qualifies this — the effect does not survive breadth stratification and
+  concentrates in the high-specificity stratum where Paper 3 documents its
+  label to under-count engagement — so the divergence is reported as a
+  mechanism, not as detected neglect.
 
 ## Repository layout
 
