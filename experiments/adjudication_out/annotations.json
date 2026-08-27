@@ -1,0 +1,100 @@
+{
+ "annotations": [
+  {
+   "question_id": "protoplanetary_disks-2018-007",
+   "engaged": "yes",
+   "evidence_ids": "2110.00939, 2306.05913, 1909.00759",
+   "notes": "In-situ formation of super-Earth/sub-Neptune driven by planetary rotation explicitly addresses Kepler super-Earth abundance; multiple in-window formation-mechanism papers"
+  },
+  {
+   "question_id": "stellar_activity-2016-009",
+   "engaged": "partial",
+   "evidence_ids": "1812.01536, 1702.03136",
+   "notes": "CoRoT-5/CoRoT-8 property discrepancies directly re-analyzed; no paper found on the cause of WASP-43 anomalous activity itself"
+  },
+  {
+   "question_id": "galaxy_evolution-2016-005",
+   "engaged": "yes",
+   "evidence_ids": "1703.03805, 1810.12310, 1804.06477",
+   "notes": "Direct-collapse and PopIII-remnant seed papers investigate SMBH/IMBH formation mechanisms and timescales for z~6-7 quasars"
+  },
+  {
+   "question_id": "galaxy_evolution-2012-002",
+   "engaged": "yes",
+   "evidence_ids": "1508.01679, 1601.01698, 1401.5472",
+   "notes": "SFR-estimator comparison at 1<z<3 and PAH SFR calibration directly address the named method discrepancies"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2018-008",
+   "engaged": "yes",
+   "evidence_ids": "2007.06618, 2212.03240",
+   "notes": "Reanalysis of the 4.5um WASP-43b phase curve targeting instrument systematics; repeat-phase-curve variability test"
+  },
+  {
+   "question_id": "gravitational_waves-2020-001",
+   "engaged": "yes",
+   "evidence_ids": "2403.03399, 2111.00111, 2203.10109",
+   "notes": "Multiple papers directly on the nature of the GW190814 secondary and NS maximum-mass implications"
+  },
+  {
+   "question_id": "compact_objects-2012-005",
+   "engaged": "yes",
+   "evidence_ids": "1303.4934, 1710.09128, 1701.02067",
+   "notes": "34 Hz QPO discovery in GRS 1915+105 gives the 2:1 ratio directly; kHz QPO vs NS spin correlation studied head-on"
+  },
+  {
+   "question_id": "compact_objects-2016-000",
+   "engaged": "yes",
+   "evidence_ids": "2010.00999, 1705.09343",
+   "notes": "New constraints on LS I +61 303 orbital parameters from polarimetry; orbital/superorbital variability re-studied"
+  },
+  {
+   "question_id": "compact_objects-2016-005",
+   "engaged": "yes",
+   "evidence_ids": "10.1093/MNRAS/STX619, 1810.04398, 2003.08538",
+   "notes": "Paper directly on second derivatives and braking indices in radio pulsars; fallback-disc mechanism proposed"
+  },
+  {
+   "question_id": "stellar_activity-2018-004",
+   "engaged": "partial",
+   "evidence_ids": "10.3847/1538-4357/ab5800, 2010.09431, 1903.04565",
+   "notes": "Dust/plasma mechanisms for radio-X-ray emission in substellar atmospheres directly studied; the satellite-induced model discrepancy for TVLM 513 itself not found"
+  },
+  {
+   "question_id": "galaxy_evolution-2016-000",
+   "engaged": "partial",
+   "evidence_ids": "1801.06880, 2104.05736",
+   "notes": "HI-excess vs inefficient SF in massive galaxies and extraplanar-gas kinematics engage the components; the anomalous-cloud-to-accretion-rate relation as posed not found"
+  },
+  {
+   "question_id": "gravitational_waves-2016-001",
+   "engaged": "yes",
+   "evidence_ids": "1708.04831, 1702.03100, 1702.06311",
+   "notes": "Anomalous magnetic braking mechanism and negative orbital-period derivatives directly investigated"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2018-006",
+   "engaged": "yes",
+   "evidence_ids": "2107.05759, 1908.06998, 2311.00305",
+   "notes": "Tidal spin-up of hot Jupiter hosts (activity) and tidal destruction/survival both directly studied"
+  },
+  {
+   "question_id": "galaxy_evolution-2012-001",
+   "engaged": "partial",
+   "evidence_ids": "1304.1178, 1409.3235",
+   "notes": "Compact-object M/L in the named mass range directly measured; zero in-window citing papers touch DLAs, so the claimed relationship is unengaged"
+  },
+  {
+   "question_id": "exoplanet_atmospheres-2016-003",
+   "engaged": "yes",
+   "evidence_ids": "1801.06548, 1904.09676, 2103.07185",
+   "notes": "CoRoT-2b hotspot-offset study on the named object; vertical mixing / disequilibrium chemistry directly investigated as the mechanism"
+  },
+  {
+   "question_id": "stellar_activity-2014-008",
+   "engaged": "no",
+   "evidence_ids": "",
+   "notes": "Only 2 in-window citing papers, neither touching Li abundances or the Safronov-number relation"
+  }
+ ]
+}

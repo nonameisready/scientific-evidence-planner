@@ -8,3 +8,4 @@ results/*
 *.log
 *.out
 *.toc
+experiments/data/adjudication/citations.json
