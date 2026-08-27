@@ -1,0 +1,704 @@
+<title>Evidence Adjudication Bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+:root {
+  --ground: #F2F5F6;
+  --surface: #FFFFFF;
+  --surface-2: #E9EEF0;
+  --ink: #16202B;
+  --ink-2: #46575F;
+  --muted: #6B7A85;
+  --line: #D2DADE;
+  --accent: #14606F;
+  --accent-soft: #DCEBEE;
+  --yes: #226F52;
+  --partial: #8F5E12;
+  --no: #93402F;
+  --unsure: #63737E;
+  --yes-bg: #DFEFE7;
+  --partial-bg: #F6E9D2;
+  --no-bg: #F6E0DA;
+  --unsure-bg: #E4E9EC;
+  --shadow: 0 1px 2px rgba(22,32,43,.05), 0 10px 28px rgba(22,32,43,.07);
+}
+:root:not([data-theme="light"]) { }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0E141A;
+    --surface: #161F27;
+    --surface-2: #1E2932;
+    --ink: #E3EAEE;
+    --ink-2: #AABAC3;
+    --muted: #8496A1;
+    --line: #2B3944;
+    --accent: #5AAEC0;
+    --accent-soft: #16323A;
+    --yes: #6DC79B;
+    --partial: #DDAE5E;
+    --no: #E0917F;
+    --unsure: #8496A1;
+    --yes-bg: #14342A;
+    --partial-bg: #33280F;
+    --no-bg: #38211C;
+    --unsure-bg: #212B33;
+    --shadow: 0 1px 2px rgba(0,0,0,.45), 0 10px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0E141A;
+  --surface: #161F27;
+  --surface-2: #1E2932;
+  --ink: #E3EAEE;
+  --ink-2: #AABAC3;
+  --muted: #8496A1;
+  --line: #2B3944;
+  --accent: #5AAEC0;
+  --accent-soft: #16323A;
+  --yes: #6DC79B;
+  --partial: #DDAE5E;
+  --no: #E0917F;
+  --unsure: #8496A1;
+  --yes-bg: #14342A;
+  --partial-bg: #33280F;
+  --no-bg: #38211C;
+  --unsure-bg: #212B33;
+  --shadow: 0 1px 2px rgba(0,0,0,.45), 0 10px 28px rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---------- masthead ---------- */
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.title-block { display: flex; flex-direction: column; gap: 3px; }
+h1 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 25px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.subtitle { color: var(--muted); font-size: 13.5px; }
+.counts {
+  display: flex;
+  gap: 18px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+.counts b { color: var(--ink); font-weight: 500; }
+
+/* ---------- progress rail ---------- */
+/* 62 questions = 31 x 2, so the rail reads as two even rows */
+.rail {
+  display: grid;
+  grid-template-columns: repeat(31, 1fr);
+  gap: 5px;
+}
+@media (max-width: 760px) { .rail { grid-template-columns: repeat(16, 1fr); } }
+.cell {
+  aspect-ratio: 1;
+  min-height: 15px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0;
+  cursor: pointer;
+  transition: transform .1s ease;
+}
+.cell:hover { transform: scale(1.18); }
+.cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cell[data-v="yes"]     { background: var(--yes);     border-color: var(--yes); }
+.cell[data-v="partial"] { background: var(--partial); border-color: var(--partial); }
+.cell[data-v="no"]      { background: var(--no);      border-color: var(--no); }
+.cell[data-v="unsure"]  { background: var(--unsure);  border-color: var(--unsure); }
+.cell.current { box-shadow: 0 0 0 2px var(--ground), 0 0 0 4px var(--accent); }
+
+/* ---------- card ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  padding: 13px 20px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.qid { color: var(--ink); font-weight: 500; }
+.chip {
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+.spacer { margin-left: auto; }
+
+.card-body { padding: 22px 24px; display: flex; flex-direction: column; gap: 20px; }
+
+.question {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 20px;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+.label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.evidence { display: flex; flex-direction: column; gap: 10px; }
+.ev {
+  display: grid;
+  grid-template-columns: minmax(0, 132px) 1fr;
+  gap: 4px 16px;
+  padding: 11px 14px;
+  background: var(--ground);
+  border-radius: 7px;
+  border-left: 3px solid var(--line);
+}
+.ev-meta {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  word-break: break-all;
+}
+.ev-meta a { color: var(--accent); text-decoration: none; }
+.ev-meta a:hover { text-decoration: underline; }
+.ev-sentence {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 14.5px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+/* ---------- search ---------- */
+.search-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .12s ease, background .12s ease;
+}
+.btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn .k {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+/* ---------- verdict ---------- */
+.verdicts { display: flex; flex-wrap: wrap; gap: 9px; }
+.v {
+  flex: 1 1 165px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .12s ease, background .12s ease;
+}
+.v:hover { border-color: var(--ink-2); }
+.v:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.v .vt { font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 7px; }
+.v .vd { font-size: 12px; color: var(--muted); line-height: 1.4; }
+.v .k {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+.v[aria-pressed="true"][data-v="yes"]     { border-color: var(--yes);     background: var(--yes-bg); }
+.v[aria-pressed="true"][data-v="partial"] { border-color: var(--partial); background: var(--partial-bg); }
+.v[aria-pressed="true"][data-v="no"]      { border-color: var(--no);      background: var(--no-bg); }
+.v[aria-pressed="true"][data-v="unsure"]  { border-color: var(--unsure);  background: var(--unsure-bg); }
+.v[aria-pressed="true"] .vt::after { content: "✓"; color: var(--ink-2); margin-left: auto; }
+
+.fields { display: flex; flex-direction: column; gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+input[type="text"], textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  background: var(--ground);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+input[type="text"] { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; }
+input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+::placeholder { color: var(--muted); opacity: .75; }
+
+/* ---------- footer nav ---------- */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 4px;
+}
+.nav .spacer { margin-left: auto; }
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 500;
+}
+:root[data-theme="dark"] .btn.primary,
+:root:not([data-theme="light"]) .btn.primary { color: #0E141A; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .btn.primary { color: #fff; }
+}
+.btn.primary:hover { background: var(--accent); filter: brightness(1.08); }
+
+.note {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 72ch;
+}
+.note code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12.5px;
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+details.guide {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 20px;
+}
+details.guide summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  list-style: none;
+}
+details.guide summary::-webkit-details-marker { display: none; }
+details.guide summary::before { content: "▸ "; color: var(--accent); }
+details.guide[open] summary::before { content: "▾ "; }
+details.guide .guide-body { padding-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+details.guide p { margin: 0; max-width: 74ch; font-size: 13.5px; color: var(--ink-2); }
+details.guide strong { color: var(--ink); }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%) translateY(14px);
+  background: var(--ink);
+  color: var(--ground);
+  padding: 9px 18px;
+  border-radius: 100px;
+  font-size: 13.5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 20;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+@media (max-width: 620px) {
+  .ev { grid-template-columns: 1fr; }
+  .question { font-size: 18px; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="title-block">
+      <h1>Evidence Adjudication Bench</h1>
+      <div class="subtitle">62 high-specificity tension questions — full-text check against a retrieval-bounded label</div>
+    </div>
+    <div class="counts">
+      <span>done <b id="c-done">0</b>/62</span>
+      <span>engaged <b id="c-yes">0</b></span>
+      <span>not <b id="c-no">0</b></span>
+      <span>unsure <b id="c-unsure">0</b></span>
+    </div>
+  </header>
+
+  <div class="rail" id="rail"></div>
+
+  <details class="guide">
+    <summary>How to judge (read once)</summary>
+    <div class="guide-body">
+      <p>For each question, search the literature published <strong>in the 5 years after its cutoff</strong> and decide whether anyone substantively engaged <em>this</em> question.</p>
+      <p><strong>The bar:</strong> at least one paper that investigates this question's own objects, quantities, or claimed relationship. Same topic is not enough — a paper about magnetars in general does not engage a question about the spectral difference between two specific magnetar classes.</p>
+      <p><strong>Fastest route:</strong> the <em>Cited by</em> buttons. The papers that generated this question are listed below it; work published later that engages the question almost always cites at least one of them. That search is pre-filtered to the right year window.</p>
+      <p><strong>Why this matters:</strong> the existing labels come from abstract-level keyword retrieval, which is known to miss engagement with narrow, object-level questions. You are the full-text check. Your verdicts are deliberately blind — the existing label is not shown, so it cannot anchor you.</p>
+      <p><strong>Keys:</strong> <code>1</code> engaged · <code>2</code> partial · <code>3</code> not engaged · <code>4</code> unsure · <code>←</code>/<code>→</code> move · <code>Enter</code> next unjudged. Progress saves in this browser automatically.</p>
+    </div>
+  </details>
+
+  <main class="card">
+    <div class="card-head">
+      <span class="qid" id="h-qid">—</span>
+      <span class="chip" id="h-subfield">—</span>
+      <span id="h-cutoff">—</span>
+      <span class="spacer" id="h-index">—</span>
+    </div>
+    <div class="card-body">
+      <p class="question" id="q-text">Loading…</p>
+
+      <div>
+        <div class="label">Search the follow-up literature</div>
+        <div class="search-row" id="search-row" style="margin-top:8px"></div>
+      </div>
+
+      <div class="evidence">
+        <div class="label">Evidence that generated this question</div>
+        <div id="ev-list"></div>
+      </div>
+
+      <div>
+        <div class="label">Your verdict</div>
+        <div class="verdicts" id="verdicts" style="margin-top:8px">
+          <button class="v" data-v="yes" aria-pressed="false">
+            <span class="vt">Engaged <span class="k">1</span></span>
+            <span class="vd">A later paper directly investigates it</span>
+          </button>
+          <button class="v" data-v="partial" aria-pressed="false">
+            <span class="vt">Partial <span class="k">2</span></span>
+            <span class="vd">Touched, but not the specific claim</span>
+          </button>
+          <button class="v" data-v="no" aria-pressed="false">
+            <span class="vt">Not engaged <span class="k">3</span></span>
+            <span class="vd">Nothing found in the window</span>
+          </button>
+          <button class="v" data-v="unsure" aria-pressed="false">
+            <span class="vt">Unsure <span class="k">4</span></span>
+            <span class="vd">Can't tell — excluded from rates</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="fields">
+        <div class="field">
+          <label class="label" for="f-ev">Supporting paper IDs <span style="text-transform:none;letter-spacing:0">(arXiv ID, DOI, or title — comma separated)</span></label>
+          <input type="text" id="f-ev" placeholder="2104.01234, 10.3847/1538-4357/abc123" autocomplete="off">
+        </div>
+        <div class="field">
+          <label class="label" for="f-notes">Notes <span style="text-transform:none;letter-spacing:0">(optional — one line is plenty)</span></label>
+          <textarea id="f-notes" rows="2" placeholder="e.g. two 2019 papers re-measure the same spectral break"></textarea>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button class="btn" id="prev">← Previous</button>
+        <button class="btn" id="next">Next →</button>
+        <button class="btn primary" id="jump">Next unjudged <span class="k">↵</span></button>
+        <span class="spacer"></span>
+        <button class="btn" id="export">Export annotations</button>
+      </div>
+    </div>
+  </main>
+
+  <p class="note">
+    Export writes <code>annotations.json</code>. Put it in
+    <code>experiments/data/adjudication/</code> and run
+    <code>python experiments/score_adjudication.py</code> — that prints the recovery
+    rate and re-runs the utility comparison under your corrected labels. Partial
+    judgments count as engaged, matching how the original label treats
+    <code>partially_addressed</code>. You can stop and come back; progress is kept in
+    this browser.
+  </p>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const ITEMS = __ITEMS__;
+
+const KEY = "adjudication-v1";
+let state = {};
+let idx = 0;
+
+function load() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) state = JSON.parse(raw) || {};
+  } catch (e) { state = {}; }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+function rec(id) {
+  if (!state[id]) state[id] = { engaged: "", evidence_ids: "", notes: "" };
+  return state[id];
+}
+function judged(id) {
+  return state[id] && state[id].engaged;
+}
+
+function adsCitations(item) {
+  const ids = item.evidence.map(e => 'citations(arXiv:' + e.arxiv_id + ')').join(' OR ');
+  const y = item.search_window.slice(0, 4) + '-' + item.search_window.slice(14, 18);
+  return 'https://ui.adsabs.harvard.edu/search/q=' +
+    encodeURIComponent('(' + ids + ') year:' + y) + '&sort=' + encodeURIComponent('date asc');
+}
+function scholar(item) {
+  return 'https://scholar.google.com/scholar?as_ylo=' + (Number(item.cutoff_date.slice(0,4)) + 1) +
+    '&as_yhi=' + (Number(item.cutoff_date.slice(0,4)) + 5) +
+    '&q=' + encodeURIComponent(item.question.slice(0, 220));
+}
+
+function buildRail() {
+  const rail = document.getElementById('rail');
+  rail.textContent = '';
+  ITEMS.forEach((item, i) => {
+    const b = document.createElement('button');
+    b.className = 'cell';
+    b.title = (i + 1) + '. ' + item.question_id;
+    b.setAttribute('aria-label', 'Question ' + (i + 1));
+    b.addEventListener('click', () => { go(i); });
+    rail.appendChild(b);
+  });
+}
+
+function paintRail() {
+  const cells = document.querySelectorAll('.cell');
+  ITEMS.forEach((item, i) => {
+    const v = judged(item.question_id);
+    if (v) cells[i].setAttribute('data-v', v); else cells[i].removeAttribute('data-v');
+    cells[i].classList.toggle('current', i === idx);
+  });
+}
+
+function paintCounts() {
+  let done = 0, yes = 0, no = 0, unsure = 0;
+  ITEMS.forEach(item => {
+    const v = judged(item.question_id);
+    if (!v) return;
+    done++;
+    if (v === 'yes' || v === 'partial') yes++;
+    else if (v === 'no') no++;
+    else unsure++;
+  });
+  document.getElementById('c-done').textContent = done;
+  document.getElementById('c-yes').textContent = yes;
+  document.getElementById('c-no').textContent = no;
+  document.getElementById('c-unsure').textContent = unsure;
+}
+
+function render() {
+  const item = ITEMS[idx];
+  const r = rec(item.question_id);
+
+  document.getElementById('h-qid').textContent = item.question_id;
+  document.getElementById('h-subfield').textContent = item.subfield.replace(/_/g, ' ');
+  document.getElementById('h-cutoff').textContent = 'frozen ' + item.cutoff_date + ' · search ' + item.search_window;
+  document.getElementById('h-index').textContent = (idx + 1) + ' / ' + ITEMS.length;
+  document.getElementById('q-text').textContent = item.question;
+
+  const sr = document.getElementById('search-row');
+  sr.textContent = '';
+  const a1 = document.createElement('a');
+  a1.className = 'btn'; a1.href = adsCitations(item); a1.target = '_blank'; a1.rel = 'noopener';
+  a1.textContent = 'Cited by, in window (ADS)';
+  sr.appendChild(a1);
+  const a2 = document.createElement('a');
+  a2.className = 'btn'; a2.href = scholar(item); a2.target = '_blank'; a2.rel = 'noopener';
+  a2.textContent = 'Question text (Scholar)';
+  sr.appendChild(a2);
+
+  const ev = document.getElementById('ev-list');
+  ev.textContent = '';
+  item.evidence.forEach(e => {
+    const row = document.createElement('div');
+    row.className = 'ev';
+    const meta = document.createElement('div');
+    meta.className = 'ev-meta';
+    const link = document.createElement('a');
+    link.href = 'https://arxiv.org/abs/' + e.arxiv_id;
+    link.target = '_blank'; link.rel = 'noopener';
+    link.textContent = e.arxiv_id;
+    const date = document.createElement('span');
+    date.textContent = e.published;
+    meta.appendChild(link); meta.appendChild(date);
+    const s = document.createElement('div');
+    s.className = 'ev-sentence';
+    s.textContent = e.sentence;
+    row.appendChild(meta); row.appendChild(s);
+    ev.appendChild(row);
+  });
+
+  document.querySelectorAll('.v').forEach(b => {
+    b.setAttribute('aria-pressed', String(b.dataset.v === r.engaged));
+  });
+  document.getElementById('f-ev').value = r.evidence_ids || '';
+  document.getElementById('f-notes').value = r.notes || '';
+
+  paintRail();
+  paintCounts();
+}
+
+function go(i) {
+  idx = Math.max(0, Math.min(ITEMS.length - 1, i));
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function setVerdict(v) {
+  const item = ITEMS[idx];
+  const r = rec(item.question_id);
+  r.engaged = (r.engaged === v) ? '' : v;
+  save();
+  render();
+}
+
+function nextUnjudged() {
+  for (let k = 1; k <= ITEMS.length; k++) {
+    const i = (idx + k) % ITEMS.length;
+    if (!judged(ITEMS[i].question_id)) { go(i); return; }
+  }
+  toast('All 62 judged — export when ready');
+}
+
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+document.querySelectorAll('.v').forEach(b => {
+  b.addEventListener('click', () => setVerdict(b.dataset.v));
+});
+document.getElementById('f-ev').addEventListener('input', e => {
+  rec(ITEMS[idx].question_id).evidence_ids = e.target.value; save();
+});
+document.getElementById('f-notes').addEventListener('input', e => {
+  rec(ITEMS[idx].question_id).notes = e.target.value; save();
+});
+document.getElementById('prev').addEventListener('click', () => go(idx - 1));
+document.getElementById('next').addEventListener('click', () => go(idx + 1));
+document.getElementById('jump').addEventListener('click', nextUnjudged);
+
+document.getElementById('export').addEventListener('click', () => {
+  const rows = ITEMS
+    .filter(it => judged(it.question_id))
+    .map(it => Object.assign({ question_id: it.question_id }, state[it.question_id]));
+  if (!rows.length) { toast('Nothing judged yet'); return; }
+  const text = JSON.stringify({ annotations: rows }, null, 2);
+  navigator.clipboard.writeText(text).then(
+    () => toast('Copied ' + rows.length + ' annotations — paste into annotations.json'),
+    () => { showFallback(text); }
+  );
+});
+
+function showFallback(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'width:100%;height:220px;margin-top:12px';
+  document.querySelector('.card-body').appendChild(ta);
+  ta.select();
+  toast('Copy the text below manually');
+}
+
+document.addEventListener('keydown', e => {
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea') {
+    if (e.key === 'Escape') e.target.blur();
+    return;
+  }
+  if (e.key === '1') setVerdict('yes');
+  else if (e.key === '2') setVerdict('partial');
+  else if (e.key === '3') setVerdict('no');
+  else if (e.key === '4') setVerdict('unsure');
+  else if (e.key === 'ArrowLeft') go(idx - 1);
+  else if (e.key === 'ArrowRight') go(idx + 1);
+  else if (e.key === 'Enter') nextUnjudged();
+});
+
+load();
+buildRail();
+const firstUnjudged = ITEMS.findIndex(it => !judged(it.question_id));
+idx = firstUnjudged === -1 ? 0 : firstUnjudged;
+render();
+</script>

@@ -1,0 +1,374 @@
+{
+  "compact_objects-2012-004": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9882838220213894
+  },
+  "compact_objects-2012-005": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 30,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "compact_objects-2012-008": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 12,
+    "planner_top_k_utility": 1.9882838220213894
+  },
+  "compact_objects-2014-000": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 10,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "compact_objects-2014-001": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "compact_objects-2014-002": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "compact_objects-2016-000": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "compact_objects-2016-005": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 15,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "compact_objects-2016-006": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9144085875586765
+  },
+  "compact_objects-2018-004": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 3,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "compact_objects-2020-000": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "compact_objects-2020-004": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 5,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "cosmology_tensions-2016-009": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 2,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2012-002": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2012-009": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2014-002": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.7792316778982529
+  },
+  "exoplanet_atmospheres-2014-005": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.8047687270276103
+  },
+  "exoplanet_atmospheres-2016-003": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2016-005": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2016-007": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "posed_but_open",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2018-001": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2018-005": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2018-006": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2018-008": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2018-009": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "answered",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "exoplanet_atmospheres-2020-002": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "fast_radio_bursts-2014-000": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "fast_radio_bursts-2018-005": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "fast_radio_bursts-2020-001": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.8047687270276112
+  },
+  "fast_radio_bursts-2020-006": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2012-001": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 15,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2012-002": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 10,
+    "planner_top_k_utility": 1.889219672283997
+  },
+  "galaxy_evolution-2014-001": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 6,
+    "planner_top_k_utility": 1.9144085875586796
+  },
+  "galaxy_evolution-2014-002": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 15,
+    "planner_top_k_utility": 1.889219672283997
+  },
+  "galaxy_evolution-2014-008": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2016-000": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.889219672283997
+  },
+  "galaxy_evolution-2016-002": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2016-005": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 23,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2016-009": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2018-001": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2018-004": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 15,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2018-009": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.889219672283997
+  },
+  "galaxy_evolution-2020-000": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "galaxy_evolution-2020-003": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 23,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "gravitational_waves-2016-001": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "gravitational_waves-2016-006": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 4,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "gravitational_waves-2020-001": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 7,
+    "planner_top_k_utility": 0.0
+  },
+  "gravitational_waves-2020-002": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.8047687270276112
+  },
+  "protoplanetary_disks-2012-009": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "posed_but_open",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "protoplanetary_disks-2014-005": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "protoplanetary_disks-2014-007": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.889219672283997
+  },
+  "protoplanetary_disks-2016-009": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 1,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "protoplanetary_disks-2018-002": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "protoplanetary_disks-2018-007": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9882838220213894
+  },
+  "protoplanetary_disks-2020-002": {
+    "paper3_addressed": true,
+    "paper3_answer_status": "partially_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "protoplanetary_disks-2020-008": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "stellar_activity-2012-005": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "stellar_activity-2014-008": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 3,
+    "planner_top_k_utility": 1.9882838220213894
+  },
+  "stellar_activity-2014-009": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "stellar_activity-2016-009": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 2,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "stellar_activity-2018-004": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  },
+  "stellar_activity-2020-006": {
+    "paper3_addressed": false,
+    "paper3_answer_status": "not_addressed",
+    "paper3_future_paper_count": 0,
+    "planner_top_k_utility": 1.9232516282901397
+  }
+}
