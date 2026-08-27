@@ -72,8 +72,16 @@ labels. Two integration points ship here:
   by evidence-cluster breadth. The script also runs the robustness check that
   qualifies this — the effect does not survive breadth stratification and
   concentrates in the high-specificity stratum where Paper 3 documents its
-  label to under-count engagement — so the divergence is reported as a
-  mechanism, not as detected neglect.
+  label to under-count engagement.
+- **Adjudication of that stratum** — `experiments/build_adjudication_set.py`
+  builds a blind annotation set for the 62 high-specificity questions (plus a
+  browser annotation tool), `experiments/harvest_citations.py` retrieves
+  candidates through the citation graph rather than abstract keywords, and
+  `experiments/score_adjudication.py` scores the verdicts. Result: **94% of
+  the questions the label calls unaddressed were in fact engaged** (69% under
+  the strictest bar), and the utility effect vanishes (p = 0.70 / 0.61 vs
+  0.004). The neglect reading is withdrawn; the measured label bound is the
+  result that stands.
 
 ## Repository layout
 

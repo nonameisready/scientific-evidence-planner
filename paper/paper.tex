@@ -56,25 +56,31 @@ $1.06$ bits of hypothesis entropy). We further ground the utility
 components in the historical-outcome findings of the companion
 predictor-discovery study (Paper 3, $n{=}980$ questions at five
 cutoffs): explicitly articulated competing hypotheses predict
-resolution; the resolution channel runs through quantified, explicitly
-contradictory, recurrent evidence rather than methodological doubt; and
-semantic novelty does not predict uptake --- findings we convert into an
-empirically calibrated weight configuration that sharpens the planner's
-ranking toward the historically resolving actions. Scaling the
-benchmark to all $374$ of Paper 3's tension questions --- each evidence
-cluster batch-converted to a graph by transparent rules and planned at
-its own historical cutoff --- turns the metrics into distributions and
-surfaces a structural result: planner utility runs opposite to measured
-community attention (pooled permutation $p = 0.004$), because both are
-driven, with opposite sign, by the breadth of the existing evidence
-base. We then report the robustness check that qualifies it: the effect
-does not survive stratification by breadth and concentrates in exactly
-the high-specificity stratum where Paper 3 documents its
-retrieval-bounded label to under-count engagement, so the divergence
-between resolution-driven and attention-driven allocation is real as a
-mechanism but cannot yet be claimed as detected neglect. The framework
-is released as a reference implementation with seven evaluation
-metrics, full configurability, and no domain assumptions in code.
+resolution, and the resolution channel runs through quantified,
+explicitly contradictory, recurrent evidence rather than methodological
+doubt --- findings we convert into an empirically calibrated weight
+configuration that sharpens the planner's ranking toward the
+historically resolving actions. Scaling the benchmark to all $374$ of
+Paper 3's tension questions --- each evidence cluster batch-converted
+to a graph by transparent rules and planned at its own historical
+cutoff --- turns the metrics into distributions and surfaces a
+structural result: planner utility runs opposite to measured community
+attention (pooled permutation $p = 0.004$), because both are driven,
+with opposite sign, by the breadth of the existing evidence base. We
+then dismantle the appealing reading of that result. The effect does
+not survive stratification by breadth, and its residual concentrates in
+the high-specificity stratum where Paper 3's retrieval-bounded label is
+documented to under-count engagement. Re-adjudicating all $62$
+high-specificity questions blind, against citation-graph retrieval
+rather than abstract keyword matching, recovers $94\%$ of the questions
+the label calls unaddressed ($69\%$ under the strictest bar) and the
+utility effect vanishes ($p = 0.70$ and $0.61$, against $0.004$). The
+divergence between resolution-driven and attention-driven allocation is
+therefore real as a mechanism but is not evidence of detected neglect;
+the durable empirical result is a measured bound on the outcome label
+itself. The framework is released as a reference implementation with
+seven evaluation metrics, full configurability, and no domain
+assumptions in code.
 \end{abstract}
 
 \section{Introduction}
@@ -144,10 +150,13 @@ questions and labels and an empirically calibrated weight
 configuration;
 (6)~a scaled benchmark run over all $374$ of Paper 3's tension
 questions, batch-converted to evidence graphs by auditable rules, with
-metric distributions and an outcome-stratified analysis showing that
-planner utility anti-correlates with subsequent community attention;
-and
-(7)~an open reference implementation with unit tests and a worked case
+metric distributions and an outcome-stratified analysis;
+(7)~a blind re-adjudication of the $62$ questions carrying that
+analysis' residual effect, which measures the outcome label's
+under-counting at $69$--$94\%$, withdraws our own neglect
+interpretation, and bounds what specificity-related findings computed
+on that label can mean; and
+(8)~an open reference implementation with unit tests and a worked case
 study whose hidden ground truth follows the documented historical
 outcome.
 
@@ -658,12 +667,11 @@ is simultaneously Paper 3's strongest structural predictor of
 \emph{attention} ($\beta = +0.45$/SD). The planner and the community
 are, mechanically, reading opposite signs off the same feature.
 
-\paragraph{Whether that is neglect or measurement, this run cannot
-say.} The tempting reading --- that the planner detects genuine
-neglect --- does not survive the robustness checks that Paper 3's own
-limitations demand, and we report the negative result rather than the
-headline. Two decompositions (Table~\ref{tab:robust}) undercut it.
-First, the pooled effect is largely \emph{breadth-mediated}: comparing
+\paragraph{The effect is breadth-mediated and specificity-confined.}
+The tempting reading --- that the planner detects genuine neglect ---
+does not survive the robustness checks that Paper 3's own limitations
+demand. Two decompositions (Table~\ref{tab:robust}) undercut it. First,
+the pooled effect is largely \emph{breadth-mediated}: comparing
 addressed against unaddressed questions \emph{within} strata of equal
 cluster breadth, the difference is not significant in any stratum
 ($p = 0.25$, $0.88$, $0.08$). Second, and more sharply, the residual
@@ -679,15 +687,74 @@ those ten questions on a $2.4\times$ larger corpus flipped four labels
 in both directions. A planner that scores evidence-poor, specific
 questions highly will therefore anti-correlate with a label that
 under-measures exactly those questions, with or without any real
-neglect.
+neglect. Rather than caveat this, we measured it.
 
-We therefore make only the weaker claim the data supports: planner
-utility and measured community attention are driven with opposite sign
-by the same evidence-structure feature, and the residual
-anti-correlation is confounded with a documented measurement bound.
-Separating genuine neglect from retrieval artifact requires
-full-text-adjudicated outcomes on the high-specificity stratum --- a
-concrete, bounded experiment ($n = 62$ here) rather than a caveat.
+\subsection{Adjudicating the confounded stratum}
+\label{sec:adjudication}
+
+We re-adjudicated all $62$ high-specificity questions against a
+retrieval channel the original label did not have. Paper 3 retrieves
+candidates by TF--IDF over subfield abstracts, keeping the top eight;
+we instead retrieve through the \emph{citation graph}, collecting every
+paper that cites a question's generating evidence within its own
+five-year post-cutoff window (Semantic Scholar; median $51$ candidates
+per question, 4{,}652 in total). Work that engages a question grounded in specific papers
+almost always cites one of them, and that path is invisible to keyword
+matching on abstracts. Verdicts were recorded blind --- the original
+label was withheld to a separate key --- under Paper 3's own criterion:
+a question counts as engaged if some in-window paper investigates its
+own objects, quantities, or claimed relationship, not merely its topic.
+
+The result is unambiguous (Table~\ref{tab:adjudication}). Of the $36$
+questions the label calls \texttt{not\_addressed}, $34$ were in fact
+engaged --- a recovery rate of $94\%$. Under the strictest reading, in
+which only unambiguous direct engagement counts and every partial
+judgment is discarded, $25/36 = 69\%$ are still recovered. Both
+brackets sit around the $80\%$ recovery Paper 3 itself documents for
+its object-level Paper 1 import ($2/10 \to 10/10$), which is
+independent corroboration that this is the same measurement bound
+rather than an artifact of our judge. Re-running the stratum's utility
+comparison under the corrected labels, the effect disappears entirely:
+$p = 0.70$ lenient, $p = 0.61$ strict, against $p = 0.004$ under the
+original labels.
+
+\begin{table}[t]
+\centering
+\caption{Adjudication of the 62 high-specificity questions under
+citation-graph retrieval, blind to the original label. The recovery
+rate is the fraction of \texttt{not\_addressed} questions found to have
+been engaged.}
+\label{tab:adjudication}
+\begin{tabular}{lrrr}
+\toprule
+Engagement bar & Recovery & Utility effect & $p$ \\
+\midrule
+Original label (Paper 3) & --- & 1.830 vs.\ 1.925 & \textbf{0.004} \\
+Lenient (direct or partial) & 34/36 = 94\% & 1.883 vs.\ 1.913 & 0.70 \\
+Strict (direct only) & 25/36 = 69\% & 1.875 vs.\ 1.917 & 0.61 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{What this settles, and what it costs.} The neglect
+interpretation is withdrawn: the one surviving piece of it was an
+artifact of a label that misses most engagement with specific
+questions. What remains from the scaled run is the mechanism ---
+planner utility and community attention are driven with opposite sign
+by cluster breadth --- and that is a statement about how the two
+allocation policies differ structurally, not evidence that the planner
+finds neglected science. Establishing the latter needs an outcome
+measure that does not degrade with question specificity, which is now a
+concrete requirement rather than an open worry.
+
+The measurement itself is the durable result. On this stratum the
+\texttt{addressed} label under-counts engagement by a factor of roughly
+three to fifteen depending on the bar, which bounds what any
+specificity-related finding computed on it can mean --- including Paper
+3's own negative controlled effect of specificity on attention
+($\beta = -0.16$), which it already flags as partly instrumental. Our
+adjudication, its rules, and its per-question verdicts are released so
+the bound can be checked and reused rather than re-derived.
 
 \begin{table}[t]
 \centering
@@ -785,14 +852,26 @@ offline and reproduces byte-for-byte.
   the calibrated configuration inherits those caveats. Its own
   prospective instance (frozen 2026-08, scored 2027--2030) will test
   the imported prior on a future no model has seen.
-  \item \textbf{The outcome label bounds what we can conclude.} Our
-  central at-scale comparison is against a retrieval-bounded label that
-  Paper 3 shows under-counts engagement non-uniformly across
-  specificity. This is not a generic caveat but the specific reason the
-  neglect interpretation is withheld in Section~\ref{sec:scale}. The
-  decisive experiment is small and well-defined: full-text adjudication
-  of the $62$ high-specificity tension questions, which would separate
-  genuine neglect from measurement artifact directly.
+  \item \textbf{The outcome label bounds what can be concluded at
+  scale.} Our at-scale comparisons run against a retrieval-bounded
+  label that under-counts engagement severely and non-uniformly:
+  Section~\ref{sec:adjudication} measures $69$--$94\%$ under-counting
+  on the high-specificity stratum. Any result computed on this label
+  that correlates with question specificity is suspect by default,
+  which is why the neglect interpretation is withdrawn rather than
+  hedged. Adjudicating the remaining $312$ tension questions would
+  extend the bound beyond the one stratum where we measured it.
+  \item \textbf{The adjudication is model-judged, on one retrieval
+  channel.} Our verdicts come from a language model applying Paper 3's
+  criterion, not from human adjudication, so they inherit the judge
+  limitation Paper 3 documents ($\kappa = 0.21$ model--model, against a
+  $\kappa = 0.17$ human--human ceiling). What makes the comparison
+  informative is that the \emph{retrieval} differs while the criterion
+  is held fixed, and that the recovery brackets Paper 3's own $80\%$
+  human-adjudicated recovery on an independent set. Citation-graph
+  retrieval also has its own blind spot, symmetric to the one it fixes:
+  it cannot see engagement that never cites the generating papers, so
+  our recovery rates are themselves lower bounds.
 \end{itemize}
 
 \section{Conclusion}
@@ -819,18 +898,28 @@ exact action family that history used to settle the question. Run at
 scale over all $374$ of Paper 3's tension questions, the planner's
 utility turns out to anti-correlate with subsequent community
 attention: it prizes precisely the evidence-poor questions the
-community left behind --- but the robustness analysis says we have not
-earned that reading. What the run establishes is narrower and still
-worth having: planner utility and community attention are driven with
-opposite sign by the same structural feature, and the part of that
-divergence which might be genuine neglect is currently inseparable
-from a documented measurement bound. Naming which of the two it is
-requires full-text adjudication on 62 questions, not a larger corpus
---- and Paper 3's pre-registered prospective instance (frozen 2026,
-scored 2027--2030) offers the second, time-graded test. The
-infrastructure for both is now in place, and the more useful posture
-is the one this paper ends in: a planner whose divergence from
-community behaviour is measured rather than assumed.
+community left behind. We tested that reading and it failed. Blind
+re-adjudication of the stratum carrying it, against a retrieval channel
+the original label lacked, recovered $94\%$ of the questions the label
+called unaddressed and dissolved the effect entirely. What survives is
+narrower and still worth having: planner utility and community
+attention are driven with opposite sign by the same structural feature
+--- a statement about how two allocation policies differ, not evidence
+that either finds better science.
+
+The more useful result is the one we did not set out to produce. A
+planner benchmark turns out to be a sensitive instrument for auditing
+the outcome labels it is scored against, because it concentrates
+disagreement exactly where a label is weakest. The bound we measured
+--- a factor of three to fifteen in missed engagement for specific
+questions --- constrains any specificity-related claim built on that
+label, ours and the source dataset's alike. Whether a
+resolution-driven planner genuinely points at neglected science remains
+open, and answering it now has a precondition this work made concrete:
+an outcome measure that does not degrade with question specificity.
+Paper 3's pre-registered prospective instance (frozen 2026, scored
+2027--2030) offers the time-graded half of that test; the retrieval
+half is a solved problem we have implemented and released.
 
 \section*{Reproducibility}
 

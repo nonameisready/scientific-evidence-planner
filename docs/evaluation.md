@@ -82,6 +82,14 @@ inside strata of cluster breadth and question specificity for exactly this
 reason; read the within-stratum cells, not the pooled number, before
 drawing a conclusion.
 
+That bound has now been measured rather than assumed. Blind adjudication of
+the 62 high-specificity questions against citation-graph retrieval
+(`build_adjudication_set.py` → `harvest_citations.py` →
+`score_adjudication.py`) found 94% of the `not_addressed` questions had in
+fact been engaged (69% counting only unambiguous direct engagement). Treat
+`addressed` as a lower bound whose slack grows with question specificity,
+and prefer within-stratum comparisons over pooled ones.
+
 ## Extending
 
 - New metrics: add a pure function taking recommendations / hypotheses /

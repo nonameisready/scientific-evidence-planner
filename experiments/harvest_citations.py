@@ -39,9 +39,14 @@ OUT = ADJ / "citations.json"
 API = "https://api.semanticscholar.org/graph/v1/paper/arXiv:{}/citations"
 FIELDS = "title,abstract,year,publicationDate,externalIds,venue"
 PAGE = 100
-MAX_PAGES = 3          # up to 300 citing papers per source paper
-SLEEP = 1.3            # unauthenticated rate limit courtesy
-MAX_RETRIES = 4
+MAX_PAGES = 2          # up to 200 citing papers per source paper
+SLEEP = 1.1            # unauthenticated rate limit courtesy
+MAX_RETRIES = 10
+
+# The unauthenticated endpoint throttles hard but briefly: a 429 clears in
+# ~1-2s. Exponential backoff therefore idles long after the limit lifts, so
+# 429s get many short retries instead; other errors still back off.
+THROTTLE_WAIT = 2.0
 
 
 def fetch_page(arxiv_id: str, offset: int) -> dict | None:
@@ -56,10 +61,12 @@ def fetch_page(arxiv_id: str, offset: int) -> dict | None:
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 return None
-            wait = SLEEP * (2 ** attempt)
-            time.sleep(wait)
+            if e.code == 429:
+                time.sleep(THROTTLE_WAIT)
+                continue
+            time.sleep(SLEEP * (2 ** min(attempt, 3)))
         except Exception:
-            time.sleep(SLEEP * (2 ** attempt))
+            time.sleep(SLEEP * (2 ** min(attempt, 3)))
     return None
 
 
